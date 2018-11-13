@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "../common/button";
 
 class NewCardForm extends Component {
   state = {
@@ -10,28 +11,26 @@ class NewCardForm extends Component {
     this.setState({ data });
   };
   render() {
+    const { data } = this.state;
+    const { onClose, onSubmit, list } = this.props;
     return (
       <div className="card-form">
-        <form
-          onSubmit={e =>
-            this.props.onSubmit(e, this.state.data, this.props.list)
-          }
-        >
+        <form onSubmit={e => onSubmit(e, data, list)}>
           <div className="form-group">
             <input
               className="form-control"
               type="text"
-              value={this.state.data.content}
+              value={data.content}
               onChange={this.handleChange}
+              id={data.id}
             />
           </div>
           <input type="submit" className="btn btn-success pull-left" />
-          <div
-            onClick={() => this.props.onClose(this.props.list.id)}
-            className="btn btn-danger pull-right"
-          >
-            Close
-          </div>
+          <Button
+            onClick={onClose}
+            title="Close"
+            classes="btn btn-danger pull-right"
+          />
         </form>
       </div>
     );

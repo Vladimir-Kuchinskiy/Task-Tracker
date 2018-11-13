@@ -16,14 +16,16 @@ class Card extends Component {
 
   handleSubmit = (e, card) => {
     e.preventDefault();
+    if (card.content === "") {
+      document.getElementById(card.id).focus();
+      return;
+    }
     this.props.onSubmit(card);
     this.setState({ ...this.state, editCardClicked: false });
   };
 
   handleClick = e => {
     e.preventDefault();
-    debugger;
-    console.log(e.type);
     this.setState({ ...this.state, editCardClicked: true });
   };
 

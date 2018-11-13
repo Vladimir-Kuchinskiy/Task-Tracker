@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import List from "./list";
 
-class InnerList extends PureComponent {
+class InnerLists extends PureComponent {
   state = {
     addCardClicked: false
   };
@@ -47,4 +47,4 @@ class InnerList extends PureComponent {
   }
 }
 
-export default InnerList;
+export default InnerLists;

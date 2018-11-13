@@ -1,10 +1,9 @@
-import React, { Component, PureComponent } from "react";
+import React, { Component } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import List from "./list";
-import Button from "./buttons/button";
+import Button from "./common/button";
 import NewListForm from "./forms/newListForm";
-import InnerList from "./innerList";
+import InnerLists from "./innerLists";
 
 const ListsContainer = styled.div`
   display: flex;
@@ -47,7 +46,7 @@ class Lists extends Component {
     return listsOrder.map((listId, index) => {
       const list = lists[listId];
       return (
-        <InnerList
+        <InnerLists
           list={list}
           cards={cards}
           key={list.id}

@@ -4,7 +4,8 @@ import Card from "./card";
 import styled from "styled-components";
 import NewCardForm from "./forms/NewCardForm";
 import EditForm from "./forms/editForm";
-import Button from "./buttons/button";
+import Button from "./common/button";
+import InnerCards from "./innerCards";
 
 const CardsList = styled.ul`
   list-style: none;
@@ -18,19 +19,6 @@ const ListContainer = styled.div`
   height: calc(100% - 10px - 17px);
 `;
 
-class InnerList extends PureComponent {
-  render() {
-    return this.props.cards.map((card, index) => (
-      <Card
-        key={card.id}
-        card={card}
-        index={index}
-        onSubmit={this.props.onSubmit}
-      />
-    ));
-  }
-}
-
 class List extends Component {
   state = {
     data: { ...this.props.list },
@@ -39,6 +27,10 @@ class List extends Component {
 
   handleSubmit = (e, list) => {
     e.preventDefault();
+    if (list.title === "") {
+      document.getElementById(list.id).focus();
+      return;
+    }
     this.props.onSubmitListForm(list);
     this.setState({ ...this.state, editListClicked: false });
   };
@@ -92,7 +84,7 @@ class List extends Component {
                   {...provided.droppableProps}
                 >
                   <CardsList isDraggingOver={snapshot.isDraggingOver}>
-                    <InnerList cards={cards} onSubmit={onSubmitCardForm} />
+                    <InnerCards cards={cards} onSubmit={onSubmitCardForm} />
                     {provided.placeholder}
                   </CardsList>
                   <footer
