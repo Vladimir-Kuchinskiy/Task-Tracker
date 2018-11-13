@@ -4,7 +4,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import initialData from "../initialData";
 
 class Board extends Component {
-  state = { ...initialData, addListClicked: false };
+  state = initialData.boards["board-1"];
 
   moveLists({ destination, source, draggableId }) {
     const newListsOrder = Array.from(this.state.listsOrder);
@@ -72,27 +72,37 @@ class Board extends Component {
     type === "list" ? this.moveLists(result) : this.moveCards(result);
   };
 
-  handleAddList = () => {
-    this.setState({ ...this.state, addListClicked: true });
-  };
-
-  handleCloseNewListForm = () => {
-    this.setState({ ...this.state, addListClicked: false });
-  };
-
-  handleSubmitNewListForm = (e, list) => {
-    e.preventDefault();
-    if (list.title === "") return;
+  handleSubmitListForm = list => {
     const lists = this.state.lists;
     const listsOrder = this.state.listsOrder;
-    list.id = Math.floor(Math.random() * 10 + 1);
+    if (list.id === "new") {
+      list.id = Math.floor(Math.random() * 10 + 1).toString() + "-list";
+      lists[list.id] = list;
+      listsOrder.push(list.id);
+      this.setState({
+        ...this.state,
+        lists: lists,
+        listsOrder: listsOrder
+      });
+      return;
+    }
     lists[list.id] = list;
-    listsOrder.push(list.id);
+    this.setState({
+      ...this.state,
+      lists: lists
+    });
+  };
+
+  handleSubmitCardForm = (card, list) => {
+    const cards = this.state.cards;
+    const lists = this.state.lists;
+    card.id = Math.floor(Math.random() * 10 + 1).toString() + "-card";
+    cards[card.id] = card;
+    lists[list.id].cardIds.push(card.id);
     this.setState({
       ...this.state,
       lists: lists,
-      listsOrder: listsOrder,
-      addListClicked: false
+      cards: cards
     });
   };
 
@@ -106,10 +116,8 @@ class Board extends Component {
               lists={this.state.lists}
               cards={this.state.cards}
               listsOrder={this.state.listsOrder}
-              addListClicked={this.state.addListClicked}
-              onClickAddList={this.handleAddList}
-              onSubmitNewListForm={this.handleSubmitNewListForm}
-              onCloseNewListForm={this.handleCloseNewListForm}
+              onSubmitListForm={this.handleSubmitListForm}
+              onSubmitCardForm={this.handleSubmitCardForm}
             />
           </DragDropContext>
         </div>

@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import Card from "./card";
 import styled from "styled-components";
+import NewCardForm from "./NewCardForm";
+import EditForm from "./editForm";
 
 const CardsList = styled.ul`
   list-style: none;
   background-color: ${props => (props.isDraggingOver ? "#c8cacc" : "")};
-  margin: 0;
   max-height: calc(100% - 36px - 36px);
   overflow-y: auto;
-  min-height: 54px;
 `;
 
 const ListContainer = styled.div`
@@ -17,17 +17,7 @@ const ListContainer = styled.div`
   height: calc(100% - 10px - 17px);
 `;
 
-const Title = styled.header``;
-
-class InnerList extends Component {
-  shouldComponentUpdate(newProps) {
-    if (newProps.cards === this.props.cards) {
-      return false;
-    }
-
-    return true;
-  }
-
+class InnerList extends PureComponent {
   render() {
     return this.props.cards.map((card, index) => (
       <Card key={card.id} card={card} index={index} />
@@ -36,8 +26,41 @@ class InnerList extends Component {
 }
 
 class List extends Component {
+  state = {
+    data: { ...this.props.list },
+    editListClicked: false
+  };
+
+  handleSubmit = (e, list) => {
+    e.preventDefault();
+    this.props.onSubmitListForm(list);
+    this.setState({ ...this.state, editListClicked: false });
+  };
+
+  handleClick = () => {
+    this.setState({ ...this.state, editListClicked: true });
+  };
+
+  handleClose = () => {
+    this.setState({ ...this.state, editListClicked: false });
+  };
+
+  handleChange = ({ currentTarget: input }) => {
+    const data = { ...this.state.data };
+    data.title = input.value;
+    this.setState({ ...this.state, data: data });
+  };
+
   render() {
-    const { list, cards, index } = this.props;
+    const {
+      list,
+      cards,
+      index,
+      onSubmit,
+      onClose,
+      onClick,
+      addCardClicked
+    } = this.props;
     return (
       <Draggable draggableId={list.id} index={index}>
         {provided => (
@@ -46,20 +69,49 @@ class List extends Component {
             {...provided.draggableProps}
             ref={provided.innerRef}
           >
-            <Title {...provided.dragHandleProps}>{list.title}</Title>
+            <header {...provided.dragHandleProps} onClick={this.handleClick}>
+              {this.state.editListClicked ? (
+                <EditForm
+                  data={this.state.data}
+                  onChange={this.handleChange}
+                  onSubmit={this.handleSubmit}
+                  value="title"
+                />
+              ) : (
+                list.title
+              )}
+            </header>
             <Droppable droppableId={list.id} type="card">
               {(provided, snapshot) => (
-                <CardsList
+                <div
+                  className="list-container"
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  isDraggingOver={snapshot.isDraggingOver}
                 >
-                  <InnerList cards={cards} />
-                  {provided.placeholder}
-                </CardsList>
+                  <CardsList isDraggingOver={snapshot.isDraggingOver}>
+                    <InnerList cards={cards} />
+                    {provided.placeholder}
+                  </CardsList>
+                  <footer
+                    className={
+                      addCardClicked ? "footer footer-with-form" : "footer"
+                    }
+                  >
+                    {addCardClicked ? (
+                      <NewCardForm
+                        onSubmit={onSubmit}
+                        onClose={onClose}
+                        list={list}
+                      />
+                    ) : (
+                      <div className="btn add-card" onClick={onClick}>
+                        Add a card...
+                      </div>
+                    )}
+                  </footer>
+                </div>
               )}
             </Droppable>
-            <footer>Add a card...</footer>
           </ListContainer>
         )}
       </Draggable>

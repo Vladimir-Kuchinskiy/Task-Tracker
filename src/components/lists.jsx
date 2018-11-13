@@ -16,20 +16,83 @@ const AddListContainer = styled.div`
 `;
 
 class InnerList extends PureComponent {
+  state = {
+    addCardClicked: false
+  };
+
+  onClose = () => {
+    this.setState({ addCardClicked: false });
+  };
+
+  onClickAdd = () => {
+    this.setState({ addCardClicked: true });
+  };
+
+  onSubmit = (e, card, list) => {
+    e.preventDefault();
+    if (card.content === "") return;
+    this.setState({ addCardClicked: false });
+    this.props.onSubmit(card, list);
+  };
+
   render() {
-    const { list, cards: originalCards, index } = this.props;
+    const { list, cards: originalCards, index, onSubmitListForm } = this.props;
     const cards = list.cardIds.map(cardId => originalCards[cardId]);
-    return <List list={list} cards={cards} index={index} />;
+
+    return (
+      <List
+        list={list}
+        cards={cards}
+        index={index}
+        addCardClicked={this.state.addCardClicked}
+        onClose={this.onClose}
+        onClick={this.onClickAdd}
+        onSubmit={this.onSubmit}
+        onSubmitListForm={onSubmitListForm}
+      />
+    );
   }
 }
 
 class Lists extends Component {
+  state = {
+    addListClicked: false
+  };
+
+  onClickAdd = () => {
+    this.setState({ addListClicked: true });
+  };
+
+  onCloseNewForm = () => {
+    this.setState({ addListClicked: false });
+  };
+
+  onSubmitListForm = (e, list) => {
+    e.preventDefault();
+    if (list.title === "") return;
+    this.props.onSubmitListForm(list);
+    this.setState({ addListClicked: false });
+  };
+
   getListComponents = () => {
-    const { listsOrder, lists, cards } = this.props;
+    const {
+      listsOrder,
+      lists,
+      cards,
+      onSubmitCardForm,
+      onSubmitListForm
+    } = this.props;
     return listsOrder.map((listId, index) => {
       const list = lists[listId];
       return (
-        <InnerList list={list} cards={cards} key={list.id} index={index} />
+        <InnerList
+          list={list}
+          cards={cards}
+          key={list.id}
+          index={index}
+          onSubmit={onSubmitCardForm}
+          onSubmitListForm={onSubmitListForm}
+        />
       );
     });
   };
@@ -46,13 +109,13 @@ class Lists extends Component {
             {this.getListComponents()}
             {provided.placeholder}
             <AddListContainer>
-              {this.props.addListClicked ? (
+              {this.state.addListClicked ? (
                 <NewListForm
-                  onClose={this.props.onCloseNewListForm}
-                  onSubmit={this.props.onSubmitNewListForm}
+                  onClose={this.onCloseNewForm}
+                  onSubmit={this.onSubmitListForm}
                 />
               ) : (
-                <AddList onClick={this.props.onClickAddList} />
+                <AddList onClick={this.onClickAdd} />
               )}
             </AddListContainer>
           </ListsContainer>

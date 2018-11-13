@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class NewListForm extends Component {
   state = {
-    data: { id: "", title: "", cardIds: [] }
+    data: { id: "new", title: "", cardIds: [] }
   };
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
@@ -16,13 +16,15 @@ class NewListForm extends Component {
           <input
             className="form-control"
             type="text"
-            name="listname"
             value={this.state.data.title}
             onChange={this.handleChange}
           />
         </div>
         <input type="submit" className="btn btn-success pull-left" />
-        <div onClick={this.props.onClose} className="btn btn-danger pull-right">
+        <div
+          onClick={() => this.props.onClose()}
+          className="btn btn-danger pull-right"
+        >
           Close
         </div>
       </form>
