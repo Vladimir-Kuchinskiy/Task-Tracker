@@ -2,8 +2,9 @@ import React, { Component, PureComponent } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import Card from "./card";
 import styled from "styled-components";
-import NewCardForm from "./NewCardForm";
-import EditForm from "./editForm";
+import NewCardForm from "./forms/NewCardForm";
+import EditForm from "./forms/editForm";
+import Button from "./buttons/button";
 
 const CardsList = styled.ul`
   list-style: none;
@@ -106,9 +107,11 @@ class List extends Component {
                         list={list}
                       />
                     ) : (
-                      <div className="btn add-card" onClick={onClick}>
-                        Add a card...
-                      </div>
+                      <Button
+                        classes="btn add-card"
+                        onClick={onClick}
+                        title="Add a card..."
+                      />
                     )}
                   </footer>
                 </div>

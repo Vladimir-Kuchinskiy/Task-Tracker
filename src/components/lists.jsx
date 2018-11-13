@@ -2,8 +2,9 @@ import React, { Component, PureComponent } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import List from "./list";
-import AddList from "./addList";
-import NewListForm from "./newListForm";
+import Button from "./buttons/button";
+import NewListForm from "./forms/newListForm";
+import InnerList from "./innerList";
 
 const ListsContainer = styled.div`
   display: flex;
@@ -14,52 +15,6 @@ const AddListContainer = styled.div`
   width: 300px;
   height: calc(100% - 10px - 17px);
 `;
-
-class InnerList extends PureComponent {
-  state = {
-    addCardClicked: false
-  };
-
-  onClose = () => {
-    this.setState({ addCardClicked: false });
-  };
-
-  onClickAdd = () => {
-    this.setState({ addCardClicked: true });
-  };
-
-  onSubmit = (e, card, list) => {
-    e.preventDefault();
-    if (card.content === "") return;
-    this.setState({ addCardClicked: false });
-    this.props.onSubmitCardForm(card, list);
-  };
-
-  render() {
-    const {
-      list,
-      cards: originalCards,
-      index,
-      onSubmitListForm,
-      onSubmitCardForm
-    } = this.props;
-    const cards = list.cardIds.map(cardId => originalCards[cardId]);
-
-    return (
-      <List
-        list={list}
-        cards={cards}
-        index={index}
-        addCardClicked={this.state.addCardClicked}
-        onClose={this.onClose}
-        onClick={this.onClickAdd}
-        onSubmitNewCardForm={this.onSubmit}
-        onSubmitCardForm={onSubmitCardForm}
-        onSubmitListForm={onSubmitListForm}
-      />
-    );
-  }
-}
 
 class Lists extends Component {
   state = {
@@ -122,7 +77,11 @@ class Lists extends Component {
                   onSubmit={this.onSubmitListForm}
                 />
               ) : (
-                <AddList onClick={this.onClickAdd} />
+                <Button
+                  onClick={this.onClickAdd}
+                  classes="btn btn-outline-warning add-list"
+                  title="Add a list..."
+                />
               )}
             </AddListContainer>
           </ListsContainer>
