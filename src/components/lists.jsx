@@ -32,11 +32,17 @@ class InnerList extends PureComponent {
     e.preventDefault();
     if (card.content === "") return;
     this.setState({ addCardClicked: false });
-    this.props.onSubmit(card, list);
+    this.props.onSubmitCardForm(card, list);
   };
 
   render() {
-    const { list, cards: originalCards, index, onSubmitListForm } = this.props;
+    const {
+      list,
+      cards: originalCards,
+      index,
+      onSubmitListForm,
+      onSubmitCardForm
+    } = this.props;
     const cards = list.cardIds.map(cardId => originalCards[cardId]);
 
     return (
@@ -47,7 +53,8 @@ class InnerList extends PureComponent {
         addCardClicked={this.state.addCardClicked}
         onClose={this.onClose}
         onClick={this.onClickAdd}
-        onSubmit={this.onSubmit}
+        onSubmitNewCardForm={this.onSubmit}
+        onSubmitCardForm={onSubmitCardForm}
         onSubmitListForm={onSubmitListForm}
       />
     );
@@ -90,7 +97,7 @@ class Lists extends Component {
           cards={cards}
           key={list.id}
           index={index}
-          onSubmit={onSubmitCardForm}
+          onSubmitCardForm={onSubmitCardForm}
           onSubmitListForm={onSubmitListForm}
         />
       );

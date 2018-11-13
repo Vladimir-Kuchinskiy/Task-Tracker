@@ -20,7 +20,12 @@ const ListContainer = styled.div`
 class InnerList extends PureComponent {
   render() {
     return this.props.cards.map((card, index) => (
-      <Card key={card.id} card={card} index={index} />
+      <Card
+        key={card.id}
+        card={card}
+        index={index}
+        onSubmit={this.props.onSubmit}
+      />
     ));
   }
 }
@@ -41,10 +46,6 @@ class List extends Component {
     this.setState({ ...this.state, editListClicked: true });
   };
 
-  handleClose = () => {
-    this.setState({ ...this.state, editListClicked: false });
-  };
-
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
     data.title = input.value;
@@ -56,7 +57,8 @@ class List extends Component {
       list,
       cards,
       index,
-      onSubmit,
+      onSubmitNewCardForm,
+      onSubmitCardForm,
       onClose,
       onClick,
       addCardClicked
@@ -89,7 +91,7 @@ class List extends Component {
                   {...provided.droppableProps}
                 >
                   <CardsList isDraggingOver={snapshot.isDraggingOver}>
-                    <InnerList cards={cards} />
+                    <InnerList cards={cards} onSubmit={onSubmitCardForm} />
                     {provided.placeholder}
                   </CardsList>
                   <footer
@@ -99,7 +101,7 @@ class List extends Component {
                   >
                     {addCardClicked ? (
                       <NewCardForm
-                        onSubmit={onSubmit}
+                        onSubmit={onSubmitNewCardForm}
                         onClose={onClose}
                         list={list}
                       />

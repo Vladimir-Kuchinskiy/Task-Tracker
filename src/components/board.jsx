@@ -93,17 +93,22 @@ class Board extends Component {
     });
   };
 
-  handleSubmitCardForm = (card, list) => {
+  handleSubmitCardForm = (card, list = null) => {
     const cards = this.state.cards;
-    const lists = this.state.lists;
-    card.id = Math.floor(Math.random() * 10 + 1).toString() + "-card";
+    if (card.id === "new") {
+      const lists = this.state.lists;
+      card.id = Math.floor(Math.random() * 10 + 1).toString() + "-card";
+      cards[card.id] = card;
+      lists[list.id].cardIds.push(card.id);
+      this.setState({
+        ...this.state,
+        lists: lists,
+        cards: cards
+      });
+      return;
+    }
     cards[card.id] = card;
-    lists[list.id].cardIds.push(card.id);
-    this.setState({
-      ...this.state,
-      lists: lists,
-      cards: cards
-    });
+    this.setState({ ...this.state, cards: cards });
   };
 
   render() {

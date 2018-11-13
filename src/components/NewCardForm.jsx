@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class NewCardForm extends Component {
   state = {
-    data: { id: "", content: "" }
+    data: { id: "new", content: "" }
   };
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
