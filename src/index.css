@@ -24,6 +24,9 @@ body {
 .navbar.board {
   font-size: 1.1rem;
 }
+.content.board {
+  overflow-x: auto;
+}
 .lists > * {
   flex: 0 0 auto;
   margin-left: 18px;
@@ -88,4 +91,20 @@ body {
 .list-container {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+::-webkit-scrollbar {
+  width: 12px; /* for vertical scrollbars */
+  height: 16px; /* for horizontal scrollbars */
+}
+::-webkit-scrollbar-track {
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.198);
+  margin: 0 3px 0 3px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.349);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.52);
 }

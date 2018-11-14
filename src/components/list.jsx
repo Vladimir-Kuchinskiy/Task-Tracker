@@ -1,8 +1,7 @@
-import React, { Component, PureComponent } from "react";
+import React, { Component } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
-import Card from "./card";
 import styled from "styled-components";
-import NewCardForm from "./forms/NewCardForm";
+import NewCardForm from "./forms/newCardForm";
 import EditForm from "./forms/editForm";
 import Button from "./common/button";
 import InnerCards from "./innerCards";

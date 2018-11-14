@@ -5,6 +5,9 @@ class NewCardForm extends Component {
   state = {
     data: { id: "new", content: "" }
   };
+  componentDidMount() {
+    document.getElementById("card-" + this.state.data.id).focus();
+  }
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
     data.content = input.value;
@@ -22,7 +25,7 @@ class NewCardForm extends Component {
               type="text"
               value={data.content}
               onChange={this.handleChange}
-              id={data.id}
+              id={"card-" + data.id}
             />
           </div>
           <input type="submit" className="btn btn-success pull-left" />

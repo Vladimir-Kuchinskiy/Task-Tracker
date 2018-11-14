@@ -7,7 +7,6 @@ import InnerLists from "./innerLists";
 
 const ListsContainer = styled.div`
   display: flex;
-  overflow-x: auto;
 `;
 
 const AddListContainer = styled.div`
@@ -20,11 +19,11 @@ class Lists extends Component {
     addListClicked: false
   };
 
-  onClickAdd = () => {
+  onClickAddList = () => {
     this.setState({ addListClicked: true });
   };
 
-  onCloseNewForm = () => {
+  onCloseNewListForm = () => {
     this.setState({ addListClicked: false });
   };
 
@@ -72,12 +71,12 @@ class Lists extends Component {
             <AddListContainer>
               {this.state.addListClicked ? (
                 <NewListForm
-                  onClose={this.onCloseNewForm}
+                  onClose={this.onCloseNewListForm}
                   onSubmit={this.onSubmitListForm}
                 />
               ) : (
                 <Button
-                  onClick={this.onClickAdd}
+                  onClick={this.onClickAddList}
                   classes="btn btn-outline-warning add-list"
                   title="Add a list..."
                 />

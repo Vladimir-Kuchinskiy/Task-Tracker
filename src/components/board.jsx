@@ -115,7 +115,7 @@ class Board extends Component {
     return (
       <React.Fragment>
         <nav className="navbar board">{this.state.board.title}</nav>
-        <div className="board">
+        <div className="content board">
           <DragDropContext onDragEnd={this.handleDragEnd}>
             <Lists
               lists={this.state.lists}

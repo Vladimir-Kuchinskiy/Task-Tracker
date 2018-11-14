@@ -6,15 +6,15 @@ class InnerLists extends PureComponent {
     addCardClicked: false
   };
 
-  onClose = () => {
+  onCloseNewCard = () => {
     this.setState({ addCardClicked: false });
   };
 
-  onClickAdd = () => {
+  onClickAddCard = () => {
     this.setState({ addCardClicked: true });
   };
 
-  onSubmit = (e, card, list) => {
+  onSubmitNewCard = (e, card, list) => {
     e.preventDefault();
     if (card.content === "") return;
     this.setState({ addCardClicked: false });
@@ -37,9 +37,9 @@ class InnerLists extends PureComponent {
         cards={cards}
         index={index}
         addCardClicked={this.state.addCardClicked}
-        onClose={this.onClose}
-        onClick={this.onClickAdd}
-        onSubmitNewCardForm={this.onSubmit}
+        onClose={this.onCloseNewCard}
+        onClick={this.onClickAddCard}
+        onSubmitNewCardForm={this.onSubmitNewCard}
         onSubmitCardForm={onSubmitCardForm}
         onSubmitListForm={onSubmitListForm}
       />
