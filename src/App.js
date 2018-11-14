@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import "./App.css";
 import Board from "./components/board";
+import "./App.css";
 
 class App extends Component {
+  state = { show: false };
   render() {
     return (
-      <div className="App">
-        <div className="ui">
-          <nav className="navbar app">Task Tracker</nav>
-          <Board />
+      <div>
+        <div className="App">
+          <div className="ui">
+            <nav className="navbar app">Task Tracker</nav>
+            <Board />
+          </div>
         </div>
       </div>
     );

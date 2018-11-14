@@ -6,10 +6,27 @@ const initialData = {
         title: "My first board"
       },
       cards: {
-        "card-1": { id: "card-1", content: "Take out the garbage" },
-        "card-2": { id: "card-2", content: "Watch my favorite show" },
-        "card-3": { id: "card-3", content: "Charge my phone" },
-        "card-4": { id: "card-4", content: "Cook dinner" }
+        "card-1": {
+          id: "card-1",
+          content: "Take out the garbage",
+          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt facere
+          vel nulla sequi tempore, deleniti explicabo sed? Ducimus, amet dolores
+          veritatis natus ipsa, fuga modi ut atque officia provident ratione!
+          Cumque saepe ex minima, doloremque, rerum repudiandae consectetur
+          earum consequuntur dolorem porro laudantium dolor blanditiis obcaecati
+          a eaque quos commodi eius facere? Voluptatem laborum veniam
+          accusantium sit suscipit animi maiores. Quae ipsum eligendi expedita
+          similique a id, ipsa quo debitis et natus alias illo! Quia
+          perspiciatis tempora maiores corrupti laudantium? Ratione quo possimus
+          hic! Iste quae quidem voluptate pariatur deleniti?`
+        },
+        "card-2": {
+          id: "card-2",
+          content: "Watch my favorite show",
+          description: ""
+        },
+        "card-3": { id: "card-3", content: "Charge my phone", description: "" },
+        "card-4": { id: "card-4", content: "Cook dinner", description: "" }
       },
       lists: {
         "lists-1": {

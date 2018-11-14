@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Lists from "./lists";
 import { DragDropContext } from "react-beautiful-dnd";
 import initialData from "../initialData";
+import Lists from "./lists";
 
 class Board extends Component {
   state = initialData.boards["board-1"];

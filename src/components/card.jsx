@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import EditForm from "./forms/editForm";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const CardContainer = styled.li`
   background-color: ${props =>
@@ -12,7 +13,7 @@ const CardContainer = styled.li`
 `;
 
 class Card extends Component {
-  state = { data: this.props.card, editCardClicked: false };
+  state = { data: this.props.card, editCardClicked: false, showModal: false };
 
   handleSubmit = (e, card) => {
     e.preventDefault();
@@ -35,32 +36,52 @@ class Card extends Component {
     this.setState({ ...this.state, data: data });
   };
 
+  toggle = () => {
+    this.setState({ ...this.state, showModal: !this.state.showModal });
+  };
+
   render() {
     const { card, index } = this.props;
     return (
-      <Draggable draggableId={card.id} index={index}>
-        {(provided, snapshot) => (
-          <CardContainer
-            className="draggable"
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            isDragging={snapshot.isDragging}
-            onContextMenu={this.handleClick}
-          >
-            {this.state.editCardClicked ? (
-              <EditForm
-                data={this.state.data}
-                onChange={this.handleChange}
-                onSubmit={this.handleSubmit}
-                value="content"
-              />
-            ) : (
-              this.state.data.content
-            )}
-          </CardContainer>
-        )}
-      </Draggable>
+      <React.Fragment>
+        <Draggable draggableId={card.id} index={index}>
+          {(provided, snapshot) => (
+            <CardContainer
+              className="draggable"
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              isDragging={snapshot.isDragging}
+              onContextMenu={this.handleClick}
+              onClick={this.toggle}
+            >
+              {this.state.editCardClicked ? (
+                <EditForm
+                  data={this.state.data}
+                  onChange={this.handleChange}
+                  onSubmit={this.handleSubmit}
+                  value="content"
+                />
+              ) : (
+                this.state.data.content
+              )}
+            </CardContainer>
+          )}
+        </Draggable>
+        <Modal
+          isOpen={this.state.showModal}
+          toggle={this.toggle}
+          size="lg"
+          fade={false}
+        >
+          <ModalHeader toggle={this.toggle}>{card.content}</ModalHeader>
+
+          <ModalBody>
+            <h4>Description</h4>
+            <p>{card.description}</p>
+          </ModalBody>
+        </Modal>
+      </React.Fragment>
     );
   }
 }
