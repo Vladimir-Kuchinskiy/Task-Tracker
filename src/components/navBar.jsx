@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 class NavBar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <h1 className="navbar-brand" href="#">
           Task Tracker
         </h1>

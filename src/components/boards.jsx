@@ -1,26 +1,21 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import initialData from "../initialData";
+import BoardItem from "./boardItem";
 
 class Boards extends Component {
   state = initialData;
 
   render() {
+    const { boardIds, boards } = this.state;
+    toast.success("You are logged in successfully.");
     return (
-      <div className="container .navbar">
+      <div className="container boards">
         <h2 className="row">Your boards</h2>
         <br />
         <div className="row">
-          {this.state.boardIds.map(boardId => {
-            return (
-              <Link
-                to={`/boards/${boardId}`}
-                className="col-3 board-item"
-                key={boardId}
-              >
-                <h3>{this.state.boards[boardId].board.title}</h3>
-              </Link>
-            );
+          {boardIds.map(boardId => {
+            return <BoardItem board={boards[boardId].board} key={boardId} />;
           })}
         </div>
       </div>
