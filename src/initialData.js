@@ -66,8 +66,8 @@ const initialData = {
         }
       },
       listsOrder: ["lists-3", "list-4"]
-    },
-    boardIds: ["board-1", "board-2"]
-  }
+    }
+  },
+  boardIds: ["board-1", "board-2"]
 };
 export default initialData;

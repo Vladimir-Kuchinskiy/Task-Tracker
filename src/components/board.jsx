@@ -4,7 +4,13 @@ import initialData from "../initialData";
 import Lists from "./lists";
 
 class Board extends Component {
-  state = initialData.boards["board-1"];
+  componentWillMount() {
+    if (initialData.boards[this.props.match.params.id]) {
+      this.setState(initialData.boards[this.props.match.params.id]);
+    } else {
+      window.location = "/not-found";
+    }
+  }
 
   moveLists({ destination, source, draggableId }) {
     const newListsOrder = Array.from(this.state.listsOrder);

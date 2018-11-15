@@ -37,6 +37,7 @@ class Card extends Component {
   };
 
   toggle = () => {
+    if (this.state.editCardClicked) return;
     this.setState({ ...this.state, showModal: !this.state.showModal });
   };
 
@@ -75,7 +76,6 @@ class Card extends Component {
           fade={false}
         >
           <ModalHeader toggle={this.toggle}>{card.content}</ModalHeader>
-
           <ModalBody>
             <h4>Description</h4>
             <p>{card.description}</p>
