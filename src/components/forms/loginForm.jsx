@@ -1,11 +1,12 @@
 import React from "react";
 import Joi from "joi-browser";
-import Form from "./common/form";
+// import { Redirect } from "react-router-dom";
+import Form from "../common/form";
 // import auth from "../services/authService";
 
-class RegisterForm extends Form {
+class LoginForm extends Form {
   state = {
-    data: { email: "", password: "", password_confirmation: "" },
+    data: { email: "", password: "" },
     errors: {}
   };
 
@@ -15,19 +16,16 @@ class RegisterForm extends Form {
       .required()
       .label("Email"),
     password: Joi.string()
-      .min(5)
       .required()
-      .label("Password"),
-    password_confirmation: Joi.string()
-      .required()
-      .label("Confirmation password")
+      .label("Password")
   };
 
   doSubmit = async () => {
     try {
-      // const response = await userSevice.register(this.state.data);
-      // auth.loginWithJwt(response.headers["x-auth-token"]);
-      window.location = "/";
+      // const { data } = this.state;
+      // await auth.login(data.username, data.password);
+      // const { state } = this.props.location;
+      window.location = /*state ? state.from.pathname :*/ "/";
     } catch (e) {
       if (e.response && e.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -38,22 +36,21 @@ class RegisterForm extends Form {
   };
 
   render() {
+    // if (auth.getCurrentUser()) {
+    //   toast.success("You are already logged in.");
+    //   return <Redirect to="/" />;
+    // }
     return (
       <div className="container">
-        <h1>Register</h1>
+        <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("email", "Email")}
           {this.renderInput("password", "Password", "password")}
-          {this.renderInput(
-            "password_confirmation",
-            "Confirmation password",
-            "password"
-          )}
-          {this.renderButton("Sign up")}
+          {this.renderButton("Login")}
         </form>
       </div>
     );
   }
 }
 
-export default RegisterForm;
+export default LoginForm;

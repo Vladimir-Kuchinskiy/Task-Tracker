@@ -57,7 +57,47 @@ const initialData = {
         "lists-3": {
           id: "lists-3",
           title: "To do",
-          cardIds: ["card-1", "card-2", "card-3", "card-4"]
+          cardIds: ["card-5", "card-6", "card-6", "card-8"]
+        },
+        "list-4": {
+          id: "list-4",
+          title: "In Progress",
+          cardIds: []
+        }
+      },
+      listsOrder: ["lists-3", "list-4"]
+    },
+    "board-3": {
+      board: {
+        id: "board-3",
+        title: "My second board"
+      },
+      cards: {},
+      lists: {
+        "lists-3": {
+          id: "lists-3",
+          title: "To do",
+          cardIds: []
+        },
+        "list-4": {
+          id: "list-4",
+          title: "In Progress",
+          cardIds: []
+        }
+      },
+      listsOrder: ["lists-3", "list-4"]
+    },
+    "board-4": {
+      board: {
+        id: "board-4",
+        title: "My second board"
+      },
+      cards: {},
+      lists: {
+        "lists-3": {
+          id: "lists-3",
+          title: "To do",
+          cardIds: []
         },
         "list-4": {
           id: "list-4",
@@ -68,6 +108,6 @@ const initialData = {
       listsOrder: ["lists-3", "list-4"]
     }
   },
-  boardIds: ["board-1", "board-2"]
+  boardIds: ["board-1", "board-2", "board-3", "board-4"]
 };
 export default initialData;

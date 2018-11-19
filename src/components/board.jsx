@@ -82,7 +82,7 @@ class Board extends Component {
     const lists = this.state.lists;
     const listsOrder = this.state.listsOrder;
     if (list.id === "new") {
-      list.id = Math.floor(Math.random() * 10 + 1).toString() + "-list";
+      list.id = Math.floor(Math.random() * 100 + 1).toString() + "-list";
       lists[list.id] = list;
       listsOrder.push(list.id);
       this.setState({
@@ -103,7 +103,7 @@ class Board extends Component {
     const cards = this.state.cards;
     if (card.id === "new") {
       const lists = this.state.lists;
-      card.id = Math.floor(Math.random() * 10 + 1).toString() + "-card";
+      card.id = Math.floor(Math.random() * 100 + 1).toString() + "-card";
       cards[card.id] = card;
       lists[list.id].cardIds.push(card.id);
       this.setState({
