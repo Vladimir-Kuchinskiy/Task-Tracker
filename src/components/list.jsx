@@ -44,6 +44,10 @@ class List extends Component {
     this.setState({ ...this.state, data: data });
   };
 
+  handleDeleteCard = data => {
+    this.props.onDeleteCard(data, this.props.list);
+  };
+
   render() {
     const {
       list,
@@ -83,7 +87,11 @@ class List extends Component {
                   {...provided.droppableProps}
                 >
                   <CardsList isDraggingOver={snapshot.isDraggingOver}>
-                    <InnerCards cards={cards} onSubmit={onSubmitCardForm} />
+                    <InnerCards
+                      cards={cards}
+                      onSubmit={onSubmitCardForm}
+                      onDeleteCard={this.handleDeleteCard}
+                    />
                     {provided.placeholder}
                   </CardsList>
                   <footer

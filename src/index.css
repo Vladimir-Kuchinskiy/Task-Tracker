@@ -179,3 +179,7 @@ ul::-webkit-scrollbar-thumb:hover {
   border-radius: 4px;
   background-color: #e2e4e6;
 }
+
+.delete-card {
+  width: 100%;
+}

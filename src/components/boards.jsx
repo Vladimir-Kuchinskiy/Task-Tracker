@@ -7,13 +7,6 @@ import AddBoard from "./addBoard";
 class Boards extends Component {
   state = initialData;
 
-  onEdit = data => {
-    const boards = this.state.boards;
-    const boardIds = this.state.boardIds;
-    boards[data.id] = data;
-    this.setState({ ...this.state, boards: boards, boardIds: boardIds });
-  };
-
   handleSubmit = data => {
     const boards = this.state.boards;
     const boardIds = this.state.boardIds;

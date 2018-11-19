@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import CardModal from "./cardModal";
 import styled from "styled-components";
 import EditForm from "./forms/editForm";
-import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const CardContainer = styled.li`
   background-color: ${props =>
@@ -13,7 +13,11 @@ const CardContainer = styled.li`
 `;
 
 class Card extends Component {
-  state = { data: this.props.card, editCardClicked: false, showModal: false };
+  state = {
+    data: this.props.card,
+    editCardClicked: false,
+    showModal: false
+  };
 
   handleSubmit = (e, card) => {
     e.preventDefault();
@@ -36,9 +40,14 @@ class Card extends Component {
     this.setState({ ...this.state, data: data });
   };
 
-  toggle = () => {
+  toggleModal = () => {
     if (this.state.editCardClicked) return;
     this.setState({ ...this.state, showModal: !this.state.showModal });
+  };
+
+  handleDelete = data => {
+    this.props.onDelete(data);
+    this.setState({ ...this.state, showModal: false });
   };
 
   render() {
@@ -54,7 +63,7 @@ class Card extends Component {
               ref={provided.innerRef}
               isDragging={snapshot.isDragging}
               onContextMenu={this.handleClick}
-              onClick={this.toggle}
+              onClick={this.toggleModal}
             >
               {this.state.editCardClicked ? (
                 <EditForm
@@ -69,18 +78,12 @@ class Card extends Component {
             </CardContainer>
           )}
         </Draggable>
-        <Modal
-          isOpen={this.state.showModal}
-          toggle={this.toggle}
-          size="lg"
-          fade={false}
-        >
-          <ModalHeader toggle={this.toggle}>{card.content}</ModalHeader>
-          <ModalBody>
-            <h4>Description</h4>
-            <p>{card.description}</p>
-          </ModalBody>
-        </Modal>
+        <CardModal
+          showModal={this.state.showModal}
+          toggleModal={this.toggleModal}
+          onDelete={this.handleDelete}
+          card={card}
+        />
       </React.Fragment>
     );
   }

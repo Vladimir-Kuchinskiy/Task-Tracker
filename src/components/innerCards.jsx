@@ -9,6 +9,7 @@ class InnerCards extends PureComponent {
         card={card}
         index={index}
         onSubmit={this.props.onSubmit}
+        onDelete={this.props.onDeleteCard}
       />
     ));
   }

@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import List from "./list";
 
-class InnerLists extends PureComponent {
+class InnerLists extends Component {
   state = {
     addCardClicked: false
   };
@@ -27,7 +27,8 @@ class InnerLists extends PureComponent {
       cards: originalCards,
       index,
       onSubmitListForm,
-      onSubmitCardForm
+      onSubmitCardForm,
+      handleDeleteCard
     } = this.props;
     const cards = list.cardIds.map(cardId => originalCards[cardId]);
 
@@ -39,6 +40,7 @@ class InnerLists extends PureComponent {
         addCardClicked={this.state.addCardClicked}
         onClose={this.onCloseNewCard}
         onClick={this.onClickAddCard}
+        onDeleteCard={handleDeleteCard}
         onSubmitNewCardForm={this.onSubmitNewCard}
         onSubmitCardForm={onSubmitCardForm}
         onSubmitListForm={onSubmitListForm}

@@ -40,7 +40,8 @@ class Lists extends Component {
       lists,
       cards,
       onSubmitCardForm,
-      onSubmitListForm
+      onSubmitListForm,
+      handleDeleteCard
     } = this.props;
     return listsOrder.map((listId, index) => {
       const list = lists[listId];
@@ -50,6 +51,7 @@ class Lists extends Component {
           cards={cards}
           key={list.id}
           index={index}
+          handleDeleteCard={handleDeleteCard}
           onSubmitCardForm={onSubmitCardForm}
           onSubmitListForm={onSubmitListForm}
         />
