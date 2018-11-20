@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import NewCardForm from "./forms/newCardForm";
-import EditForm from "./forms/editForm";
-import Button from "./common/button";
 import InnerCards from "./innerCards";
+import ListHeader from "./listHeader";
+import ListFooter from "./listFooter";
 
 const CardsList = styled.ul`
   list-style: none;
@@ -21,7 +20,8 @@ const ListContainer = styled.div`
 class List extends Component {
   state = {
     data: { ...this.props.list },
-    editListClicked: false
+    editListClicked: false,
+    showPopover: false
   };
 
   handleSubmit = (e, list) => {
@@ -48,17 +48,16 @@ class List extends Component {
     this.props.onDeleteCard(data, this.props.list);
   };
 
+  togglePopover = () => {
+    this.setState({ ...this.state, showPopover: !this.state.showPopover });
+  };
+
+  handleDelete = list => {
+    this.props.onDeleteList(list);
+  };
+
   render() {
-    const {
-      list,
-      cards,
-      index,
-      onSubmitNewCardForm,
-      onSubmitCardForm,
-      onClose,
-      onClick,
-      addCardClicked
-    } = this.props;
+    const { list, cards, index, onSubmitCardForm } = this.props;
     return (
       <Draggable draggableId={list.id} index={index}>
         {provided => (
@@ -67,18 +66,18 @@ class List extends Component {
             {...provided.draggableProps}
             ref={provided.innerRef}
           >
-            <header {...provided.dragHandleProps} onClick={this.handleClick}>
-              {this.state.editListClicked ? (
-                <EditForm
-                  data={this.state.data}
-                  onChange={this.handleChange}
-                  onSubmit={this.handleSubmit}
-                  value="title"
-                />
-              ) : (
-                list.title
-              )}
-            </header>
+            <ListHeader
+              dragHandleProps={provided.dragHandleProps}
+              showPopover={this.state.showPopover}
+              data={this.state.data}
+              list={this.props.list}
+              editListClicked={this.state.editListClicked}
+              handleClick={this.handleClick}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              handleDelete={this.handleDelete}
+              togglePopover={this.togglePopover}
+            />
             <Droppable droppableId={list.id} type="card">
               {(provided, snapshot) => (
                 <div
@@ -94,25 +93,7 @@ class List extends Component {
                     />
                     {provided.placeholder}
                   </CardsList>
-                  <footer
-                    className={
-                      addCardClicked ? "footer footer-with-form" : "footer"
-                    }
-                  >
-                    {addCardClicked ? (
-                      <NewCardForm
-                        onSubmit={onSubmitNewCardForm}
-                        onClose={onClose}
-                        list={list}
-                      />
-                    ) : (
-                      <Button
-                        classes="btn add-card"
-                        onClick={onClick}
-                        title="Add a card..."
-                      />
-                    )}
-                  </footer>
+                  <ListFooter onSubmitCardForm={onSubmitCardForm} list={list} />
                 </div>
               )}
             </Droppable>

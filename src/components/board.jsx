@@ -105,7 +105,6 @@ class Board extends Component {
       const lists = this.state.lists;
       card.id = Math.floor(Math.random() * 100 + 1).toString() + "-card";
       cards[card.id] = card;
-      card.listId = list.id;
       lists[list.id].cardIds.push(card.id);
       this.setState({
         ...this.state,
@@ -122,9 +121,18 @@ class Board extends Component {
     const lists = this.state.lists;
     const cards = this.state.cards;
     const index = lists[list.id].cardIds.indexOf(card.id);
-    delete lists[list.id].cardIds.splice(index, 1);
+    lists[list.id].cardIds.splice(index, 1);
     delete cards[card.id];
     this.setState({ ...this.state, lists: lists, cards: cards });
+  };
+
+  handleDeleteList = list => {
+    const lists = this.state.lists;
+    const listsOrder = this.state.listsOrder;
+    const index = listsOrder.indexOf(list.id);
+    listsOrder.splice(index, 1);
+    delete lists[list.id];
+    this.setState({ ...this.state, lists, listsOrder });
   };
 
   render() {
@@ -140,6 +148,7 @@ class Board extends Component {
               onSubmitListForm={this.handleSubmitListForm}
               onSubmitCardForm={this.handleSubmitCardForm}
               handleDeleteCard={this.handleDeleteCard}
+              handleDeleteList={this.handleDeleteList}
             />
           </DragDropContext>
         </div>

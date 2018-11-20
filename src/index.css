@@ -49,8 +49,23 @@ body {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
-.list header:hover {
+.list header .header-title {
+  display: inline-block;
+  width: 85%;
+  margin-right: 5px;
+}
+.list header .header-title:hover {
   cursor: pointer;
+}
+.list header .header-toolbar {
+  display: inline-block;
+  width: 37px;
+  text-align: center;
+}
+.list header .header-toolbar:hover {
+  cursor: pointer;
+  background-color: #c3c5c7;
+  border-radius: 4px;
 }
 .list footer {
   color: #888;
@@ -182,4 +197,30 @@ ul::-webkit-scrollbar-thumb:hover {
 
 .delete-card {
   width: 100%;
+}
+
+.list-popover {
+  width: 140px;
+}
+
+.delete-list-inline {
+  display: inline-block;
+  font-size: 17px;
+  font-display: center;
+}
+
+.delete-icon {
+  margin-top: 5px;
+  width: 14px;
+}
+
+.toolbar-item {
+  margin: -7px -12px;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.toolbar-item:hover {
+  cursor: pointer;
+  background-color: #dadada;
 }

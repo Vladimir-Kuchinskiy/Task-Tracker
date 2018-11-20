@@ -3,7 +3,7 @@ import { Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import Button from "./common/button";
 import NewListForm from "./forms/newListForm";
-import InnerLists from "./innerLists";
+import List from "./list";
 
 const ListsContainer = styled.div`
   display: flex;
@@ -38,22 +38,25 @@ class Lists extends Component {
     const {
       listsOrder,
       lists,
-      cards,
+      cards: originalCards,
       onSubmitCardForm,
       onSubmitListForm,
-      handleDeleteCard
+      handleDeleteCard,
+      handleDeleteList
     } = this.props;
     return listsOrder.map((listId, index) => {
       const list = lists[listId];
+      const cards = list.cardIds.map(cardId => originalCards[cardId]);
       return (
-        <InnerLists
+        <List
           list={list}
           cards={cards}
           key={list.id}
           index={index}
-          handleDeleteCard={handleDeleteCard}
+          onDeleteCard={handleDeleteCard}
           onSubmitCardForm={onSubmitCardForm}
           onSubmitListForm={onSubmitListForm}
+          onDeleteList={handleDeleteList}
         />
       );
     });
