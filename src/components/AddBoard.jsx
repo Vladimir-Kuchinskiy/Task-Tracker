@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NewBoardForm from "./forms/newBoardForm";
+import NewBoardForm from "./forms/NewBoardForm";
 
 class AddBoard extends Component {
   state = {

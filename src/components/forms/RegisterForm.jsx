@@ -1,6 +1,6 @@
 import React from "react";
 import Joi from "joi-browser";
-import Form from "../common/form";
+import Form from "../common/Form";
 // import auth from "../services/authService";
 
 class RegisterForm extends Form {
@@ -40,7 +40,7 @@ class RegisterForm extends Form {
   render() {
     return (
       <div className="container">
-        <h1>Register</h1>
+        <h1 className="title">Register</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("email", "Email")}
           {this.renderInput("password", "Password", "password")}

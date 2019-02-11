@@ -1,7 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 // import { Redirect } from "react-router-dom";
-import Form from "../common/form";
+import Form from "../common/Form";
 // import auth from "../services/authService";
 
 class LoginForm extends Form {
@@ -42,7 +42,7 @@ class LoginForm extends Form {
     // }
     return (
       <div className="container">
-        <h1>Login</h1>
+        <h1 className="title">Login</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("email", "Email")}
           {this.renderInput("password", "Password", "password")}

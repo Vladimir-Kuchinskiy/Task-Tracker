@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import CardModal from "./cardModal";
 import styled from "styled-components";
-import EditForm from "./forms/editForm";
+
+import CardModal from "./CardModal";
+import EditForm from "./forms/EditForm";
 
 const CardContainer = styled.li`
   background-color: ${props =>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Button from "../common/button";
+import Button from "../common/Button";
 
 class NewListForm extends Component {
   state = {

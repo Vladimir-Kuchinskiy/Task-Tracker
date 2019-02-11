@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import InnerCards from "./innerCards";
-import ListHeader from "./listHeader";
-import ListFooter from "./listFooter";
+
+import InnerCards from "./InnerCards";
+import ListHeader from "./ListHeader";
+import ListFooter from "./ListFooter";
 
 const CardsList = styled.ul`
   list-style: none;

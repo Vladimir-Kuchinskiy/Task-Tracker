@@ -7,7 +7,7 @@ import {
   PopoverHeader,
   PopoverBody
 } from "reactstrap";
-import Button from "./common/button";
+import Button from "./common/Button";
 
 class CardModal extends Component {
   state = { showPopover: false };

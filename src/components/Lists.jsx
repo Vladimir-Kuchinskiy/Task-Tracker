@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import Button from "./common/button";
-import NewListForm from "./forms/newListForm";
-import List from "./list";
+
+import Button from "./common/Button";
+import NewListForm from "./forms/NewListForm";
+import List from "./List";
 
 const ListsContainer = styled.div`
   display: flex;

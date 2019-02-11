@@ -57,7 +57,7 @@ const initialData = {
         "lists-3": {
           id: "lists-3",
           title: "To do",
-          cardIds: ["card-5", "card-6", "card-6", "card-8"]
+          cardIds: ["card-5", "card-6", "card-7", "card-8"]
         },
         "list-4": {
           id: "list-4",

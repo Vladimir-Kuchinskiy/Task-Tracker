@@ -1,6 +1,6 @@
 import React from "react";
 import { Popover, PopoverBody } from "reactstrap";
-import EditForm from "./forms/editForm";
+import EditForm from "./forms/EditForm";
 
 const ListHeader = ({
   dragHandleProps,

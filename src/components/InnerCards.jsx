@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import Card from "./card";
+import Card from "./Card";
 
 class InnerCards extends PureComponent {
   render() {

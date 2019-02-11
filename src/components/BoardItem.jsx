@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import EditForm from "./forms/editForm";
+import EditForm from "./forms/EditForm";
 
 class BoardItem extends Component {
   state = {
@@ -13,7 +13,10 @@ class BoardItem extends Component {
     this.setState({ ...this.state, editClicked: !this.state.editClicked });
   };
   handleClick = e => {
-    if (this.state.editClicked) e.preventDefault();
+    if (this.state.editClicked) {
+      e.preventDefault();
+      return;
+    }
   };
   handleChange = ({ currentTarget }) => {
     const { data } = this.state;

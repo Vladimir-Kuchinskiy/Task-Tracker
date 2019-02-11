@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 // import { toast } from "react-toastify";
 import initialData from "../initialData";
-import BoardItem from "./boardItem";
-import AddBoard from "./addBoard";
+import BoardItem from "./BoardItem";
+import AddBoard from "./AddBoard";
 
 class Boards extends Component {
-  state = initialData;
+  state = { ...initialData };
 
   handleSubmit = data => {
     const boards = this.state.boards;
@@ -17,6 +17,12 @@ class Boards extends Component {
     boards[data.board.id] = data;
     this.setState({ ...this.state, boards: boards, boardIds: boardIds });
   };
+
+  // async componentDidMount() {
+  //   const { data: boards } = await getBoards();
+  //   console.log(boards);
+  //   this.setState({ boards });
+  // }
 
   render() {
     const { boardIds, boards } = this.state;
