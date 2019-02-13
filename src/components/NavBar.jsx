@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 class NavBar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <h1 className="navbar-brand" href="#">
-          Task Tracker
-        </h1>
+        <h1 className="navbar-brand">Task Tracker</h1>
         <button
           className="navbar-toggler"
           type="button"
@@ -31,20 +29,17 @@ class NavBar extends Component {
           <NavLink className="btn btn-outline-success my-2 my-sm-0" to="/login">
             Sign in
           </NavLink>
-          <NavLink
-            className="btn btn-outline-primary my-2 my-sm-0"
-            to="/register"
-          >
+          <NavLink className="btn btn-outline-primary my-2 my-sm-0" to="/register">
             Sign up
           </NavLink>
           {/* <React.Fragment>
-      //         <NavLink className="nav-item " to="/profile">
-      //           Username
-      //         </NavLink>
-      //         <NavLink className="nav-item nav-link" to="/logout">
-      //           Logout
-      //         </NavLink>
-      //       </React.Fragment> */}
+            <NavLink className="nav-item " to="/profile">
+              Username
+            </NavLink>
+            <NavLink className="nav-item nav-link" to="/logout">
+              Logout
+            </NavLink>
+          </React.Fragment> */}
         </div>
       </nav>
     );

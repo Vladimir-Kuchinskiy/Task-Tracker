@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { Draggable, Droppable } from "react-beautiful-dnd";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
 
-import InnerCards from "./InnerCards";
-import ListHeader from "./ListHeader";
-import ListFooter from "./ListFooter";
+import ListHeader from '../containers/ListHeader';
+import Cards from './Cards';
+import ListFooter from './ListFooter';
 
 const CardsList = styled.ul`
   list-style: none;
-  background-color: ${props => (props.isDraggingOver ? "#c8cacc" : "")};
+  background-color: ${props => (props.isDraggingOver ? '#c8cacc' : '')};
   max-height: calc(100% - 36px - 36px);
   overflow-y: auto;
 `;
@@ -19,67 +19,15 @@ const ListContainer = styled.div`
 `;
 
 class List extends Component {
-  state = {
-    data: { ...this.props.list },
-    editListClicked: false,
-    showPopover: false
-  };
-
-  handleSubmit = (e, list) => {
-    e.preventDefault();
-    if (list.title === "") {
-      document.getElementById(list.id).focus();
-      return;
-    }
-    this.props.onSubmitListForm(list);
-    this.setState({ ...this.state, editListClicked: false });
-  };
-
-  handleClick = () => {
-    this.setState({ ...this.state, editListClicked: true });
-  };
-
-  handleChange = ({ currentTarget: input }) => {
-    const data = { ...this.state.data };
-    data.title = input.value;
-    this.setState({ ...this.state, data: data });
-  };
-
-  handleDeleteCard = data => {
-    this.props.onDeleteCard(data, this.props.list);
-  };
-
-  togglePopover = () => {
-    this.setState({ ...this.state, showPopover: !this.state.showPopover });
-  };
-
-  handleDelete = list => {
-    this.props.onDeleteList(list);
-  };
-
   render() {
-    const { list, cards, index, onSubmitCardForm } = this.props;
+    const { cards, index } = this.props;
+    const { id: listId, title } = this.props.list;
     return (
-      <Draggable draggableId={list.id} index={index}>
+      <Draggable draggableId={listId} index={index}>
         {provided => (
-          <ListContainer
-            className="list"
-            {...provided.draggableProps}
-            ref={provided.innerRef}
-          >
-            <ListHeader
-              dragHandleProps={provided.dragHandleProps}
-              showPopover={this.state.showPopover}
-              data={this.state.data}
-              list={this.props.list}
-              editListClicked={this.state.editListClicked}
-              handleClick={this.handleClick}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              handleDelete={this.handleDelete}
-              togglePopover={this.togglePopover}
-            />
-            <Droppable droppableId={list.id} type="card">
+          <ListContainer className="list" {...provided.draggableProps} ref={provided.innerRef}>
+            <ListHeader dragHandleProps={provided.dragHandleProps} listId={listId} title={title} />
+            <Droppable droppableId={listId} type="card">
               {(provided, snapshot) => (
                 <div
                   className="list-container"
@@ -87,14 +35,10 @@ class List extends Component {
                   {...provided.droppableProps}
                 >
                   <CardsList isDraggingOver={snapshot.isDraggingOver}>
-                    <InnerCards
-                      cards={cards}
-                      onSubmit={onSubmitCardForm}
-                      onDeleteCard={this.handleDeleteCard}
-                    />
+                    <Cards cards={cards} />
                     {provided.placeholder}
                   </CardsList>
-                  <ListFooter onSubmitCardForm={onSubmitCardForm} list={list} />
+                  <ListFooter listId={listId} />
                 </div>
               )}
             </Droppable>

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import Joi from "joi-browser";
-import Input from "./Input";
-import Select from "./Select";
+import React, { Component } from 'react';
+import Joi from 'joi-browser';
+import Input from './Input';
+import Select from './Select';
 
 class Form extends Component {
   state = {
@@ -55,7 +55,7 @@ class Form extends Component {
     );
   }
 
-  renderInput(name, label, type = "text") {
+  renderInput(name, label, type = 'text') {
     const { data, errors } = this.state;
     return (
       <Input

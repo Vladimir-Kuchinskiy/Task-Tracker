@@ -1,12 +1,12 @@
-import React from "react";
-import Joi from "joi-browser";
+import React from 'react';
+import Joi from 'joi-browser';
 // import { Redirect } from "react-router-dom";
-import Form from "../common/Form";
+import Form from '../common/Form';
 // import auth from "../services/authService";
 
 class LoginForm extends Form {
   state = {
-    data: { email: "", password: "" },
+    data: { email: '', password: '' },
     errors: {}
   };
 
@@ -14,10 +14,10 @@ class LoginForm extends Form {
     email: Joi.string()
       .email()
       .required()
-      .label("Email"),
+      .label('Email'),
     password: Joi.string()
       .required()
-      .label("Password")
+      .label('Password')
   };
 
   doSubmit = async () => {
@@ -25,7 +25,7 @@ class LoginForm extends Form {
       // const { data } = this.state;
       // await auth.login(data.username, data.password);
       // const { state } = this.props.location;
-      window.location = /*state ? state.from.pathname :*/ "/";
+      window.location = /*state ? state.from.pathname :*/ '/';
     } catch (e) {
       if (e.response && e.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -44,9 +44,9 @@ class LoginForm extends Form {
       <div className="container">
         <h1 className="title">Login</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("email", "Email")}
-          {this.renderInput("password", "Password", "password")}
-          {this.renderButton("Login")}
+          {this.renderInput('email', 'Email')}
+          {this.renderInput('password', 'Password', 'password')}
+          {this.renderButton('Login')}
         </form>
       </div>
     );

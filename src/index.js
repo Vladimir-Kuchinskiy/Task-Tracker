@@ -1,14 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
-import "font-awesome/css/font-awesome.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.css';
+import './index.css';
+
+import store from './store';
+
+import App from './App';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <Provider store={store}>
     <App />
-  </BrowserRouter>,
-  document.getElementById("root")
+  </Provider>,
+  document.getElementById('root')
 );

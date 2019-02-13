@@ -1,6 +1,9 @@
+import mapKeys from 'lodash/mapKeys';
+import { types } from '../constants';
+
 let initialData = {
-  boards: {
-    'board-1': {
+  boards: [
+    {
       board: {
         id: 'board-1',
         title: 'My first board'
@@ -42,7 +45,7 @@ let initialData = {
       },
       listsOrder: ['lists-1', 'list-2']
     },
-    'board-2': {
+    {
       board: {
         id: 'board-2',
         title: 'My second board'
@@ -67,7 +70,7 @@ let initialData = {
       },
       listsOrder: ['lists-3', 'list-4']
     },
-    'board-3': {
+    {
       board: {
         id: 'board-3',
         title: 'My second board'
@@ -87,7 +90,7 @@ let initialData = {
       },
       listsOrder: ['lists-3', 'list-4']
     },
-    'board-4': {
+    {
       board: {
         id: 'board-4',
         title: 'My second board'
@@ -107,7 +110,30 @@ let initialData = {
       },
       listsOrder: ['lists-3', 'list-4']
     }
-  }
+  ]
 };
 
-export default initialData;
+export const getBoards = () => {
+  const { boards } = initialData;
+  return { type: types.GET_BOARDS, payload: boards };
+};
+
+export const createBoard = data => {
+  const newBoard = {
+    board: { id: `board-${Math.floor(Math.random() * 100 + 1)}`, title: data.title },
+    cards: {},
+    lists: {},
+    listsOrder: []
+  };
+  initialData.boards = [...initialData.boards, newBoard];
+  return { type: types.CREATE_BOARD, payload: newBoard };
+};
+
+export const editBoard = (data, id) => {
+  let initBoards = mapKeys(initialData.boards, 'board.id');
+  const editedBoard = initBoards[id];
+  editedBoard.board.title = data.title;
+  initBoards[id] = editedBoard;
+  initialData.boards = Object.values(initBoards);
+  return { type: types.EDIT_BOARD, payload: editedBoard };
+};

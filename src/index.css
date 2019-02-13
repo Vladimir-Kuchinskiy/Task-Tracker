@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Arial";
+  font-family: 'Arial';
   font-size: 14px;
   line-height: 1.3em;
 }
@@ -28,7 +28,7 @@ body {
   margin-left: 18px;
 }
 .lists::after {
-  content: "";
+  content: '';
   flex: 0 0 10px;
 }
 .list {
@@ -95,6 +95,12 @@ ul::-webkit-scrollbar-thumb:hover {
   margin: -10px 0 10px -10px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+}
+.list ul li .edit-card-container {
+  padding: 10px;
+  padding-bottom: -5px;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 .draggable:hover {
   background-color: rgb(241, 241, 241);
@@ -166,6 +172,26 @@ ul::-webkit-scrollbar-thumb:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.edit-board-item {
+  color: #000;
+  border-radius: 4px;
+  margin-top: 20px;
+  width: 240px;
+  height: 80px;
+  background-color: #e2e4e6;
+  text-align: center;
+  padding: 20px 0;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.4);
+}
+.edit-board-item:not(:last-child) {
+  margin-right: 55px;
+}
+.edit-board-item h3 {
+  font-size: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .boards {
   margin-top: 20px;
 }
@@ -184,13 +210,16 @@ ul::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
   background-color: rgb(0, 109, 240);
 }
-.create-board-from {
+.create-board-form {
   margin-top: 22px;
   box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.4);
-  padding: 20px 0;
+  padding: 20px 15px 15px 15px;
   color: #000;
   border-radius: 4px;
   background-color: #e2e4e6;
+}
+.edit-board {
+  padding: 0 15px;
 }
 .delete-card {
   width: 100%;

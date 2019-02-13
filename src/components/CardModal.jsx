@@ -1,13 +1,6 @@
-import React, { Component } from "react";
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Popover,
-  PopoverHeader,
-  PopoverBody
-} from "reactstrap";
-import Button from "./common/Button";
+import React, { Component } from 'react';
+import { Modal, ModalHeader, ModalBody, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import Button from './common/Button';
 
 class CardModal extends Component {
   state = { showPopover: false };
@@ -17,7 +10,7 @@ class CardModal extends Component {
   };
 
   render() {
-    const { showModal, toggleModal, card, onDelete } = this.props;
+    const { showModal, toggleModal, card, deleteCard } = this.props;
     return (
       <Modal isOpen={showModal} toggle={toggleModal} size="lg" fade={false}>
         <ModalHeader toggle={toggleModal}>{card.content}</ModalHeader>
@@ -32,19 +25,19 @@ class CardModal extends Component {
           />
           <Popover
             placement="bottom"
-            isOpen={this.state.showPopover}
             target="Popover1"
+            isOpen={this.state.showPopover}
             toggle={this.togglePopover}
           >
-            <PopoverHeader>
-              Are you sure you want to delete this card ?
-            </PopoverHeader>
+            <PopoverHeader>Are you sure you want to delete this card ?</PopoverHeader>
             <PopoverBody>
               <Button
                 classes="btn btn-danger delete-card"
                 title="Delete"
                 id="Popover1"
-                onClick={() => onDelete(card)}
+                onClick={() => {
+                  deleteCard(card.id, card.listId);
+                }}
               />
             </PopoverBody>
           </Popover>

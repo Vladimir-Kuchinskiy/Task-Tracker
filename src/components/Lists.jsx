@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Droppable } from "react-beautiful-dnd";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import { Droppable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
 
-import Button from "./common/Button";
-import NewListForm from "./forms/NewListForm";
-import List from "./List";
+import Button from './common/Button';
+import NewListForm from './forms/NewListForm';
+import List from '../containers/List';
 
 const ListsContainer = styled.div`
   display: flex;
@@ -20,74 +20,42 @@ class Lists extends Component {
     addListClicked: false
   };
 
-  onClickAddList = () => {
-    this.setState({ addListClicked: true });
-  };
-
-  onCloseNewListForm = () => {
-    this.setState({ addListClicked: false });
-  };
-
-  onSubmitListForm = (e, list) => {
-    e.preventDefault();
-    if (list.title === "") return;
-    this.props.onSubmitListForm(list);
-    this.setState({ addListClicked: false });
+  toggleAddList = () => {
+    this.setState({ addListClicked: !this.state.addListClicked });
   };
 
   getListComponents = () => {
-    const {
-      listsOrder,
-      lists,
-      cards: originalCards,
-      onSubmitCardForm,
-      onSubmitListForm,
-      handleDeleteCard,
-      handleDeleteList
-    } = this.props;
-    return listsOrder.map((listId, index) => {
-      const list = lists[listId];
-      const cards = list.cardIds.map(cardId => originalCards[cardId]);
+    return this.props.lists.map((list, index) => {
       return (
-        <List
-          list={list}
-          cards={cards}
-          key={list.id}
-          index={index}
-          onDeleteCard={handleDeleteCard}
-          onSubmitCardForm={onSubmitCardForm}
-          onSubmitListForm={onSubmitListForm}
-          onDeleteList={handleDeleteList}
-        />
+        <List listId={list.id} key={list.id} index={index} toggleAddList={this.toggleAddList} />
       );
     });
   };
+
+  renderAddList() {
+    return (
+      <AddListContainer>
+        {this.state.addListClicked ? (
+          <NewListForm onClose={this.toggleAddList} />
+        ) : (
+          <Button
+            onClick={this.toggleAddList}
+            classes="btn btn-outline-warning add-list"
+            title="Add a list..."
+          />
+        )}
+      </AddListContainer>
+    );
+  }
 
   render() {
     return (
       <Droppable droppableId="all-lists" direction="horizontal" type="list">
         {provided => (
-          <ListsContainer
-            className="lists"
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
+          <ListsContainer className="lists" {...provided.droppableProps} ref={provided.innerRef}>
             {this.getListComponents()}
             {provided.placeholder}
-            <AddListContainer>
-              {this.state.addListClicked ? (
-                <NewListForm
-                  onClose={this.onCloseNewListForm}
-                  onSubmit={this.onSubmitListForm}
-                />
-              ) : (
-                <Button
-                  onClick={this.onClickAddList}
-                  classes="btn btn-outline-warning add-list"
-                  title="Add a list..."
-                />
-              )}
-            </AddListContainer>
+            {this.renderAddList()}
           </ListsContainer>
         )}
       </Droppable>

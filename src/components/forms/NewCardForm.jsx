@@ -1,43 +1,54 @@
-import React, { Component } from "react";
-import Button from "../common/Button";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+import { SubmissionError } from 'redux-form';
+import { createCard } from '../../actions/boardActions';
+import Button from '../common/Button';
 
 class NewCardForm extends Component {
-  state = {
-    data: { id: "new", content: "" }
-  };
   componentDidMount() {
-    document.getElementById("card-" + this.state.data.id).focus();
+    document.getElementById('new-card-' + this.props.listId).focus();
   }
-  handleChange = ({ currentTarget: input }) => {
-    const data = { ...this.state.data };
-    data.content = input.value;
-    this.setState({ data });
+  onSubmit = values => {
+    const { listId, createCard, onClose } = this.props;
+    if (values.content === undefined) throw new SubmissionError({ title: 'Can not be blank' });
+    createCard(values, listId);
+    onClose();
+  };
+  renderInputField = field => {
+    return (
+      <input
+        type="text"
+        className="form-control"
+        id={'new-card-' + this.props.listId}
+        {...field.input}
+      />
+    );
   };
   render() {
-    const { data } = this.state;
-    const { onClose, onSubmit, list } = this.props;
+    const { handleSubmit, onClose } = this.props;
     return (
       <div className="card-form">
-        <form onSubmit={e => onSubmit(e, data, list)}>
+        <form onSubmit={handleSubmit(this.onSubmit)}>
           <div className="form-group">
-            <input
-              className="form-control"
-              type="text"
-              value={data.content}
-              onChange={this.handleChange}
-              id={"card-" + data.id}
-            />
+            <Field name="content" component={this.renderInputField} />
           </div>
           <input type="submit" className="btn btn-success pull-left" />
-          <Button
-            onClick={onClose}
-            title="Close"
-            classes="btn btn-danger pull-right"
-          />
+          <Button onClick={onClose} title="Close" classes="btn btn-danger pull-right" />
         </form>
       </div>
     );
   }
 }
 
-export default NewCardForm;
+export default reduxForm(
+  (_state, props) => ({
+    form: `NewCardForm-${props.listId}`
+  }),
+  { createCard }
+)(
+  connect(
+    null,
+    { createCard }
+  )(NewCardForm)
+);

@@ -1,42 +1,26 @@
-import React, { Component } from "react";
-import NewCardForm from "./forms/NewCardForm";
-import Button from "./common/Button";
+import React, { Component } from 'react';
+import NewCardForm from './forms/NewCardForm';
+import Button from './common/Button';
 
 class ListFooter extends Component {
   state = {
     addCardClicked: false
   };
   toggleNewCard = () => {
-    this.setState({
-      ...this.state,
-      addCardClicked: !this.state.addCardClicked
-    });
-  };
-  handleSubmit = (e, data, list) => {
-    e.preventDefault();
-    if (data.content === "") return;
-    this.props.onSubmitCardForm(data, list);
-    this.toggleNewCard();
+    this.setState({ addCardClicked: !this.state.addCardClicked });
   };
   render() {
+    const { listId } = this.props;
     return (
-      <footer
-        className={
-          this.state.addCardClicked ? "footer footer-with-form" : "footer"
-        }
-      >
+      <footer className={this.state.addCardClicked ? 'footer footer-with-form' : 'footer'}>
         {this.state.addCardClicked ? (
           <NewCardForm
-            onSubmit={this.handleSubmit}
+            form={`NewCardForm-${listId}`}
             onClose={this.toggleNewCard}
-            list={this.props.list}
+            listId={listId}
           />
         ) : (
-          <Button
-            classes="btn add-card"
-            onClick={this.toggleNewCard}
-            title="Add a card..."
-          />
+          <Button classes="btn add-card" onClick={this.toggleNewCard} title="Add a card..." />
         )}
       </footer>
     );
