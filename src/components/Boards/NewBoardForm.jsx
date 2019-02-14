@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { SubmissionError } from 'redux-form';
+
+import './styles/NewBoardForm.css';
 import { createBoard } from '../../actions/boardsActions';
 import Button from '../common/Button';
 

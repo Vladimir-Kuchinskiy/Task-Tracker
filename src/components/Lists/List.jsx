@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
-import ListHeader from '../containers/ListHeader';
-import Cards from './Cards';
+import ListHeader from '../../containers/ListHeader';
+import Cards from '../Cards/Cards';
 import ListFooter from './ListFooter';
+import './styles/List.css';
 
 const CardsList = styled.ul`
   list-style: none;
@@ -13,19 +14,18 @@ const CardsList = styled.ul`
   overflow-y: auto;
 `;
 
-const ListContainer = styled.div`
-  width: 300px;
-  height: calc(100% - 10px - 17px);
-`;
-
 class List extends Component {
   render() {
     const { cards, index } = this.props;
     const { id: listId, title } = this.props.list;
     return (
-      <Draggable draggableId={listId} index={index}>
+      <Draggable draggableId={listId} index={index} type="card">
         {provided => (
-          <ListContainer className="list" {...provided.draggableProps} ref={provided.innerRef}>
+          <div
+            className="list list-header-wrapper"
+            {...provided.draggableProps}
+            ref={provided.innerRef}
+          >
             <ListHeader dragHandleProps={provided.dragHandleProps} listId={listId} title={title} />
             <Droppable droppableId={listId} type="card">
               {(provided, snapshot) => (
@@ -42,7 +42,7 @@ class List extends Component {
                 </div>
               )}
             </Droppable>
-          </ListContainer>
+          </div>
         )}
       </Draggable>
     );

@@ -1,0 +1,17 @@
+.navbar.board {
+  font-size: 1.3rem;
+}
+.content::-webkit-scrollbar {
+  height: 1.5rem;
+}
+.content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.349);
+  border: 0.5rem solid #ffffff;
+  border-top-width: 0;
+}
+.content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.52);
+}
+.content.board {
+  overflow-x: auto;
+}

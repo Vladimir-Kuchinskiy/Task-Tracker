@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
+import './styles/Card.css';
 import EditCardForm from './EditCardForm';
-import CardModal from '../containers/CardModal';
+import CardModal from '../../containers/CardModal';
 
 const CardContainer = styled.li`
   background-color: ${props => (props.isDragging ? 'rgb(241, 241, 241)' : '#fff')};
@@ -47,7 +48,7 @@ class Card extends Component {
   renderEditCardForm = () => {
     const { id, listId } = this.props.card;
     return (
-      <li className="edit-card-container">
+      <li className="edit-card">
         <EditCardForm
           form={`EditCardForm-${id}-${listId}`}
           cardId={id}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
+// TODO: Refactor to reactstrap
 class NavBar extends Component {
   render() {
     return (
@@ -26,10 +27,10 @@ class NavBar extends Component {
               </NavLink>
             </li>
           </ul>
-          <NavLink className="btn btn-outline-success my-2 my-sm-0" to="/login">
+          <NavLink className="btn btn-outline-success ml-2 my-sm-0" to="/login">
             Sign in
           </NavLink>
-          <NavLink className="btn btn-outline-primary my-2 my-sm-0" to="/register">
+          <NavLink className="btn btn-outline-primary ml-2 my-sm-0" to="/register">
             Sign up
           </NavLink>
           {/* <React.Fragment>

@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import styled from 'styled-components';
 
-import Button from './common/Button';
-import NewListForm from './forms/NewListForm';
-import List from '../containers/List';
-
-const ListsContainer = styled.div`
-  display: flex;
-`;
-
-const AddListContainer = styled.div`
-  width: 300px;
-  height: calc(100% - 10px - 17px);
-`;
+import Button from '../common/Button';
+import NewListForm from './NewListForm';
+import List from '../../containers/List';
+import './styles/Lists.css';
 
 class Lists extends Component {
   state = {
@@ -34,7 +25,7 @@ class Lists extends Component {
 
   renderAddList() {
     return (
-      <AddListContainer>
+      <div className="add-list-container">
         {this.state.addListClicked ? (
           <NewListForm onClose={this.toggleAddList} />
         ) : (
@@ -44,21 +35,23 @@ class Lists extends Component {
             title="Add a list..."
           />
         )}
-      </AddListContainer>
+      </div>
     );
   }
 
   render() {
     return (
-      <Droppable droppableId="all-lists" direction="horizontal" type="list">
-        {provided => (
-          <ListsContainer className="lists" {...provided.droppableProps} ref={provided.innerRef}>
-            {this.getListComponents()}
-            {provided.placeholder}
-            {this.renderAddList()}
-          </ListsContainer>
-        )}
-      </Droppable>
+      <div className="droppable-wrapper">
+        <Droppable droppableId="all-lists" direction="horizontal" type="list">
+          {provided => (
+            <div className="lists" {...provided.droppableProps} ref={provided.innerRef}>
+              {this.getListComponents()}
+              {provided.placeholder}
+              {this.renderAddList()}
+            </div>
+          )}
+        </Droppable>
+      </div>
     );
   }
 }

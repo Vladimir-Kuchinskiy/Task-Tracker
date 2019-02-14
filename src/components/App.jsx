@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import LoginForm from './components/forms/LoginForm';
-import RegisterForm from './components/forms/RegisterForm';
-import Logout from './components/Logout';
-import Board from './containers/Board';
-import Boards from './containers/Boards';
-import NotFound from './components/NotFound';
-import NavBar from './components/NavBar';
+import './App.css';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
+import Logout from './Logout';
+import Board from '../containers/Board';
+import Boards from '../containers/Boards';
+import NotFound from './NotFound';
+import NavBar from './NavBar';
 
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -28,7 +28,7 @@ class NewCardForm extends Component {
   render() {
     const { handleSubmit, onClose } = this.props;
     return (
-      <div className="card-form">
+      <div>
         <form onSubmit={handleSubmit(this.onSubmit)}>
           <div className="form-group">
             <Field name="content" component={this.renderInputField} />

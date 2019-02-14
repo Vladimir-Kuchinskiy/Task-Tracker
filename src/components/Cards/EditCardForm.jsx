@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { SubmissionError } from 'redux-form';
-import { editCard } from '../actions/boardActions';
+import { editCard } from '../../actions/boardActions';
 
-class EditListForm extends Component {
+class EditCardForm extends Component {
   componentDidMount() {
     const {
       card: { id, listId }
@@ -32,7 +32,7 @@ class EditListForm extends Component {
   render() {
     const { handleSubmit, onEdit } = this.props;
     return (
-      <div className="edit-form">
+      <div>
         <form onSubmit={handleSubmit(this.onSubmit)}>
           <div className="form-group">
             <Field name="content" component={this.renderInputField} onBlur={onEdit} />
@@ -56,5 +56,5 @@ export default reduxForm(
   connect(
     mapStateToProps,
     { editCard }
-  )(EditListForm)
+  )(EditCardForm)
 );

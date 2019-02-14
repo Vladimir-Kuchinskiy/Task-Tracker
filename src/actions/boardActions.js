@@ -128,10 +128,22 @@ export const getBoard = id => {
   return { type: types.GET_BOARD, payload: board };
 };
 
+// const fetchStreams = () => async dispatch => {
+//   const response = await streams.get("/streams");
+
+//   dispatch({ type: types.FETCH_STREAMS, payload: response.data });
+// };
+
+// const fetchStream = id => async dispatch => {
+//   const response = await streams.get(`/streams/${id}`);
+
+//   dispatch({ type: types.FETCH_STREAM, payload: response.data });
+// };
+
 // List
 export const createList = (data, boardId) => {
   const newList = {
-    id: `list-${Math.floor(Math.random() * 100 + 1)}`,
+    id: `list-${Math.floor(Math.random() * 10000 + 1)}`,
     boardId: boardId,
     title: data.title,
     cardIds: []
@@ -167,10 +179,10 @@ export const deleteCard = (cardId, listId) => {
   return { type: types.DELETE_CARD, payload: { cardId, listId } };
 };
 
-export const moveList = () => {
-  // return { type: types.DELETE_CARD, payload: { cardId, listId } };
+export const moveList = args => {
+  return { type: types.MOVE_LIST, payload: args };
 };
 
-export const moveCard = () => {
-  // return { type: types.DELETE_CARD, payload: { cardId, listId } };
+export const moveCard = args => {
+  return { type: types.MOVE_CARD, payload: args };
 };

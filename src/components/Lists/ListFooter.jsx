@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import NewCardForm from './forms/NewCardForm';
-import Button from './common/Button';
+import NewCardForm from '../Cards/NewCardForm';
+import Button from '../common/Button';
+import './styles/ListFooter.css';
 
 class ListFooter extends Component {
   state = {

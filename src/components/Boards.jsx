@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // import { toast } from "react-toastify";
-import BoardItem from './BoardItem';
-import AddBoard from './AddBoard';
+import BoardItem from './Boards/BoardItem';
+import AddBoard from './Boards/AddBoard';
+import './styles/Boards.css';
 
 class Boards extends Component {
   componentDidMount() {

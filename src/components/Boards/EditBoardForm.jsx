@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { SubmissionError } from 'redux-form';
+
 import { editBoard } from '../../actions/boardsActions';
 
 class EditBoardForm extends Component {
@@ -22,7 +23,7 @@ class EditBoardForm extends Component {
   render() {
     const { handleSubmit, onEdit } = this.props;
     return (
-      <div className="edit-form">
+      <div>
         <form onSubmit={handleSubmit(this.onSubmit)}>
           <div className="form-group">
             <Field name="title" component={this.renderInputField} onBlur={onEdit} />

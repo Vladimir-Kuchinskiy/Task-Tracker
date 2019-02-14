@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Popover, PopoverBody } from 'reactstrap';
 import EditListForm from './EditListForm';
+import './styles/ListHeader.css';
 
 class ListHeader extends Component {
   state = { showPopover: false, editListClicked: false };
@@ -25,12 +26,8 @@ class ListHeader extends Component {
       >
         <PopoverBody>
           <div className="toolbar-item" onClick={() => deleteList(listId)}>
-            <div className="delete-list-inline">Delete list...</div>
-            <img
-              className="delete-list-inline pull-right delete-icon"
-              src={require('../images/delete.png')}
-              alt=""
-            />
+            <div>Delete list...</div>
+            <img className="pull-right" src={require('../../images/delete.png')} alt="" />
           </div>
         </PopoverBody>
       </Popover>
@@ -55,7 +52,7 @@ class ListHeader extends Component {
           )}
         </div>
         <div className="header-toolbar" id={`PopoverList${listId}`} onClick={this.togglePopover}>
-          <img src={require('../images/toolbar.png')} alt="" />
+          <img src={require('../../images/toolbar.png')} alt="" />
         </div>
         {this.renderPopover()}
       </header>

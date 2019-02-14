@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './styles/BoardItem.css';
 import EditBoardForm from './EditBoardForm';
 
 class BoardItem extends Component {
@@ -25,14 +26,12 @@ class BoardItem extends Component {
     } = this.props.board;
     return (
       <div className="col-3 edit-board-item">
-        <div className="edit-board">
-          <EditBoardForm
-            boardId={id}
-            form={`EditBoardForm-${id}`}
-            title={title}
-            onEdit={this.toggleEdit}
-          />
-        </div>
+        <EditBoardForm
+          boardId={id}
+          form={`EditBoardForm-${id}`}
+          title={title}
+          onEdit={this.toggleEdit}
+        />
       </div>
     );
   };

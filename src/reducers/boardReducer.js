@@ -1,7 +1,8 @@
-import { types } from '../constants';
 import omit from 'lodash/omit';
+import { types } from '../constants';
+import { moveList, moveCardInList, moveCardBetweenLists } from '../services/movesService';
 
-const initialState = { lists: {}, cards: {}, listsOrder: [] };
+const initialState = { board: {}, lists: {}, cards: {}, listsOrder: [] };
 
 export default (state = initialState, action) => {
   let { lists, listsOrder, cards } = state;
@@ -61,12 +62,22 @@ export default (state = initialState, action) => {
     case types.DELETE_CARD:
       const cardsList = lists[action.payload.listId];
       cardsList.cardIds = cardsList.cardIds.filter(ci => ci !== action.payload.cardId);
-      lists = { ...lists, [cardsList.id]: cardsList };
       return {
         ...state,
-        lists,
+        list: { ...lists, [cardsList.id]: cardsList },
         cards: omit(cards, action.payload.cardId)
       };
+
+    case types.MOVE_LIST:
+      return moveList(state, action.payload);
+
+    case types.MOVE_CARD:
+      const { destination, source } = action.payload;
+      const start = lists[source.droppableId];
+      const finish = lists[destination.droppableId];
+      return start.id === finish.id
+        ? moveCardInList(state, start, action.payload)
+        : moveCardBetweenLists(state, start, finish, action.payload);
 
     default:
       return state;

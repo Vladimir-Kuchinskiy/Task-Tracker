@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './styles/AddBoard.css';
 import NewBoardForm from './NewBoardForm';
 
 class AddBoard extends Component {
