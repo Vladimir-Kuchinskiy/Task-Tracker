@@ -18,7 +18,7 @@ class Boards extends Component {
         <br />
         <div className="row">
           {boards.map(board => {
-            return <BoardItem board={board} key={board.board.id} onSubmit={this.handleSubmit} />;
+            return <BoardItem board={board} key={board.id} onSubmit={this.handleSubmit} />;
           })}
           <AddBoard />
         </div>

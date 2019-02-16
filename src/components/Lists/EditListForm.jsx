@@ -11,14 +11,13 @@ class EditListForm extends Component {
 
   onSubmit = values => {
     const { editList, listId, onEdit } = this.props;
-    if (values.title === undefined) throw new SubmissionError({ title: 'Can not be blank' });
+    if (values.title === '') throw new SubmissionError({ title: 'Can not be blank' });
     editList(values, listId);
     onEdit();
   };
 
   renderInputField = field => {
-    const { listId, title } = this.props;
-    field.input.value = field.input.value === '' ? title : field.input.value;
+    const { listId } = this.props;
     return <input type="text" id={listId} className="form-control" {...field.input} />;
   };
 

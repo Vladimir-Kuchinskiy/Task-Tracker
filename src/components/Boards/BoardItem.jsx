@@ -21,15 +21,13 @@ class BoardItem extends Component {
   };
 
   renderEditBoard = () => {
-    const {
-      board: { id, title }
-    } = this.props.board;
+    const { id, title } = this.props.board;
     return (
       <div className="col-3 edit-board-item">
         <EditBoardForm
           boardId={id}
           form={`EditBoardForm-${id}`}
-          title={title}
+          initialValues={{ title }}
           onEdit={this.toggleEdit}
         />
       </div>
@@ -37,10 +35,10 @@ class BoardItem extends Component {
   };
 
   renderLinkToBoard = () => {
-    const { board } = this.props.board;
+    const { id, title } = this.props.board;
     return (
-      <Link to={`/boards/${board.id}`} className="col-3 board-item" onContextMenu={this.toggleEdit}>
-        <h3>{board.title}</h3>
+      <Link to={`/boards/${id}`} className="col-3 board-item" onContextMenu={this.toggleEdit}>
+        <h3>{title}</h3>
       </Link>
     );
   };

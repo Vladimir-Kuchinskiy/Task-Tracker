@@ -11,13 +11,12 @@ class EditBoardForm extends Component {
   }
   onSubmit = values => {
     const { editBoard, boardId, onEdit } = this.props;
-    if (values.title === undefined) throw new SubmissionError({ title: 'Can not be blank' });
+    if (values.title === '') throw new SubmissionError({ title: 'Can not be blank' });
     editBoard(values, boardId);
     onEdit();
   };
   renderInputField = field => {
-    const { boardId, title } = this.props;
-    field.input.value = field.input.value === '' ? title : field.input.value;
+    const { boardId } = this.props;
     return <input type="text" id={boardId} className="form-control" {...field.input} />;
   };
   render() {

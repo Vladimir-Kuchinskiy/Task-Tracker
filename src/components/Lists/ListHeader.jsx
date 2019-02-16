@@ -44,7 +44,7 @@ class ListHeader extends Component {
               value="title"
               form={`EditListForm-${listId}`}
               listId={listId}
-              title={title}
+              initialValues={{ title }}
               onEdit={this.toggleClick}
             />
           ) : (

@@ -6,26 +6,26 @@ import { editCard } from '../../actions/boardActions';
 
 class EditCardForm extends Component {
   componentDidMount() {
-    const {
-      card: { id, listId }
-    } = this.props;
-    document.getElementById(`card-${id}-${listId}`).focus();
+    const { cardId, listId } = this.props;
+    document.getElementById(`card-${cardId}-${listId}`).focus();
   }
 
   onSubmit = values => {
     const { editCard, cardId, onEdit } = this.props;
-    if (values.content === undefined) throw new SubmissionError({ content: 'Can not be blank' });
+    if (values.content === '') throw new SubmissionError({ content: 'Can not be blank' });
     editCard(values, cardId);
     onEdit();
   };
 
   renderInputField = field => {
-    const {
-      card: { id, listId, content }
-    } = this.props;
-    field.input.value = field.input.value === '' ? content : field.input.value;
+    const { cardId, listId } = this.props;
     return (
-      <input type="text" id={`card-${id}-${listId}`} className="form-control" {...field.input} />
+      <input
+        type="text"
+        id={`card-${cardId}-${listId}`}
+        className="form-control"
+        {...field.input}
+      />
     );
   };
 
@@ -43,18 +43,14 @@ class EditCardForm extends Component {
   }
 }
 
-const mapStateToProps = ({ board }, { cardId }) => {
-  return { card: board.cards[cardId] };
-};
-
 export default reduxForm(
-  (_state, { card: { id, listId } }) => ({
-    form: `EditCardForm-${id}-${listId}`
+  (_state, { cardId, listId }) => ({
+    form: `EditCardForm-${cardId}-${listId}`
   }),
   { editCard }
 )(
   connect(
-    mapStateToProps,
+    null,
     { editCard }
   )(EditCardForm)
 );
