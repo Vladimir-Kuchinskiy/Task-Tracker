@@ -25,7 +25,9 @@ class NewListForm extends Component {
         <div className="form-group">
           <Field name="title" component={this.renderInputField} />
         </div>
-        <input type="submit" className="btn btn-success pull-left" />
+        <button type="submit" className="btn btn-success pull-left">
+          Create List
+        </button>
         <Button onClick={onClose} classes="btn btn-danger pull-right" title="Close" />
       </form>
     );

@@ -19,7 +19,7 @@ class List extends Component {
     const { cards, index } = this.props;
     const { id: listId, title } = this.props.list;
     return (
-      <Draggable draggableId={listId} index={index} type="card">
+      <Draggable draggableId={`list-${listId}`} index={index} type="card">
         {provided => (
           <div
             className="list list-header-wrapper"

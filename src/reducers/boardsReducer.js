@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
         ...state,
         [action.payload.id]: action.payload
       };
-    case types.EDIT_BOARD:
+    case types.UPDATE_BOARD:
       const { id, params } = action.payload;
       return {
         ...state,

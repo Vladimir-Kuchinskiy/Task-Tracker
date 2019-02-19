@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { SubmissionError } from 'redux-form';
 
-import { editBoard } from '../../actions/boardsActions';
+import { updateBoard } from '../../actions/boardsActions';
 
 class EditBoardForm extends Component {
   componentDidMount() {
     document.getElementById(this.props.boardId).focus();
   }
   onSubmit = values => {
-    const { editBoard, boardId, onEdit } = this.props;
+    const { updateBoard, boardId, onEdit } = this.props;
     if (values.title === '') throw new SubmissionError({ title: 'Can not be blank' });
-    editBoard(values, boardId);
+    updateBoard(values, boardId);
     onEdit();
   };
   renderInputField = field => {
@@ -36,10 +36,10 @@ export default reduxForm(
   (_state, props) => ({
     form: `EditBloardForm-${props.boardId}`
   }),
-  { editBoard }
+  { updateBoard }
 )(
   connect(
     null,
-    { editBoard }
+    { updateBoard }
   )(EditBoardForm)
 );

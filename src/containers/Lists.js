@@ -2,12 +2,8 @@ import { connect } from 'react-redux';
 import Lists from '../components/Lists/Lists';
 
 const mapStateToProps = ({ board }) => {
-  const lists = board.listsOrder.map(id => board.lists[id]);
-  return {
-    lists,
-    cards: board.cards,
-    listsOrder: board.listsOrder
-  };
+  const lists = board.listIds.map(id => board.lists[id]);
+  return { lists };
 };
 
 export default connect(mapStateToProps)(Lists);

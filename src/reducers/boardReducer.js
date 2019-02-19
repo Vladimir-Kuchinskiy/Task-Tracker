@@ -1,11 +1,12 @@
 import omit from 'lodash/omit';
+import pickBy from 'lodash/pickBy';
 import { types } from '../constants';
 import { moveList, moveCardInList, moveCardBetweenLists } from '../services/movesService';
 
-const initialState = { board: {}, lists: {}, cards: {}, listsOrder: [] };
+const initialState = { board: {}, lists: {}, cards: {}, listIds: [] };
 
 export default (state = initialState, action) => {
-  let { lists, listsOrder, cards } = state;
+  let { lists, listIds, cards } = state;
   switch (action.type) {
     case types.GET_BOARD:
       return { ...state, ...action.payload };
@@ -13,17 +14,17 @@ export default (state = initialState, action) => {
     case types.CREATE_LIST:
       const newList = action.payload;
       lists = { ...lists, [newList.id]: newList };
-      listsOrder = [...listsOrder, newList.id];
+      listIds = [...listIds, newList.id];
       return {
         ...state,
         lists,
-        listsOrder
+        listIds
       };
 
-    case types.EDIT_LIST:
+    case types.UPDATE_LIST:
       const {
         listId,
-        data: { title }
+        params: { title }
       } = action.payload;
       const editedList = lists[listId];
       editedList.title = title;
@@ -33,39 +34,43 @@ export default (state = initialState, action) => {
       };
 
     case types.DELETE_LIST:
+      cards = pickBy(cards, (value, _key) => {
+        return value.listId !== action.payload;
+      });
       return {
         ...state,
         lists: omit(lists, action.payload),
-        listsOrder: listsOrder.filter(id => id !== action.payload)
+        cards,
+        listIds: listIds.filter(id => id !== action.payload)
       };
 
     case types.CREATE_CARD:
       const newCard = action.payload;
       let list = lists[newCard.listId];
       list = { ...list, cardIds: [...list.cardIds, newCard.id] };
-      lists = { ...lists, [list.id]: list };
-      cards = { ...cards, [newCard.id]: newCard };
       return {
         ...state,
-        lists,
-        cards
+        lists: { ...lists, [list.id]: list },
+        cards: { ...cards, [newCard.id]: newCard }
       };
 
-    case types.EDIT_CARD:
-      const editedCard = cards[action.payload.cardId];
-      editedCard.content = action.payload.data.content;
+    case types.UPDATE_CARD:
+      const { id, params } = action.payload;
       return {
         ...state,
-        cards: { ...cards, [editedCard.id]: editedCard }
+        cards: {
+          ...cards,
+          [id]: { ...cards[id], ...params }
+        }
       };
 
     case types.DELETE_CARD:
       const cardsList = lists[action.payload.listId];
-      cardsList.cardIds = cardsList.cardIds.filter(ci => ci !== action.payload.cardId);
+      cardsList.cardIds = cardsList.cardIds.filter(ci => ci !== action.payload.id);
       return {
         ...state,
         list: { ...lists, [cardsList.id]: cardsList },
-        cards: omit(cards, action.payload.cardId)
+        cards: omit(cards, action.payload.id)
       };
 
     case types.MOVE_LIST:

@@ -65,7 +65,7 @@ class Card extends Component {
     const { id: cardId } = this.props.card;
     return (
       <React.Fragment>
-        <Draggable draggableId={cardId} index={this.props.index}>
+        <Draggable draggableId={`card-${cardId}`} index={this.props.index}>
           {(provided, snapshot) =>
             editCardClicked ? this.renderEditCardForm() : this.renderCardContent(provided, snapshot)
           }

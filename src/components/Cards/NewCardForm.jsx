@@ -33,7 +33,9 @@ class NewCardForm extends Component {
           <div className="form-group">
             <Field name="content" component={this.renderInputField} />
           </div>
-          <input type="submit" className="btn btn-success pull-left" />
+          <button type="submit" className="btn btn-success pull-left">
+            Create Card
+          </button>
           <Button onClick={onClose} title="Close" classes="btn btn-danger pull-right" />
         </form>
       </div>
