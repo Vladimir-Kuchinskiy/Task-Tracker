@@ -1,4 +1,4 @@
-const parseNumber = string => {
+export const parseNumber = string => {
   const numberPattern = /\d+/g;
   return string.match(numberPattern)[0];
 };

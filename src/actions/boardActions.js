@@ -1,4 +1,5 @@
 import { mapBoardContent, mapList, mapCard } from '../services/mappers';
+import { parseNumber } from '../services/movesService';
 import { types } from '../constants';
 import todoApi from '../apis/todoApi';
 
@@ -40,10 +41,21 @@ export const deleteCard = (id, listId) => async dispatch => {
 };
 
 // Moving
-export const moveList = args => {
-  return { type: types.MOVE_LIST, payload: args };
+export const moveList = args => async dispatch => {
+  const { draggableId, destination } = args;
+  const listId = parseNumber(draggableId);
+  todoApi.post(`/lists/${listId}/move`, {
+    destination_position: destination.index
+  });
+  dispatch({ type: types.MOVE_LIST, payload: args });
 };
 
-export const moveCard = args => {
-  return { type: types.MOVE_CARD, payload: args };
+export const moveCard = args => async dispatch => {
+  const { draggableId, destination } = args;
+  const cardId = parseNumber(draggableId);
+  todoApi.post(`/cards/${cardId}/move`, {
+    destination_position: destination.index,
+    destination_list_id: destination.droppableId
+  });
+  dispatch({ type: types.MOVE_CARD, payload: args });
 };
