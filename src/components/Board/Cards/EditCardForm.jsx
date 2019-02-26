@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { SubmissionError } from 'redux-form';
-import { updateCard } from '../../actions/boardActions';
+import { updateCard } from '../../../actions/boardActions';
 
 class EditCardForm extends Component {
   componentDidMount() {
@@ -11,9 +11,9 @@ class EditCardForm extends Component {
   }
 
   onSubmit = values => {
-    const { updateCard, cardId, onEdit } = this.props;
+    const { updateCard, cardId, authToken, onEdit } = this.props;
     if (values.content === '') throw new SubmissionError({ content: 'Can not be blank' });
-    updateCard(values, cardId);
+    updateCard(values, cardId, authToken);
     onEdit();
   };
 
@@ -43,6 +43,10 @@ class EditCardForm extends Component {
   }
 }
 
+const mapStateToProps = ({ auth }) => {
+  return { authToken: auth.authToken };
+};
+
 export default reduxForm(
   (_state, { cardId, listId }) => ({
     form: `EditCardForm-${cardId}-${listId}`
@@ -50,7 +54,7 @@ export default reduxForm(
   { updateCard }
 )(
   connect(
-    null,
+    mapStateToProps,
     { updateCard }
   )(EditCardForm)
 );

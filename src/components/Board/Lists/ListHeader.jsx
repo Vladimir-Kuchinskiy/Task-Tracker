@@ -15,7 +15,7 @@ class ListHeader extends Component {
   };
 
   renderPopover = () => {
-    const { listId, deleteList } = this.props;
+    const { listId, authToken, deleteList } = this.props;
     return (
       <Popover
         placement="bottom"
@@ -25,9 +25,9 @@ class ListHeader extends Component {
         className="list-popover"
       >
         <PopoverBody>
-          <div className="toolbar-item" onClick={() => deleteList(listId)}>
+          <div className="toolbar-item" onClick={() => deleteList(listId, authToken)}>
             <div>Delete list...</div>
-            <img className="pull-right" src={require('../../images/delete.png')} alt="" />
+            <img className="pull-right" src={require('../../../images/delete.png')} alt="" />
           </div>
         </PopoverBody>
       </Popover>
@@ -52,7 +52,7 @@ class ListHeader extends Component {
           )}
         </div>
         <div className="header-toolbar" id={`PopoverList${listId}`} onClick={this.togglePopover}>
-          <img src={require('../../images/toolbar.png')} alt="" />
+          <img src={require('../../../images/toolbar.png')} alt="" />
         </div>
         {this.renderPopover()}
       </header>

@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { SubmissionError } from 'redux-form';
-import { createCard } from '../../actions/boardActions';
-import Button from '../common/Button';
+import { createCard } from '../../../actions/boardActions';
+import Button from '../../common/Button';
 
 class NewCardForm extends Component {
   componentDidMount() {
     document.getElementById('new-card-' + this.props.listId).focus();
   }
   onSubmit = values => {
-    const { listId, createCard, onClose } = this.props;
+    const { listId, authToken, createCard, onClose } = this.props;
     if (values.content === undefined) throw new SubmissionError({ title: 'Can not be blank' });
-    createCard(values, listId);
+    createCard(values, listId, authToken);
     onClose();
   };
   renderInputField = field => {
@@ -43,6 +43,10 @@ class NewCardForm extends Component {
   }
 }
 
+const mapStateToProps = ({ auth }) => {
+  return { authToken: auth.authToken };
+};
+
 export default reduxForm(
   (_state, props) => ({
     form: `NewCardForm-${props.listId}`
@@ -50,7 +54,7 @@ export default reduxForm(
   { createCard }
 )(
   connect(
-    null,
+    mapStateToProps,
     { createCard }
   )(NewCardForm)
 );

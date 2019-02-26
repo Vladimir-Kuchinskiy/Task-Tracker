@@ -10,9 +10,9 @@ class EditBoardForm extends Component {
     document.getElementById(this.props.boardId).focus();
   }
   onSubmit = values => {
-    const { updateBoard, boardId, onEdit } = this.props;
+    const { updateBoard, boardId, onEdit, authToken } = this.props;
     if (values.title === '') throw new SubmissionError({ title: 'Can not be blank' });
-    updateBoard(values, boardId);
+    updateBoard(values, boardId, authToken);
     onEdit();
   };
   renderInputField = field => {
@@ -32,6 +32,11 @@ class EditBoardForm extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ auth }) => {
+  return { authToken: auth.authToken };
+};
+
 export default reduxForm(
   (_state, props) => ({
     form: `EditBloardForm-${props.boardId}`
@@ -39,7 +44,7 @@ export default reduxForm(
   { updateBoard }
 )(
   connect(
-    null,
+    mapStateToProps,
     { updateBoard }
   )(EditBoardForm)
 );

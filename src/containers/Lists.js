@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Lists from '../components/Lists/Lists';
+import Lists from '../components/Board/Lists/Lists';
 
 const mapStateToProps = ({ board }) => {
   const lists = board.listIds.map(id => board.lists[id]);

@@ -1,22 +1,26 @@
 import mapKeys from 'lodash/mapKeys';
 import { types } from '../constants';
-const initialState = {};
+const initialState = { boards: {}, loading: false };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_BOARDS:
-      return { ...state, ...mapKeys(action.payload, 'id') };
+    case types.GET_BOARDS_START:
+      return { ...state, loading: true };
+    case types.GET_BOARDS_SUCCESS:
+      return { ...state, boards: { ...mapKeys(action.payload, 'id') }, loading: false };
     case types.CREATE_BOARD:
       return {
         ...state,
-        [action.payload.id]: action.payload
+        boards: { ...state.boards, [action.payload.id]: action.payload }
       };
     case types.UPDATE_BOARD:
       const { id, params } = action.payload;
       return {
         ...state,
-        [id]: { ...state[id], ...params }
+        boards: { ...state.boards, [id]: { ...state.boards[id], ...params } }
       };
+    case types.AUTH_SIGN_OUT:
+      return initialState;
     default:
       return state;
   }

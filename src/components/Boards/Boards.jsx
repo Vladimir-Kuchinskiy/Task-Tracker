@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-// import { toast } from 'react-toastify';
-import BoardItem from './Boards/BoardItem';
-import AddBoard from './Boards/AddBoard';
+import BoardItem from './BoardItem';
+import AddBoard from './AddBoard';
+import Spinner from '../common/Spinner';
 import './styles/Boards.css';
 
 class Boards extends Component {
   componentDidMount() {
-    this.props.getBoards();
+    const { authToken, getBoards } = this.props;
+    getBoards(authToken);
   }
 
   render() {
-    const { boards } = this.props;
-    // toast.success('You are logged in successfully.');
-    return (
+    const { boards, loading } = this.props;
+    return loading ? (
+      <Spinner style={{ position: 'absolute' }} />
+    ) : (
       <div className="container boards">
         <h2 className="row">Your boards</h2>
-        <br />
         <div className="row">
           {boards.map(board => {
             return <BoardItem board={board} key={board.id} onSubmit={this.handleSubmit} />;

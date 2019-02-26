@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import CardModal from '../components/Cards/CardModal';
+import CardModal from '../components/Board/Cards/CardModal';
 import { deleteCard } from '../actions/boardActions';
 
-const mapStateToProps = ({ board }, { cardId }) => {
+const mapStateToProps = ({ board, auth }, { cardId }) => {
   const card = board.cards[cardId];
-  return { card };
+  return { card, authToken: auth.authToken };
 };
 
 export default connect(

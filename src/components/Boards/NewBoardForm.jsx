@@ -13,8 +13,9 @@ class NewBoardForm extends Component {
   }
   onSubmit = values => {
     if (values.title === undefined) throw new SubmissionError({ title: 'Can not be blank' });
-    this.props.createBoard(values);
-    this.props.onClose();
+    const { authToken, createBoard, onClose } = this.props;
+    createBoard(values, authToken);
+    onClose();
   };
   renderInputField(field) {
     return <input type="text" className="form-control" id="board-new" {...field.input} />;
@@ -37,9 +38,13 @@ class NewBoardForm extends Component {
   }
 }
 
+const mapStateToProps = ({ auth }) => {
+  return { authToken: auth.authToken };
+};
+
 export default reduxForm({ form: 'NewBoardForm' }, { createBoard })(
   connect(
-    null,
+    mapStateToProps,
     { createBoard }
   )(NewBoardForm)
 );

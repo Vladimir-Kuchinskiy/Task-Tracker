@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
 import './styles/CardModal.css';
-import Button from '../common/Button';
+import Button from '../../common/Button';
 
 class CardModal extends Component {
   state = { showPopover: false };
@@ -14,6 +14,7 @@ class CardModal extends Component {
   renderPopover = () => {
     const {
       card: { id, listId },
+      authToken,
       deleteCard
     } = this.props;
     return (
@@ -30,7 +31,7 @@ class CardModal extends Component {
             title="Delete"
             id="Popover1"
             onClick={() => {
-              deleteCard(id, listId);
+              deleteCard(id, listId, authToken);
             }}
           />
         </PopoverBody>

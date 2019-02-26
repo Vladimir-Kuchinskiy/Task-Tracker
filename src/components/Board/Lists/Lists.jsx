@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 
-import Button from '../common/Button';
+import Button from '../../common/Button';
 import NewListForm from './NewListForm';
-import List from '../../containers/List';
+import List from '../../../containers/List';
 import './styles/Lists.css';
 
 class Lists extends Component {

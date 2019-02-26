@@ -35,7 +35,6 @@ class Form extends Component {
     this.doSubmit();
   };
 
-  // instead of e
   handleChange = ({ currentTarget: input }) => {
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProperty(input);

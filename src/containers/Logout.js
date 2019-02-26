@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { deleteList } from '../actions/boardActions';
-import ListHeader from '../components/Board/Lists/ListHeader';
+import { signOut } from '../actions/auth';
+import Logout from '../components/Auth/Logout';
 
 const mapStateToProps = ({ auth }) => {
   return { authToken: auth.authToken };
@@ -8,5 +8,5 @@ const mapStateToProps = ({ auth }) => {
 
 export default connect(
   mapStateToProps,
-  { deleteList }
-)(ListHeader);
+  { signOut }
+)(Logout);

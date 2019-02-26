@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import './styles/Card.css';
 import EditCardForm from './EditCardForm';
-import CardModal from '../../containers/CardModal';
+import CardModal from '../../../containers/CardModal';
 
 const CardContainer = styled.li`
   background-color: ${props => (props.isDragging ? 'rgb(241, 241, 241)' : '#fff')};

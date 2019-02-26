@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { SubmissionError } from 'redux-form';
-import { createList } from '../../actions/boardActions';
-import Button from '../common/Button';
+import { createList } from '../../../actions/boardActions';
+import Button from '../../common/Button';
 
 class NewListForm extends Component {
   componentDidMount() {
     document.getElementById('list-new').focus();
   }
   onSubmit = values => {
-    const { createList, onClose, board } = this.props;
+    const { createList, onClose, board, authToken } = this.props;
     if (values.title === undefined) throw new SubmissionError({ title: 'Can not be blank' });
-    createList(values, board.id);
+    createList(values, board.id, authToken);
     onClose();
   };
   renderInputField(field) {
@@ -34,8 +34,8 @@ class NewListForm extends Component {
   }
 }
 
-const mapStateToProps = ({ board: { board } }) => {
-  return { board };
+const mapStateToProps = ({ board: { board }, auth }) => {
+  return { board, authToken: auth.authToken };
 };
 
 export default reduxForm({ form: 'NewListForm' }, { createList })(
