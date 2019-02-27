@@ -11,15 +11,18 @@ class NewBoardForm extends Component {
   componentDidMount() {
     document.getElementById('board-new').focus();
   }
+
   onSubmit = values => {
     if (values.title === undefined) throw new SubmissionError({ title: 'Can not be blank' });
     const { authToken, createBoard, onClose } = this.props;
     createBoard(values, authToken);
     onClose();
   };
+
   renderInputField(field) {
     return <input type="text" className="form-control" id="board-new" {...field.input} />;
   }
+
   render() {
     const { onClose, handleSubmit } = this.props;
     return (
