@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { auth } from '../../actions/auth';
+import { auth } from '../../actions/authActions';
 
 class AuthForm extends Component {
   onSubmit = values => {
