@@ -1,29 +1,18 @@
-import React, { Component } from 'react';
-import './styles/AddBoard.css';
+import React, { useState } from 'react';
 import NewBoardForm from './NewBoardForm';
 import AddBoardButton from './AddBoardButton';
+import './styles/AddBoard.css';
 
-class AddBoard extends Component {
-  state = {
-    showNew: false
-  };
+const AddBoard = () => {
+  const [showNew, setShowNew] = useState(false);
 
-  toggleShowNew = () => {
-    const { showNew } = this.state;
-    this.setState({ showNew: !showNew, mouseOver: !showNew });
-  };
+  const content = showNew ? (
+    <NewBoardForm onClose={() => setShowNew(!showNew)} />
+  ) : (
+    <AddBoardButton toggleShowNew={() => setShowNew(!showNew)} />
+  );
 
-  render() {
-    return (
-      <React.Fragment>
-        {this.state.showNew ? (
-          <NewBoardForm onClose={this.toggleShowNew} />
-        ) : (
-          <AddBoardButton toggleShowNew={this.toggleShowNew} />
-        )}
-      </React.Fragment>
-    );
-  }
-}
+  return content;
+};
 
 export default AddBoard;

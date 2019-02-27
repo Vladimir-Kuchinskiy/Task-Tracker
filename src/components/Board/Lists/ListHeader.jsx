@@ -1,63 +1,58 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Popover, PopoverBody } from 'reactstrap';
 import EditListForm from './EditListForm';
 import './styles/ListHeader.css';
 
-class ListHeader extends Component {
-  state = { showPopover: false, editListClicked: false };
+const ListHeader = ({ dragHandleProps, title, listId, authToken, deleteList }) => {
+  const [editList, setEditList] = useState(false);
+  const [showPopover, setShowPopover] = useState(false);
 
-  toggleClick = () => {
-    this.setState({ editListClicked: !this.state.editListClicked });
-  };
-
-  togglePopover = () => {
-    this.setState({ showPopover: !this.state.showPopover });
-  };
-
-  renderPopover = () => {
-    const { listId, authToken, deleteList } = this.props;
-    return (
-      <Popover
-        placement="bottom"
-        isOpen={this.state.showPopover}
-        target={`PopoverList${listId}`}
-        toggle={this.togglePopover}
-        className="list-popover"
-      >
-        <PopoverBody>
-          <div className="toolbar-item" onClick={() => deleteList(listId, authToken)}>
-            <div>Delete list...</div>
-            <img className="pull-right" src={require('../../../images/delete.png')} alt="" />
-          </div>
-        </PopoverBody>
-      </Popover>
-    );
-  };
-
-  render() {
-    const { dragHandleProps, title, listId } = this.props;
-    return (
-      <header {...dragHandleProps}>
-        <div className="header-title">
-          {this.state.editListClicked ? (
-            <EditListForm
-              value="title"
-              form={`EditListForm-${listId}`}
-              listId={listId}
-              initialValues={{ title }}
-              onEdit={this.toggleClick}
-            />
-          ) : (
-            <div onClick={this.toggleClick}>{title}</div>
-          )}
+  const popover = (
+    <Popover
+      placement="bottom"
+      isOpen={showPopover}
+      target={`PopoverList${listId}`}
+      toggle={() => setShowPopover(!showPopover)}
+      className="list-popover"
+    >
+      <PopoverBody>
+        <div className="toolbar-item" onClick={() => deleteList(listId, authToken)}>
+          <div>Delete list...</div>
+          <img className="pull-right" src={require('../../../images/delete.png')} alt="" />
         </div>
-        <div className="header-toolbar" id={`PopoverList${listId}`} onClick={this.togglePopover}>
-          <img src={require('../../../images/toolbar.png')} alt="" />
-        </div>
-        {this.renderPopover()}
-      </header>
-    );
-  }
-}
+      </PopoverBody>
+    </Popover>
+  );
+
+  const headerTitle = editList ? (
+    <EditListForm
+      value="title"
+      form={`EditListForm-${listId}`}
+      listId={listId}
+      initialValues={{ title }}
+      onEdit={() => setEditList(!editList)}
+    />
+  ) : (
+    <div onClick={() => setEditList(!editList)}>{title}</div>
+  );
+
+  const headerToolbar = (
+    <div
+      className="header-toolbar"
+      id={`PopoverList${listId}`}
+      onClick={() => setShowPopover(!showPopover)}
+    >
+      <img src={require('../../../images/toolbar.png')} alt="" />
+    </div>
+  );
+
+  return (
+    <header {...dragHandleProps}>
+      <div className="header-title">{headerTitle}</div>
+      {headerToolbar}
+      {popover}
+    </header>
+  );
+};
 
 export default ListHeader;

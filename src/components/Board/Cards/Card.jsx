@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
@@ -13,23 +13,21 @@ const CardContainer = styled.li`
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 `;
 
-class Card extends Component {
-  state = {
-    editCardClicked: false,
-    showModal: false
-  };
+const Card = ({ card: { id, listId, content }, index }) => {
+  const [editCard, setEditCard] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  toggleEditCard = e => {
+  const toggleEditCard = e => {
     if (e) e.preventDefault();
-    this.setState({ editCardClicked: !this.state.editCardClicked });
+    setEditCard(!editCard);
   };
 
-  toggleModal = () => {
-    if (this.state.editCardClicked) return;
-    this.setState({ showModal: !this.state.showModal });
+  const toggleModal = () => {
+    if (editCard) return;
+    setShowModal(!showModal);
   };
 
-  renderCardContent = (provided, snapshot) => {
+  const renderCardContent = (provided, snapshot) => {
     return (
       <CardContainer
         className="draggable"
@@ -37,43 +35,34 @@ class Card extends Component {
         {...provided.dragHandleProps}
         ref={provided.innerRef}
         isDragging={snapshot.isDragging}
-        onContextMenu={this.toggleEditCard}
-        onClick={this.toggleModal}
+        onContextMenu={toggleEditCard}
+        onClick={toggleModal}
       >
-        {this.props.card.content}
+        {content}
       </CardContainer>
     );
   };
 
-  renderEditCardForm = () => {
-    const { id, content, listId } = this.props.card;
-    return (
-      <li className="edit-card">
-        <EditCardForm
-          form={`EditCardForm-${id}-${listId}`}
-          cardId={id}
-          listId={listId}
-          initialValues={{ content }}
-          onEdit={this.toggleEditCard}
-        />
-      </li>
-    );
-  };
+  const editCardForm = (
+    <li className="edit-card">
+      <EditCardForm
+        form={`EditCardForm-${id}-${listId}`}
+        cardId={id}
+        listId={listId}
+        initialValues={{ content }}
+        onEdit={toggleEditCard}
+      />
+    </li>
+  );
 
-  render() {
-    const { editCardClicked, showModal } = this.state;
-    const { id: cardId } = this.props.card;
-    return (
-      <React.Fragment>
-        <Draggable draggableId={`card-${cardId}`} index={this.props.index}>
-          {(provided, snapshot) =>
-            editCardClicked ? this.renderEditCardForm() : this.renderCardContent(provided, snapshot)
-          }
-        </Draggable>
-        <CardModal showModal={showModal} toggleModal={this.toggleModal} cardId={cardId} />
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <Draggable draggableId={`card-${id}`} index={index}>
+        {(provided, snapshot) => (editCard ? editCardForm : renderCardContent(provided, snapshot))}
+      </Draggable>
+      <CardModal showModal={showModal} toggleModal={toggleModal} cardId={id} />
+    </React.Fragment>
+  );
+};
 
 export default Card;

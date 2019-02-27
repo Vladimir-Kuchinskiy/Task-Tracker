@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
-class Logout extends Component {
-  componentDidMount() {
-    this.props.signOut();
-  }
+const Logout = ({ signOut }) => {
+  useEffect(() => {
+    signOut();
+  }, []);
 
-  render() {
-    return <Redirect to="/auth" />;
-  }
-}
+  return <Redirect to="/auth" />;
+};
 
 export default Logout;
