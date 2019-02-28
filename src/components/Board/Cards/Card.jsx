@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+
+import withDraggable from '../../hoc/withDraggable';
 
 import './styles/Card.css';
 import EditCardForm from './EditCardForm';
@@ -25,8 +26,9 @@ class Card extends Component {
   };
 
   toggleModal = () => {
-    if (this.state.editCardClicked) return;
-    this.setState({ showModal: !this.state.showModal });
+    const { editCardClicked, showModal } = this.state;
+    if (editCardClicked) return;
+    this.setState({ showModal: !showModal });
   };
 
   renderCardContent = (provided, snapshot) => {
@@ -62,18 +64,14 @@ class Card extends Component {
 
   render() {
     const { editCardClicked, showModal } = this.state;
-    const { id: cardId } = this.props.card;
+    const { card, provided, snapshot } = this.props;
     return (
       <React.Fragment>
-        <Draggable draggableId={`card-${cardId}`} index={this.props.index}>
-          {(provided, snapshot) =>
-            editCardClicked ? this.renderEditCardForm() : this.renderCardContent(provided, snapshot)
-          }
-        </Draggable>
-        <CardModal showModal={showModal} toggleModal={this.toggleModal} cardId={cardId} />
+        {editCardClicked ? this.renderEditCardForm() : this.renderCardContent(provided, snapshot)}
+        <CardModal showModal={showModal} toggleModal={this.toggleModal} cardId={card.id} />
       </React.Fragment>
     );
   }
 }
 
-export default Card;
+export default withDraggable(Card);

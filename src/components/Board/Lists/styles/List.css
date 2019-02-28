@@ -27,7 +27,3 @@ ul::-webkit-scrollbar-thumb:hover {
   width: 300px;
   height: calc(100% - 10px - 17px);
 }
-.list-container {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}

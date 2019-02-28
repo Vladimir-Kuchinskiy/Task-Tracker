@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { types } from '../constants';
-import todoApi from '../apis/todoApi';
+import { todoApi } from '../apis';
 
 export const auth = (params, isSignUp) => dispatch => {
   dispatch(authStart());

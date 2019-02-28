@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Droppable } from 'react-beautiful-dnd';
+
+import withDroppable from '../../hoc/withDroppable';
 
 import Button from '../../common/Button';
 import NewListForm from './NewListForm';
@@ -18,7 +19,13 @@ class Lists extends Component {
   getListComponents = () => {
     return this.props.lists.map((list, index) => {
       return (
-        <List listId={list.id} key={list.id} index={index} toggleAddList={this.toggleAddList} />
+        <List
+          listId={list.id}
+          id={`list-${list.id}`}
+          key={list.id}
+          index={index}
+          toggleAddList={this.toggleAddList}
+        />
       );
     });
   };
@@ -40,20 +47,17 @@ class Lists extends Component {
   }
 
   render() {
+    const { provided } = this.props;
     return (
       <div className="droppable-wrapper">
-        <Droppable droppableId="all-lists" direction="horizontal" type="list">
-          {provided => (
-            <div className="lists" {...provided.droppableProps} ref={provided.innerRef}>
-              {this.getListComponents()}
-              {provided.placeholder}
-              {this.renderAddList()}
-            </div>
-          )}
-        </Droppable>
+        <div className="lists" {...provided.droppableProps} ref={provided.innerRef}>
+          {this.getListComponents()}
+          {provided.placeholder}
+          {this.renderAddList()}
+        </div>
       </div>
     );
   }
 }
 
-export default Lists;
+export default withDroppable(Lists);

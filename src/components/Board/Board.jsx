@@ -22,14 +22,15 @@ class Board extends Component {
   };
 
   render() {
-    const content = this.props.loading ? (
+    const { loading, board } = this.props;
+    const content = loading ? (
       <Spinner />
     ) : (
       <React.Fragment>
-        <nav className="navbar board">{this.props.board.title}</nav>
+        <nav className="navbar board">{board.title}</nav>
         <div className="content board">
           <DragDropContext onDragEnd={this.handleDragEnd}>
-            <Lists />
+            <Lists id="all-lists" type="list" direction="horizontal" />
           </DragDropContext>
         </div>
       </React.Fragment>

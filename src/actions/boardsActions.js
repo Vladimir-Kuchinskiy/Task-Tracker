@@ -1,5 +1,5 @@
 import { types } from '../constants';
-import todoApi from '../apis/todoApi';
+import { todoApi } from '../apis';
 import { mapBoards, mapBoard } from '../services/mappers';
 
 const getBoardsStart = () => {

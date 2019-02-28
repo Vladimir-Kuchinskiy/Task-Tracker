@@ -1,7 +1,7 @@
 import { mapBoardContent, mapList, mapCard } from '../services/mappers';
 import { parseNumber } from '../services/movesService';
 import { types } from '../constants';
-import todoApi from '../apis/todoApi';
+import { todoApi } from '../apis';
 
 const getBoardStart = () => {
   return { type: types.GET_BOARD_START };
