@@ -23,7 +23,7 @@ class Board extends Component {
 
   render() {
     const content = this.props.loading ? (
-      <Spinner style={{ position: 'absolute' }} />
+      <Spinner />
     ) : (
       <React.Fragment>
         <nav className="navbar board">{this.props.board.title}</nav>

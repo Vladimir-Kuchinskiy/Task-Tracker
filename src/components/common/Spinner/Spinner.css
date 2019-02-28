@@ -39,8 +39,10 @@
   }
 }
 .lds-double-ring {
-  position: relative;
+  position: absolute;
   top: 50%;
+  width: 100%;
+  height: 100%;
 }
 .lds-double-ring div {
   position: absolute;

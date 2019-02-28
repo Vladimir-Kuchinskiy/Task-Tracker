@@ -13,11 +13,11 @@ class Boards extends Component {
   render() {
     const { boards, loading } = this.props;
     return loading ? (
-      <Spinner style={{ position: 'absolute' }} />
+      <Spinner />
     ) : (
       <div className="container boards">
         <h2 className="row">Your boards</h2>
-        <div className="row">
+        <div className="row boards-row">
           {boards.map(board => {
             return <BoardItem board={board} key={board.id} onSubmit={this.handleSubmit} />;
           })}
