@@ -7,10 +7,7 @@ class Auth extends Component {
   state = { isSignUp: false };
 
   componentDidMount() {
-    if (this.props.isSignedIn) {
-      toast.success('You are already signed in!');
-      return <Redirect to="/" />;
-    }
+    if (this.props.isSignedIn) toast.success('You are already signed in!');
   }
 
   toggleSignUp = () => {
@@ -27,6 +24,8 @@ class Auth extends Component {
   }
 
   render() {
+    if (this.props.isSignedIn) return <Redirect to="/" />;
+
     return (
       <div className="container">
         <div className="row">

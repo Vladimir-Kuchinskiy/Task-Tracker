@@ -23,6 +23,7 @@ class Teams extends Component {
   renderAddTeamButton = () => {
     return (
       <li className="nav-item">
+        <hr />
         {this.state.addTeamClicked ? (
           <NewTeamForm onClose={this.toggleClick} />
         ) : (

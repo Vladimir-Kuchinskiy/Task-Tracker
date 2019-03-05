@@ -152,3 +152,7 @@
   cursor: pointer;
   background-color: #f4f4f4;
 }
+
+.nav-item hr {
+  margin: 8px;
+}

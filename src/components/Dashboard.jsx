@@ -16,7 +16,7 @@ const Dashboard = () => {
           <Switch>
             <Route path="/dashboard/teams/:id" component={Team} />
             <Route path="/dashboard/boards" component={Boards} />
-            <Redirect from="/" exact to="/dashboard/boards" />
+            <Redirect from="/dashboard" exact to="/dashboard/boards" />
           </Switch>
         </div>
       </div>
