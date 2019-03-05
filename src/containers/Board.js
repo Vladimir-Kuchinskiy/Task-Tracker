@@ -6,7 +6,6 @@ const mapStateToProps = ({ board, auth }) => {
   return {
     board: board.board,
     authToken: auth.authToken,
-    isSignedIn: auth.authToken !== null,
     loading: board.loading
   };
 };

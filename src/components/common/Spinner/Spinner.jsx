@@ -1,10 +1,10 @@
 import React from 'react';
 import './Spinner.css';
 
-const Spinner = () => {
+const Spinner = ({ style }) => {
   return (
     <div className="lds-css ng-scope center">
-      <div className="lds-double-ring">
+      <div className="lds-double-ring" style={style}>
         <div />
         <div />
       </div>

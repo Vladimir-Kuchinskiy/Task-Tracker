@@ -13,9 +13,9 @@ class Boards extends Component {
   render() {
     const { boards, loading } = this.props;
     return loading ? (
-      <Spinner />
+      <Spinner style={{ marginLeft: '36%' }} />
     ) : (
-      <div className="container boards">
+      <React.Fragment>
         <h2 className="row">Your boards</h2>
         <div className="row boards-row">
           {boards.map(board => {
@@ -23,7 +23,7 @@ class Boards extends Component {
           })}
           <AddBoard />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

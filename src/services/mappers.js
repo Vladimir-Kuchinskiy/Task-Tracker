@@ -10,12 +10,29 @@ export const mapBoardContent = ({ data: { id, attributes }, included }) => {
   };
 };
 
+export const mapTeamContent = ({ data: { id, attributes }, included }) => {
+  const { name, userEmails } = attributes;
+  return {
+    team: { id, name },
+    userEmails,
+    members: mapMembers(id, included)
+  };
+};
+
 export const mapBoards = ({ data }) => {
   return data.map(o => ({ id: o.id, title: o.attributes.title }));
 };
 
 export const mapBoard = ({ data: { id, attributes } }) => {
   return { id, title: attributes.title };
+};
+
+export const mapTeams = ({ data }) => {
+  return data.map(o => ({ id: o.id, name: o.attributes.name }));
+};
+
+export const mapTeam = ({ data: { id, attributes } }) => {
+  return { id, name: attributes.name };
 };
 
 export const mapList = ({ data: { id, attributes, relationships } }) => {
@@ -48,4 +65,16 @@ const mapCards = included => {
     })
     .filter(Boolean);
   return mapKeys(cards, 'id');
+};
+
+const mapMembers = (teamId, included) => {
+  let members = included
+    .map(({ id, type, attributes }) => {
+      if (type === 'user') {
+        return { id, teamId, ...attributes };
+      }
+      return undefined;
+    })
+    .filter(Boolean);
+  return mapKeys(members, 'id');
 };

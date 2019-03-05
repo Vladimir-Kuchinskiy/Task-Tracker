@@ -26,3 +26,10 @@ export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_SIGN_OUT = 'AUTH_SIGN_OUT';
+
+// Teams
+export const GET_TEAMS = 'GET_TEAMS';
+export const GET_TEAM_START = 'GET_TEAM_START';
+export const GET_TEAM_SUCCESS = 'GET_TEAM_SUCCESS';
+export const CREATE_TEAM = 'CREATE_TEAM';
+export const UPDATE_TEAM = 'UPDATE_TEAM';

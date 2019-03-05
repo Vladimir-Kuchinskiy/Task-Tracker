@@ -11,7 +11,7 @@ const NavBar = ({ isSignedIn, userEmail }) => {
         {isSignedIn && (
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <NavLink className="nav-item nav-link" to="/boards">
+              <NavLink className="nav-item nav-link" to="/dashboard/boards">
                 Boards
               </NavLink>
             </li>

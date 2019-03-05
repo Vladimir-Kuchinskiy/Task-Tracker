@@ -16,7 +16,7 @@ class Lists extends Component {
     this.setState({ addListClicked: !this.state.addListClicked });
   };
 
-  getListComponents = () => {
+  renderListComponents = () => {
     return this.props.lists.map((list, index) => {
       return (
         <List
@@ -51,7 +51,7 @@ class Lists extends Component {
     return (
       <div className="droppable-wrapper">
         <div className="lists" {...provided.droppableProps} ref={provided.innerRef}>
-          {this.getListComponents()}
+          {this.renderListComponents()}
           {provided.placeholder}
           {this.renderAddList()}
         </div>

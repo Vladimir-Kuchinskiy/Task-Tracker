@@ -6,8 +6,7 @@ import './Board.css';
 
 class Board extends Component {
   componentDidMount() {
-    const { isSignedIn, authToken, history, match, getBoard } = this.props;
-    if (!isSignedIn) return history.push('/auth');
+    const { authToken, match, getBoard } = this.props;
     getBoard(match.params.id, authToken);
   }
 
