@@ -29,7 +29,11 @@ export const AUTH_SIGN_OUT = 'AUTH_SIGN_OUT';
 
 // Teams
 export const GET_TEAMS = 'GET_TEAMS';
+
+// Team
 export const GET_TEAM_START = 'GET_TEAM_START';
 export const GET_TEAM_SUCCESS = 'GET_TEAM_SUCCESS';
 export const CREATE_TEAM = 'CREATE_TEAM';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
+export const CREATE_BOARD_FOR_TEAM = 'CREATE_BOARD_FOR_TEAM';
+export const SEARCH_USERS = 'SEARCH_USERS';

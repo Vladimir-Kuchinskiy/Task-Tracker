@@ -7,6 +7,11 @@ class Auth extends Component {
   state = { isSignUp: false };
 
   componentDidMount() {
+    debugger;
+    if (localStorage.getItem('message')) {
+      toast.info(localStorage.getItem('message'));
+      localStorage.removeItem('message');
+    }
     if (this.props.isSignedIn) toast.success('You are already signed in!');
   }
 

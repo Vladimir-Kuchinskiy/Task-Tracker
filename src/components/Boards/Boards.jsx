@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import BoardItem from './BoardItem';
-import AddBoard from './AddBoard';
+import BoardsDisplayer from '../common/BoardsDisplayer';
 import Spinner from '../common/Spinner';
 import './styles/Boards.css';
 
@@ -15,15 +14,13 @@ class Boards extends Component {
     return loading ? (
       <Spinner style={{ marginLeft: '36%' }} />
     ) : (
-      <React.Fragment>
-        <h2 className="row">Your boards</h2>
-        <div className="row boards-row">
-          {boards.map(board => {
-            return <BoardItem board={board} key={board.id} onSubmit={this.handleSubmit} />;
-          })}
-          <AddBoard />
+      <div className="boards">
+        <div className="row">
+          <div className="col-9">
+            <BoardsDisplayer title="Your boards" boards={boards} />
+          </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

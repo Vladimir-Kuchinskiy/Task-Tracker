@@ -16,3 +16,7 @@ export const getTeam = (id, authToken) => async dispatch => {
   const response = await todoApi.get(`/teams/${id}`);
   dispatch(getTeamSuccess(response));
 };
+
+export const searchUsers = value => {
+  return { type: types.SEARCH_USERS, payload: value };
+};

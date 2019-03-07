@@ -19,7 +19,7 @@
   display: inline-block;
   width: 1.5em;
   height: 1.5em;
-  vertical-align: middle;
+  vertical-align: center;
   content: '';
   background: no-repeat center center;
   background-size: 100% 100%;
@@ -27,7 +27,6 @@
   cursor: pointer;
 }
 .sidebar {
-  position: relative;
   width: 100%;
   z-index: 99;
   margin-top: 40px;
@@ -112,6 +111,7 @@
 .sidebar .category-content .nav > li > a {
   font-weight: 500;
 }
+
 @media (min-width: 768px) {
   .sidebar {
     padding-top: 2rem !important;
@@ -120,10 +120,10 @@
     width: 280px;
     padding: 0 1.25rem;
   }
-  .sidebar.sidebar-fixed {
+  /* .sidebar.sidebar-fixed {
     position: sticky;
     top: 5.5rem;
-  }
+  } */
   .sidebar.sidebar-default .sidebar-category {
     background-color: #fff;
   }

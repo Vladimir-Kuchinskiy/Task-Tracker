@@ -15,7 +15,8 @@ export const mapTeamContent = ({ data: { id, attributes }, included }) => {
   return {
     team: { id, name },
     userEmails,
-    members: mapMembers(id, included)
+    members: mapMembers(included),
+    boards: mapBoardsForTeam(included)
   };
 };
 
@@ -67,14 +68,26 @@ const mapCards = included => {
   return mapKeys(cards, 'id');
 };
 
-const mapMembers = (teamId, included) => {
+const mapMembers = included => {
   let members = included
     .map(({ id, type, attributes }) => {
       if (type === 'user') {
-        return { id, teamId, ...attributes };
+        return { id, ...attributes };
       }
       return undefined;
     })
     .filter(Boolean);
   return mapKeys(members, 'id');
+};
+
+const mapBoardsForTeam = included => {
+  let boards = included
+    .map(({ id, type, attributes }) => {
+      if (type === 'board') {
+        return { id, ...attributes };
+      }
+      return undefined;
+    })
+    .filter(Boolean);
+  return mapKeys(boards, 'id');
 };

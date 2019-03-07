@@ -17,7 +17,7 @@ class AddBoard extends Component {
     return (
       <React.Fragment>
         {this.state.showNew ? (
-          <NewBoardForm onClose={this.toggleShowNew} />
+          <NewBoardForm onClose={this.toggleShowNew} teamId={this.props.teamId} />
         ) : (
           <AddBoardButton toggleShowNew={this.toggleShowNew} />
         )}

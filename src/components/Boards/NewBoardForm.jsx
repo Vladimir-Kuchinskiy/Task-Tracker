@@ -14,8 +14,8 @@ class NewBoardForm extends Component {
 
   onSubmit = values => {
     if (values.title === undefined) throw new SubmissionError({ title: 'Can not be blank' });
-    const { authToken, createBoard, onClose } = this.props;
-    createBoard(values, authToken);
+    const { authToken, createBoard, onClose, teamId } = this.props;
+    createBoard(values, authToken, teamId);
     onClose();
   };
 

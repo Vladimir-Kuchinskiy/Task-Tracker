@@ -36,6 +36,7 @@ class ListHeader extends Component {
 
   render() {
     const { dragHandleProps, title, listId } = this.props;
+    debugger;
     return (
       <header {...dragHandleProps}>
         <div className="header-title">
@@ -48,7 +49,9 @@ class ListHeader extends Component {
               onEdit={this.toggleClick}
             />
           ) : (
-            <div onClick={this.toggleClick}>{title}</div>
+            <h6 id="list-title" onClick={this.toggleClick}>
+              {title}
+            </h6>
           )}
         </div>
         <div className="header-toolbar" id={`PopoverList${listId}`} onClick={this.togglePopover}>

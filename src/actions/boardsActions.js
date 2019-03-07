@@ -17,10 +17,16 @@ export const getBoards = authToken => async dispatch => {
   dispatch(getBoardsSuccess(response));
 };
 
-export const createBoard = (params, authToken) => async dispatch => {
+export const createBoard = (params, authToken, teamId) => async dispatch => {
   todoApi.setJwt(authToken);
-  const response = await todoApi.post('/boards', params);
-  dispatch({ type: types.CREATE_BOARD, payload: mapBoard(response.data) });
+  let response = null;
+  if (teamId) {
+    response = await todoApi.post(`/teams/${teamId}/boards`, params);
+    dispatch({ type: types.CREATE_BOARD_FOR_TEAM, payload: mapBoard(response.data) });
+  } else {
+    response = await todoApi.post('/boards', params);
+    dispatch({ type: types.CREATE_BOARD, payload: mapBoard(response.data) });
+  }
 };
 
 export const updateBoard = (params, id, authToken) => async dispatch => {
