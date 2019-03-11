@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Person from './Person';
 
 const AddMember = ({ findedUserEmails, searchUsers }) => {
+  useEffect(() => {
+    return () => searchUsers('');
+  }, []);
+
   const handleSearch = e => {
     searchUsers(e.target.value);
   };

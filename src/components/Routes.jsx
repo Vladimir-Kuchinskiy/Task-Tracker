@@ -21,9 +21,8 @@ const Routes = ({ isSignedIn }) => {
   ) : (
     <Switch>
       <Route path="/auth" component={Auth} />
-      <Route path="/not-found" component={NotFound} />
       <Redirect from="/" exact to="/auth" />
-      <Redirect to="/not-found" />
+      <Redirect to="/auth" />
     </Switch>
   );
   return routes;
