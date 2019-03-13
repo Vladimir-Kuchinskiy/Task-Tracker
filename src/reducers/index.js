@@ -5,5 +5,6 @@ import boards from './boardsReducer';
 import auth from './authReducer';
 import teams from './teamsReducer';
 import team from './teamReducer';
+import invites from './invitesReducer';
 
-export default combineReducers({ boards, board, auth, teams, team, form: formReducer });
+export default combineReducers({ boards, board, auth, teams, team, invites, form: formReducer });

@@ -11,10 +11,11 @@ const getBoardSuccess = response => {
   return { type: types.GET_BOARD_SUCCESS, payload: mapBoardContent(response.data) };
 };
 
-export const getBoard = (id, authToken) => async dispatch => {
+export const getBoard = (id, teamId, authToken) => async dispatch => {
   dispatch(getBoardStart());
   todoApi.setJwt(authToken);
-  const response = await todoApi.get(`/boards/${id}`);
+  const path = teamId ? `/teams/${teamId}/boards/${id}` : `/boards/${id}`;
+  const response = await todoApi.get(path);
   dispatch(getBoardSuccess(response));
 };
 

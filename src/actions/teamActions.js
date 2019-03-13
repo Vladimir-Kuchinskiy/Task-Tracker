@@ -20,3 +20,9 @@ export const getTeam = (id, authToken) => async dispatch => {
 export const searchUsers = value => {
   return { type: types.SEARCH_USERS, payload: value };
 };
+
+export const sendInvite = (id, authToken, receiverEmail) => async dispatch => {
+  todoApi.setJwt(authToken);
+  await todoApi.post(`/teams/${id}/invitations`, { receiver_email: receiverEmail });
+  dispatch({ type: types.INVITE_USER, payload: receiverEmail });
+};

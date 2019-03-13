@@ -14,22 +14,14 @@ export const mapTeamContent = ({ data: { id, attributes }, included }) => {
   const { name, userEmails } = attributes;
   return {
     team: { id, name },
-    userEmails,
+    userEmails: mapUserEmails(userEmails),
     members: mapMembers(included),
     boards: mapBoardsForTeam(included)
   };
 };
 
-export const mapBoards = ({ data }) => {
-  return data.map(o => ({ id: o.id, title: o.attributes.title }));
-};
-
 export const mapBoard = ({ data: { id, attributes } }) => {
   return { id, title: attributes.title };
-};
-
-export const mapTeams = ({ data }) => {
-  return data.map(o => ({ id: o.id, name: o.attributes.name }));
 };
 
 export const mapTeam = ({ data: { id, attributes } }) => {
@@ -42,6 +34,21 @@ export const mapList = ({ data: { id, attributes, relationships } }) => {
 
 export const mapCard = ({ data: { id, attributes, relationships } }) => {
   return { id, ...attributes, listId: relationships.list.data.id };
+};
+
+export const mapInvite = ({ data: { id }, included }) => {
+  const team = { id: included[0].id, name: included[0].attributes.name };
+  return { inviteId: id, team };
+};
+
+export const mapBoards = ({ data }) => {
+  const boards = data.map(o => ({ id: o.id, title: o.attributes.title }));
+  return mapKeys(boards, 'id');
+};
+
+export const mapTeams = ({ data }) => {
+  const teams = data.map(o => ({ id: o.id, name: o.attributes.name }));
+  return mapKeys(teams, 'id');
 };
 
 const mapLists = (boardId, included) => {
@@ -72,12 +79,17 @@ const mapMembers = included => {
   let members = included
     .map(({ id, type, attributes }) => {
       if (type === 'user') {
-        return { id, ...attributes };
+        return { id, roles: findRoles(id, included), ...attributes };
       }
       return undefined;
     })
     .filter(Boolean);
   return mapKeys(members, 'id');
+};
+
+export const mapInvites = ({ data }) => {
+  const invites = data.map(o => ({ id: o.id, ...o.attributes }));
+  return mapKeys(invites, 'id');
 };
 
 const mapBoardsForTeam = included => {
@@ -90,4 +102,19 @@ const mapBoardsForTeam = included => {
     })
     .filter(Boolean);
   return mapKeys(boards, 'id');
+};
+
+const mapUserEmails = userEmails => {
+  return userEmails.map(({ email, is_invited }) => ({ email, isInvited: is_invited }));
+};
+
+const findRoles = (userId, included) => {
+  let roles = null;
+  included.map(({ type, attributes }) => {
+    if (type === 'user_team' && attributes.user_id.toString() === userId) {
+      roles = attributes.roles;
+    }
+    return undefined;
+  });
+  return roles;
 };
