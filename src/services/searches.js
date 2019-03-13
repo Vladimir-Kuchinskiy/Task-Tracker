@@ -1,5 +1,5 @@
 export const searchUsers = (userEmails, query) => {
-  if (query === '') return [];
+  if (query === '' || query === '.') return [];
 
-  return userEmails.filter(email => email.toLowerCase().indexOf(query.toLowerCase()) >= 0);
+  return userEmails.filter(({ email }) => email.toLowerCase().indexOf(query.toLowerCase()) >= 0);
 };
