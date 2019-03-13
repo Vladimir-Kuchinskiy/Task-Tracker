@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Spinner from '../common/Spinner';
 import BoardsDisplayer from '../common/BoardsDisplayer';
 import TeamsSidebar from './TeamsSidebar';
-import Members from '../../containers/Members';
+import Members from '../../containers/Teams/Members';
 
 class Team extends Component {
   componentDidMount() {
@@ -34,14 +34,14 @@ class Team extends Component {
   };
 
   render() {
-    const { loading, team } = this.props;
+    const { loading, team, membersCount } = this.props;
     return loading ? (
       <Spinner style={{ marginLeft: '36%' }} />
     ) : (
       <div className="row boards">
         <div className="col-9">{this.renderRouting()}</div>
         <div className="col-3">
-          <TeamsSidebar teamId={team.id} />
+          <TeamsSidebar teamId={team.id} membersCount={membersCount} />
         </div>
       </div>
     );

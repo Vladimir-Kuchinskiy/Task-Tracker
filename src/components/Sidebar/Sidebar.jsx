@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import Teams from '../../containers/Teams';
+import Teams from '../../containers/Teams/Teams';
 import './Sidebar.css';
 
 class Sidebar extends Component {
@@ -37,6 +37,17 @@ class Sidebar extends Component {
             </div>
             <div className="category-content">
               <Teams />
+            </div>
+          </div>
+          <div className="sidebar-category sidebar-default">
+            <div className="category-content">
+              <ul id="sidebar-editable-nav" className="nav flex-column">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/dashboard/invites">
+                    Invites
+                  </NavLink>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

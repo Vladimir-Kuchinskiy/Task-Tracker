@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import './styles/TeamsSidebar.css';
 
-const TeamsSidebar = ({ teamId }) => {
+const TeamsSidebar = ({ teamId, membersCount }) => {
   return (
     <div id="sidebar-main" className="sidebar sidebar-default sidebar-separate sidebar-fixed">
       <div className="sidebar-content">
@@ -16,6 +16,12 @@ const TeamsSidebar = ({ teamId }) => {
                 </NavLink>
                 <NavLink className="nav-link" to={`/dashboard/teams/${teamId}/members`}>
                   Members
+                  <span
+                    className="badge badge-pill badge-secondary pull-right"
+                    style={{ fontSize: '1em' }}
+                  >
+                    {membersCount}
+                  </span>
                 </NavLink>
               </li>
             </ul>

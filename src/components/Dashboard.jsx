@@ -3,7 +3,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Sidebar from '../containers/Sidebar';
 import Boards from '../containers/Boards';
-import Team from '../containers/Team';
+import Team from '../containers/Teams/Team';
+import Invites from '../containers/Invites/Invites';
 
 const Dashboard = () => {
   return (
@@ -16,6 +17,7 @@ const Dashboard = () => {
           <Switch>
             <Route path="/dashboard/teams/:id" component={Team} />
             <Route path="/dashboard/boards" component={Boards} />
+            <Route path="/dashboard/invites" component={Invites} />
             <Redirect from="/dashboard" exact to="/dashboard/boards" />
           </Switch>
         </div>

@@ -36,8 +36,10 @@ class BoardItem extends Component {
 
   renderLinkToBoard = () => {
     const { id, title } = this.props.board;
+    const { teamId } = this.props;
+    const path = teamId ? `/teams/${teamId}/boards/${id}` : `/boards/${id}`;
     return (
-      <Link to={`/boards/${id}`} className="col-3 board-item" onContextMenu={this.toggleEdit}>
+      <Link to={path} className="col-3 board-item" onContextMenu={this.toggleEdit}>
         <h3>{title}</h3>
       </Link>
     );

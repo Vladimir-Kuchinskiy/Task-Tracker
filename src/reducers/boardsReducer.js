@@ -1,4 +1,3 @@
-import mapKeys from 'lodash/mapKeys';
 import { types } from '../constants';
 const initialState = { boards: {}, loading: false };
 
@@ -7,7 +6,7 @@ export default (state = initialState, action) => {
     case types.GET_BOARDS_START:
       return { ...state, loading: true };
     case types.GET_BOARDS_SUCCESS:
-      return { ...state, boards: { ...mapKeys(action.payload, 'id') }, loading: false };
+      return { ...state, boards: action.payload, loading: false };
     case types.CREATE_BOARD:
       return {
         ...state,

@@ -1,34 +1,52 @@
-import React, { useState } from 'react';
-import './styles/Member.css';
+import React, { Component } from 'react';
+import InviteButton from '../../containers/Teams/InviteButton';
+import './styles/Person.css';
 
-const Person = ({ email, invitable }) => {
-  const [mouseOver, setMouseOver] = useState(false);
-  const handleMouseOver = e => {
-    if (e.relatedTarget && e.relatedTarget.className.includes('btn')) return;
+class Person extends Component {
+  state = { mouseOver: false };
 
-    setMouseOver(false);
+  handleMouseOut = ({ relatedTarget }) => {
+    if (
+      relatedTarget &&
+      (relatedTarget.className.includes('btn') || relatedTarget.className.includes('badge'))
+    )
+      return;
+
+    this.setState({ mouseOver: false });
   };
-  const header = invitable ? <h6 className="mt-4">{email}</h6> : <h5 className="mt-3">{email}</h5>;
-  const avatar = require(`../../images/avatar-placeholder.png`);
 
-  const inviteButton =
-    invitable && mouseOver ? (
-      <div className="btn btn-success mt-3" onMouseOver={() => setMouseOver(false)}>
-        + Invite member
-      </div>
-    ) : null;
-
-  return (
-    <tr onMouseOver={() => setMouseOver(true)} onMouseOut={handleMouseOver}>
-      <td>
-        <div className="media">
-          <img src={avatar} alt="" />
-          <div className="media-body member-body">{header}</div>
-          {inviteButton}
-        </div>
-      </td>
-    </tr>
-  );
-};
+  render() {
+    const { member, invitable } = this.props;
+    const header = invitable ? (
+      <h6 className="mt-4">{member.email}</h6>
+    ) : (
+      <h5 className="mt-3">{member.email}</h5>
+    );
+    const avatar = require(`../../images/avatar-placeholder.png`);
+    return (
+      <tr onMouseOver={() => this.setState({ mouseOver: true })} onMouseOut={this.handleMouseOut}>
+        <td>
+          <div className="media">
+            <img src={avatar} alt="" />
+            <div className="media-body member-body">{header}</div>
+            {invitable ? (
+              <InviteButton
+                member={member}
+                setMouseOver={() => this.setState({ mouseOver: false })}
+                mouseOver={this.state.mouseOver}
+              />
+            ) : (
+              <h4 className="mt-3">
+                <span className="badge badge-info">
+                  {member.roles.includes('creator') && 'Admin'}
+                </span>
+              </h4>
+            )}
+          </div>
+        </td>
+      </tr>
+    );
+  }
+}
 
 export default Person;

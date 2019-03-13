@@ -7,7 +7,6 @@ class Auth extends Component {
   state = { isSignUp: false };
 
   componentDidMount() {
-    debugger;
     if (localStorage.getItem('message')) {
       toast.info(localStorage.getItem('message'));
       localStorage.removeItem('message');

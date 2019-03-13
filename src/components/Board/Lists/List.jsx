@@ -2,7 +2,7 @@ import React from 'react';
 
 import withDraggable from '../../hoc/withDraggable';
 
-import ListHeader from '../../../containers/ListHeader';
+import ListHeader from '../../../containers/Board/ListHeader';
 import ListBody from './ListBody';
 import './styles/List.css';
 

@@ -36,7 +36,6 @@ class ListHeader extends Component {
 
   render() {
     const { dragHandleProps, title, listId } = this.props;
-    debugger;
     return (
       <header {...dragHandleProps}>
         <div className="header-title">

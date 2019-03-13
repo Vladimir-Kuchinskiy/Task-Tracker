@@ -11,7 +11,7 @@ axios.interceptors.response.use(null, error => {
     error.response.status < 500 &&
     error.response.status !== 401;
   if (isExpectedError) {
-    if (error.response.data.message.includes('expired')) {
+    if (error.response.data.message && error.response.data.message.includes('expired')) {
       signOut();
       localStorage.setItem('message', 'Your session has been expired');
       window.location = '/auth';

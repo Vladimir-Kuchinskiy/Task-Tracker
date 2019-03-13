@@ -10,6 +10,22 @@ const initialState = {
   loading: false
 };
 
+const processInvitableUser = (state, email) => {
+  const newFindedUserEmails = state.findedUserEmails.map(item => {
+    if (item.email === email) item.isInvited = true;
+    return item;
+  });
+  const newUserEmails = state.userEmails.map(item => {
+    if (item.email === email) item.isInvited = true;
+    return item;
+  });
+  return {
+    ...state,
+    findedUserEmails: newFindedUserEmails,
+    userEmails: newUserEmails
+  };
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.GET_TEAM_START:
@@ -26,6 +42,8 @@ export default (state = initialState, action) => {
         ...state,
         findedUserEmails: searchUsers(state.userEmails, action.payload)
       };
+    case types.INVITE_USER:
+      return processInvitableUser(state, action.payload);
     case types.AUTH_SIGN_OUT:
       return initialState;
     default:

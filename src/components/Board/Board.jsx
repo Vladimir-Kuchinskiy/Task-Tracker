@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import Lists from '../../containers/Lists';
+import Lists from '../../containers/Board/Lists';
 import Spinner from '../common/Spinner';
 import './Board.css';
 
 class Board extends Component {
   componentDidMount() {
     const { authToken, match, getBoard } = this.props;
-    getBoard(match.params.id, authToken);
+    getBoard(match.params.id, match.params.teamId, authToken);
   }
 
   handleDragEnd = args => {

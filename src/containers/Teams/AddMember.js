@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { searchUsers } from '../actions/teamActions';
-import AddMember from '../components/Teams/AddMember';
+import { searchUsers } from '../../actions/teamActions';
+import AddMember from '../../components/Teams/AddMember';
 
 const mapStateToProps = ({ team }) => {
   return {

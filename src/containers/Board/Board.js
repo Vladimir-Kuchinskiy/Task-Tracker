@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Board from '../components/Board/Board';
-import { getBoard, moveList, moveCard } from '../actions/boardActions';
+import { getBoard, moveList, moveCard } from '../../actions/boardActions';
+import Board from '../../components/Board/Board';
 
 const mapStateToProps = ({ board, auth }) => {
   return {

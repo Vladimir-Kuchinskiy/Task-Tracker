@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import DeleteCardPopover from '../../../containers/DeleteCardPopover';
+import DeleteCardPopover from '../../../containers/Board/DeleteCardPopover';
 import Button from '../../common/Button';
 
 class CardModal extends Component {

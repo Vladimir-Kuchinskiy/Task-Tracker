@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Auth from '../containers/Auth';
-import Logout from '../containers/Logout';
-import Board from '../containers/Board';
+import Auth from '../containers/Auth/Auth';
+import Logout from '../containers/Auth/Logout';
+import Board from '../containers/Board/Board';
 import Dashboard from './Dashboard';
 import NotFound from './NotFound';
 
@@ -12,6 +12,7 @@ const Routes = ({ isSignedIn }) => {
     <Switch>
       <Route path="/logout" component={Logout} />
       <Route path="/boards/:id" component={Board} />
+      <Route path="/teams/:teamId/boards/:id" component={Board} />
       <Route path="/dashboard" component={Dashboard} />
       <Redirect from="/" exact to="/dashboard" />
       <Route path="/not-found" component={NotFound} />

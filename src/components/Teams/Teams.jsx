@@ -10,20 +10,28 @@ class Teams extends Component {
     this.setState({ addTeamClicked: !this.state.addTeamClicked });
   };
 
+  renderHr = id => {
+    const { teams } = this.props;
+    return id === teams[teams.length - 1].id && <hr />;
+  };
+
   renderTeamsList = () => {
-    return this.props.teams.map(({ id, name }) => (
-      <li className="nav-item" key={id}>
-        <NavLink className="nav-link" to={`/dashboard/teams/${id}`}>
-          {name}
-        </NavLink>
-      </li>
+    const { teams } = this.props;
+    return teams.map(({ id, name }) => (
+      <React.Fragment key={id}>
+        <li className="nav-item">
+          <NavLink className="nav-link" to={`/dashboard/teams/${id}`}>
+            {name}
+          </NavLink>
+          {this.renderHr(id)}
+        </li>
+      </React.Fragment>
     ));
   };
 
   renderAddTeamButton = () => {
     return (
       <li className="nav-item">
-        <hr />
         {this.state.addTeamClicked ? (
           <NewTeamForm onClose={this.toggleClick} />
         ) : (

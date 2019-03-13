@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { getTeams } from '../actions/teamsActions';
-import Teams from '../components/Teams/Teams';
+import { getTeams } from '../../actions/teamsActions';
+import Teams from '../../components/Teams/Teams';
 
 const mapStateToProps = ({ auth, teams }) => {
   return {

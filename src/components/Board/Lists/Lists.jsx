@@ -4,7 +4,7 @@ import withDroppable from '../../hoc/withDroppable';
 
 import Button from '../../common/Button';
 import NewListForm from './NewListForm';
-import List from '../../../containers/List';
+import List from '../../../containers/Board/List';
 import './styles/Lists.css';
 
 class Lists extends Component {
