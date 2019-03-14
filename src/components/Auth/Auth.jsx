@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { withLastLocation } from 'react-router-last-location';
 import { toast } from 'react-toastify';
 import AuthForm from './AuthForm';
 
@@ -27,8 +28,16 @@ class Auth extends Component {
     );
   }
 
+  getRedirectPath() {
+    const { lastLocation } = this.props;
+    return lastLocation && lastLocation.pathname !== '/logout' ? lastLocation.pathname : '/';
+  }
+
   render() {
-    if (this.props.isSignedIn) return <Redirect to="/" />;
+    if (this.props.isSignedIn) {
+      const path = this.getRedirectPath();
+      return <Redirect to={path} />;
+    }
 
     return (
       <div className="container">
@@ -41,4 +50,4 @@ class Auth extends Component {
   }
 }
 
-export default Auth;
+export default withLastLocation(Auth);

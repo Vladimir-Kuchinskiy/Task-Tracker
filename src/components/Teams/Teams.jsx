@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '../common/Button';
 import NewTeamForm from './NewTeamForm';
+import Spinner from '../common/Spinner';
 
 class Teams extends Component {
   state = { addTeamClicked: false };
@@ -10,20 +11,21 @@ class Teams extends Component {
     this.setState({ addTeamClicked: !this.state.addTeamClicked });
   };
 
-  renderHr = id => {
+  renderHorizontalLine = id => {
     const { teams } = this.props;
     return id === teams[teams.length - 1].id && <hr />;
   };
 
   renderTeamsList = () => {
     const { teams } = this.props;
+    if (teams.length === 0) return <Spinner style={{ position: 'relative' }} />;
     return teams.map(({ id, name }) => (
       <React.Fragment key={id}>
         <li className="nav-item">
           <NavLink className="nav-link" to={`/dashboard/teams/${id}`}>
             {name}
           </NavLink>
-          {this.renderHr(id)}
+          {this.renderHorizontalLine(id)}
         </li>
       </React.Fragment>
     ));

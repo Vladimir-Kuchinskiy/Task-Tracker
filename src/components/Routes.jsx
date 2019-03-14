@@ -22,7 +22,6 @@ const Routes = ({ isSignedIn }) => {
   ) : (
     <Switch>
       <Route path="/auth" component={Auth} />
-      <Redirect from="/" exact to="/auth" />
       <Redirect to="/auth" />
     </Switch>
   );

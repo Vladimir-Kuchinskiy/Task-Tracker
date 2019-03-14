@@ -19,6 +19,7 @@ const Dashboard = () => {
             <Route path="/dashboard/boards" component={Boards} />
             <Route path="/dashboard/invites" component={Invites} />
             <Redirect from="/dashboard" exact to="/dashboard/boards" />
+            <Redirect to="/not-found" />
           </Switch>
         </div>
       </div>

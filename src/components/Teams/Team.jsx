@@ -23,12 +23,14 @@ class Team extends Component {
     const { team, boards } = this.props;
     return (
       <Switch>
-        <Route path="/dashboard/teams/:id/members" component={Members} />
+        <Route path="/dashboard/teams/:id/members" exact component={Members} />
         <Route
           path="/dashboard/teams/:id/boards"
+          exact
           render={() => <BoardsDisplayer title={team.name} boards={boards} teamId={team.id} />}
         />
         <Redirect from="/dashboard/teams/:id" exact to="/dashboard/teams/:id/boards" />
+        <Redirect to="/not-found" />
       </Switch>
     );
   };
