@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { SubmissionError } from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
+import PropTypes from 'prop-types';
 
 import './styles/NewBoardForm.css';
 import { createBoard } from '../../actions/boardsActions';
@@ -40,6 +40,14 @@ class NewBoardForm extends Component {
     );
   }
 }
+
+NewBoardForm.propTypes = {
+  authToken: PropTypes.string,
+  teamId: PropTypes.string,
+  onClose: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  createBoard: PropTypes.func
+};
 
 const mapStateToProps = ({ auth }) => {
   return { authToken: auth.authToken };

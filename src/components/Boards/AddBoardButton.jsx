@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const AddBoardButton = ({ toggleShowNew }) => {
   const [mouseOver, setMouseOver] = useState(false);
@@ -13,6 +14,10 @@ const AddBoardButton = ({ toggleShowNew }) => {
       <img alt="Add Board" src={require('../../images/' + plusImage)} />
     </div>
   );
+};
+
+AddBoardButton.propTypes = {
+  toggleShowNew: PropTypes.func
 };
 
 export default AddBoardButton;

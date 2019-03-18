@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import BoardItem from '../Boards/BoardItem';
 import AddBoard from '../Boards/AddBoard';
 
@@ -14,6 +16,11 @@ const BoardsDisplayer = ({ title, boards, ...rest }) => {
       </div>
     </React.Fragment>
   );
+};
+
+BoardsDisplayer.propTypes = {
+  title: PropTypes.string,
+  boards: PropTypes.array
 };
 
 export default BoardsDisplayer;

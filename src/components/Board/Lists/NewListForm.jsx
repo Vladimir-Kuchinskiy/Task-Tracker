@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { SubmissionError } from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
+import PropTypes from 'prop-types';
+
 import { createList } from '../../../actions/boardActions';
 import Button from '../../common/Button';
 
@@ -33,6 +34,14 @@ class NewListForm extends Component {
     );
   }
 }
+
+NewListForm.propTypes = {
+  board: PropTypes.object,
+  authToken: PropTypes.string,
+  createList: PropTypes.func,
+  onClose: PropTypes.func,
+  handleSubmit: PropTypes.func
+};
 
 const mapStateToProps = ({ board: { board }, auth }) => {
   return { board, authToken: auth.authToken };

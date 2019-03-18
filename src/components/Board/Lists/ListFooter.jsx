@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import NewCardForm from '../Cards/NewCardForm';
 import Button from '../../common/Button';
 import './styles/ListFooter.css';
@@ -27,5 +29,9 @@ class ListFooter extends Component {
     );
   }
 }
+
+ListFooter.propTypes = {
+  listId: PropTypes.string
+};
 
 export default ListFooter;

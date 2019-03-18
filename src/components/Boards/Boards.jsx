@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import BoardsDisplayer from '../common/BoardsDisplayer';
 import Spinner from '../common/Spinner';
 import './styles/Boards.css';
@@ -24,5 +26,12 @@ class Boards extends Component {
     );
   }
 }
+
+Boards.propTypes = {
+  authToken: PropTypes.string,
+  loading: PropTypes.bool,
+  boards: PropTypes.array,
+  getBoards: PropTypes.func
+};
 
 export default Boards;

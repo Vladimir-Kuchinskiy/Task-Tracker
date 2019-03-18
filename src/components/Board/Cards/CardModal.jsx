@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 import DeleteCardPopover from '../../../containers/Board/DeleteCardPopover';
 import Button from '../../common/Button';
@@ -49,5 +50,11 @@ class CardModal extends Component {
     );
   }
 }
+
+CardModal.propTypes = {
+  card: PropTypes.object,
+  showModal: PropTypes.bool,
+  toggleModal: PropTypes.func
+};
 
 export default CardModal;

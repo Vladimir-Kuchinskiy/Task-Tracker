@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import Person from './Person';
 import SearchForm from './SearchForm';
 
@@ -24,6 +26,11 @@ const AddMember = ({ findedUserEmails, searchUsers }) => {
       ))}
     </React.Fragment>
   );
+};
+
+AddMember.propTypes = {
+  findedUserEmails: PropTypes.array,
+  searchUsers: PropTypes.func
 };
 
 export default AddMember;

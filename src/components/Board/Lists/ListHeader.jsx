@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Popover, PopoverBody } from 'reactstrap';
+import PropTypes from 'prop-types';
+
 import EditListForm from './EditListForm';
 import './styles/ListHeader.css';
 
@@ -61,5 +63,13 @@ class ListHeader extends Component {
     );
   }
 }
+
+ListHeader.propTypes = {
+  title: PropTypes.string,
+  listId: PropTypes.string,
+  authToken: PropTypes.string,
+  dragHandleProps: PropTypes.object,
+  deleteList: PropTypes.func
+};
 
 export default ListHeader;

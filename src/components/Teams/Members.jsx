@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Person from './Person';
 import AddMember from '../../containers/Teams/AddMember';
 import './styles/Members.css';
@@ -17,6 +19,10 @@ const Members = ({ members }) => {
       </table>
     </div>
   );
+};
+
+Members.propTypes = {
+  members: PropTypes.array
 };
 
 export default Members;

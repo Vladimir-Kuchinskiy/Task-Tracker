@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withLastLocation } from 'react-router-last-location';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 import AuthForm from './AuthForm';
 
 class Auth extends Component {
@@ -49,5 +50,11 @@ class Auth extends Component {
     );
   }
 }
+
+Auth.propTypes = {
+  isSignedIn: PropTypes.bool,
+  lastLocation: PropTypes.object,
+  handleSubmit: PropTypes.func
+};
 
 export default withLastLocation(Auth);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import withDroppable from '../../hoc/withDroppable';
 
@@ -59,5 +60,10 @@ class Lists extends Component {
     );
   }
 }
+
+Lists.propTypes = {
+  provided: PropTypes.object,
+  lists: PropTypes.array
+};
 
 export default withDroppable(Lists);

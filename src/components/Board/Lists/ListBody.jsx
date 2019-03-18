@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import withDroppable from '../../hoc/withDroppable';
+import PropTypes from 'prop-types';
 
+import withDroppable from '../../hoc/withDroppable';
 import Cards from '../Cards/Cards';
 import ListFooter from './ListFooter';
-
 import './styles/ListBody.css';
 
 const CardsList = styled.ul`
@@ -24,6 +24,17 @@ const ListBody = ({ cards, id, provided, snapshot }) => {
       <ListFooter listId={id} />
     </div>
   );
+};
+
+ListBody.propTypes = {
+  cards: PropTypes.array,
+  id: PropTypes.string,
+  provided: PropTypes.object,
+  snapshot: PropTypes.object
+};
+
+CardsList.propTypes = {
+  isDraggingOver: PropTypes.bool
 };
 
 export default withDroppable(ListBody);

@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './styles/AddBoard.css';
 import NewBoardForm from './NewBoardForm';
 import AddBoardButton from './AddBoardButton';
 
 class AddBoard extends Component {
   state = {
-    showNew: false
+    showNewBoardForm: false
   };
 
-  toggleShowNew = () => {
-    const { showNew } = this.state;
-    this.setState({ showNew: !showNew, mouseOver: !showNew });
+  toggleShowNewBoardForm = () => {
+    const { showNewBoardForm } = this.state;
+    this.setState({ showNewBoardForm: !showNewBoardForm });
   };
 
   render() {
     return (
       <React.Fragment>
-        {this.state.showNew ? (
-          <NewBoardForm onClose={this.toggleShowNew} teamId={this.props.teamId} />
+        {this.state.showNewBoardForm ? (
+          <NewBoardForm onClose={this.toggleShowNewBoardForm} teamId={this.props.teamId} />
         ) : (
-          <AddBoardButton toggleShowNew={this.toggleShowNew} />
+          <AddBoardButton toggleShowNew={this.toggleShowNewBoardForm} />
         )}
       </React.Fragment>
     );
   }
 }
+
+AddBoard.propTypes = {
+  teamId: PropTypes.string
+};
 
 export default AddBoard;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import './styles/BoardItem.css';
 import EditBoardForm from './EditBoardForm';
 
@@ -42,5 +44,10 @@ class BoardItem extends Component {
     return this.state.editClicked ? this.renderEditBoard() : this.renderLinkToBoard();
   }
 }
+
+BoardItem.propTypes = {
+  board: PropTypes.object,
+  teamId: PropTypes.string
+};
 
 export default BoardItem;

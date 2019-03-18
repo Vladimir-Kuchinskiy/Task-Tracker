@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import { Session } from '../Auth';
 
 // TODO: Refactor to reactstrap
@@ -33,6 +35,11 @@ const NavBar = ({ isSignedIn, userEmail }) => {
       </div>
     </nav>
   );
+};
+
+NavBar.propTypes = {
+  isSignedIn: PropTypes.bool,
+  userEmail: PropTypes.string
 };
 
 export default NavBar;

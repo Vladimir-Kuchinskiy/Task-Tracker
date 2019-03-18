@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import withDraggable from '../../hoc/withDraggable';
 
@@ -13,6 +14,12 @@ const List = ({ list: { id, title }, cards, provided }) => {
       <ListBody cards={cards} id={id} type="card" />
     </div>
   );
+};
+
+List.propTypes = {
+  list: PropTypes.object,
+  provided: PropTypes.object,
+  cards: PropTypes.array
 };
 
 export default withDraggable(List);

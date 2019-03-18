@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import PropTypes from 'prop-types';
 import { auth } from '../../actions/authActions';
 
 class AuthForm extends Component {
@@ -66,6 +67,13 @@ class AuthForm extends Component {
     );
   }
 }
+
+AuthForm.propTypes = {
+  errors: PropTypes.object,
+  auth: PropTypes.func,
+  isSignUp: PropTypes.bool,
+  handleSubmit: PropTypes.func
+};
 
 const mapStateToProps = ({ auth }) => {
   return { errors: auth.errors };

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { SubmissionError } from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
+import PropTypes from 'prop-types';
+
 import { createTeam } from '../../actions/teamsActions';
 import Button from '../common/Button';
 
@@ -36,6 +37,13 @@ class NewTeamForm extends Component {
     );
   }
 }
+
+NewTeamForm.propTypes = {
+  authToken: PropTypes.string,
+  createTeam: PropTypes.func,
+  onClose: PropTypes.func,
+  handleSubmit: PropTypes.func
+};
 
 const mapStateToProps = ({ auth }) => {
   return { authToken: auth.authToken };

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { SubmissionError } from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
+import PropTypes from 'prop-types';
+
 import { updateList } from '../../../actions/boardActions';
 
 class EditListForm extends Component {
@@ -34,6 +35,14 @@ class EditListForm extends Component {
     );
   }
 }
+
+EditListForm.propTypes = {
+  listId: PropTypes.string,
+  authToken: PropTypes.string,
+  handleSubmit: PropTypes.func,
+  onEdit: PropTypes.func,
+  updateList: PropTypes.func
+};
 
 const mapStateToProps = ({ auth }) => {
   return { authToken: auth.authToken };

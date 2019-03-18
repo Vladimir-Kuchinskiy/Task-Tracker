@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Logout extends Component {
   componentDidMount() {
@@ -10,5 +11,9 @@ class Logout extends Component {
     return <Redirect to="/auth" />;
   }
 }
+
+Logout.propTypes = {
+  signOut: PropTypes.func
+};
 
 export default Logout;

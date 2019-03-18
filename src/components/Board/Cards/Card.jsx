@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import withDraggable from '../../hoc/withDraggable';
 
@@ -73,5 +74,11 @@ class Card extends Component {
     );
   }
 }
+
+Card.propTypes = {
+  card: PropTypes.object,
+  provided: PropTypes.object,
+  snapshot: PropTypes.object
+};
 
 export default withDraggable(Card);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Spinner from '../common/Spinner';
 import BoardsDisplayer from '../common/BoardsDisplayer';
@@ -56,5 +57,16 @@ class Team extends Component {
     );
   }
 }
+
+Team.propTypes = {
+  loading: PropTypes.bool,
+  isCreator: PropTypes.bool,
+  membersCount: PropTypes.number,
+  authToken: PropTypes.string,
+  team: PropTypes.object,
+  match: PropTypes.object,
+  boards: PropTypes.array,
+  getTeam: PropTypes.func
+};
 
 export default Team;

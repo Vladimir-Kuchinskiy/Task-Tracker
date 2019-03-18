@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
+import PropTypes from 'prop-types';
+
 import Lists from '../../containers/Board/Lists';
 import BoardNavbar from '../Board/BoardNavbar';
 import Spinner from '../common/Spinner';
@@ -41,9 +43,17 @@ class Board extends Component {
         </div>
       </React.Fragment>
     );
-
     return content;
   }
 }
+
+Board.propTypes = {
+  loading: PropTypes.bool,
+  authToken: PropTypes.string,
+  match: PropTypes.object,
+  getBoard: PropTypes.func,
+  moveList: PropTypes.func,
+  moveCard: PropTypes.func
+};
 
 export default Board;

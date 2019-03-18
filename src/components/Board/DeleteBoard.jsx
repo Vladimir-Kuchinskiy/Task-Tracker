@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Swal from 'sweetalert2';
+import PropTypes from 'prop-types';
 import Button from '../common/Button';
 
 class DeleteBoard extends Component {
@@ -34,5 +35,13 @@ class DeleteBoard extends Component {
     );
   }
 }
+
+DeleteBoard.propTypes = {
+  isCreator: PropTypes.bool,
+  params: PropTypes.object,
+  authToken: PropTypes.string,
+  deleteBoard: PropTypes.func,
+  history: PropTypes.object
+};
 
 export default DeleteBoard;

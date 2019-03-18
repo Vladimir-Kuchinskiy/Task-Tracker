@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { SubmissionError } from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
+import PropTypes from 'prop-types';
+
 import { createCard } from '../../../actions/boardActions';
 import Button from '../../common/Button';
 
@@ -42,6 +43,14 @@ class NewCardForm extends Component {
     );
   }
 }
+
+NewCardForm.propTypes = {
+  listId: PropTypes.string,
+  authToken: PropTypes.string,
+  createCard: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  onClose: PropTypes.func
+};
 
 const mapStateToProps = ({ auth }) => {
   return { authToken: auth.authToken };

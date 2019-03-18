@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import Spinner from '../common/Spinner';
 import Invite from '../../containers/Invites/Invite';
 
@@ -38,5 +40,11 @@ class Invites extends Component {
     return loading ? <Spinner style={{ marginLeft: '36%' }} /> : this.renderInvites();
   }
 }
+
+Invites.propTypes = {
+  invites: PropTypes.array,
+  getInvites: PropTypes.func,
+  authToken: PropTypes.string
+};
 
 export default Invites;

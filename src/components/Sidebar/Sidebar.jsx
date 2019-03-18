@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import Teams from '../../containers/Teams/Teams';
 import './Sidebar.css';
 
@@ -55,5 +57,11 @@ class Sidebar extends Component {
     );
   }
 }
+
+Sidebar.propTypes = {
+  authToken: PropTypes.string,
+  userEmail: PropTypes.string,
+  getTeams: PropTypes.func
+};
 
 export default Sidebar;

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import InviteButton from '../../containers/Teams/InviteButton';
 import './styles/Person.css';
 
@@ -48,5 +50,10 @@ class Person extends Component {
     );
   }
 }
+
+Person.propTypes = {
+  invitable: PropTypes.bool,
+  member: PropTypes.object
+};
 
 export default Person;

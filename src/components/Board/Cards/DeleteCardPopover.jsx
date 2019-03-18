@@ -1,5 +1,6 @@
 import React from 'react';
 import { Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 import Button from '../../common/Button';
 import './styles/DeleteCardPopover.css';
@@ -18,6 +19,14 @@ const DeleteCardPopover = ({ card, authToken, deleteCard, isOpen, toggle }) => {
       </PopoverBody>
     </Popover>
   );
+};
+
+DeleteCardPopover.propTypes = {
+  authToken: PropTypes.string,
+  card: PropTypes.object,
+  isOpen: PropTypes.bool,
+  toggle: PropTypes.func,
+  deleteCard: PropTypes.func
 };
 
 export default DeleteCardPopover;

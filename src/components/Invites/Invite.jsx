@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Swal from 'sweetalert2';
+import PropTypes from 'prop-types';
 
 class Invite extends Component {
   handleClick = desigion => {
@@ -52,5 +53,11 @@ class Invite extends Component {
     );
   }
 }
+
+Invite.propTypes = {
+  authToken: PropTypes.string,
+  invite: PropTypes.object,
+  sendInviteResponse: PropTypes.func
+};
 
 export default Invite;

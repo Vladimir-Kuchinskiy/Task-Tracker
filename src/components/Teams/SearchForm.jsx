@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const SeaarchForm = ({ onChange }) => {
   return (
@@ -10,6 +11,10 @@ const SeaarchForm = ({ onChange }) => {
       </div>
     </div>
   );
+};
+
+SeaarchForm.propTypes = {
+  onChange: PropTypes.func
 };
 
 export default SeaarchForm;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import Button from '../common/Button';
 import NewTeamForm from './NewTeamForm';
 import Spinner from '../common/Spinner';
@@ -52,5 +54,10 @@ class Teams extends Component {
     );
   }
 }
+
+Teams.propTypes = {
+  loading: PropTypes.bool,
+  teams: PropTypes.array
+};
 
 export default Teams;

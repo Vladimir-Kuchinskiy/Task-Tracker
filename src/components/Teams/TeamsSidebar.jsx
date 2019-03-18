@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './styles/TeamsSidebar.css';
 
@@ -30,6 +31,11 @@ const TeamsSidebar = ({ teamId, membersCount }) => {
       </div>
     </div>
   );
+};
+
+TeamsSidebar.propTypes = {
+  teamId: PropTypes.string,
+  membersCount: PropTypes.number
 };
 
 export default TeamsSidebar;

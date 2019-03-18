@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Swal from 'sweetalert2';
+import PropTypes from 'prop-types';
 
 class InviteButton extends Component {
   handleClick = () => {
@@ -42,5 +43,14 @@ class InviteButton extends Component {
     return null;
   }
 }
+
+InviteButton.propTypes = {
+  teamId: PropTypes.string,
+  authToken: PropTypes.string,
+  member: PropTypes.object,
+  mouseOver: PropTypes.bool,
+  setMouseOver: PropTypes.func,
+  sendInvite: PropTypes.func
+};
 
 export default InviteButton;

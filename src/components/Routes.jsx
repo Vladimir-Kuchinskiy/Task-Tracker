@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Auth from '../containers/Auth/Auth';
 import Logout from '../containers/Auth/Logout';
@@ -26,6 +27,10 @@ const Routes = ({ isSignedIn }) => {
     </Switch>
   );
   return routes;
+};
+
+Routes.propTypes = {
+  isSignedIn: PropTypes.bool
 };
 
 export default Routes;

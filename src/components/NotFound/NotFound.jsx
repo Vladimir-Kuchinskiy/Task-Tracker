@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import Button from '../common/Button';
 import './NotFound.css';
 
-const NotFound = props => {
+const NotFound = ({ history }) => {
   const [loading, setLoading] = useState(true);
   const image = (
     <img
@@ -23,7 +25,7 @@ const NotFound = props => {
               title="Go Back"
               classes="btn btn-danger go-back"
               onClick={() => {
-                props.history.goBack();
+                history.goBack();
               }}
             />
           )}
@@ -32,6 +34,10 @@ const NotFound = props => {
       </div>
     </div>
   );
+};
+
+NotFound.propTypes = {
+  history: PropTypes.object
 };
 
 export default NotFound;
