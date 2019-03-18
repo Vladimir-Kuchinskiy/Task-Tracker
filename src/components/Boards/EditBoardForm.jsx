@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { SubmissionError } from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
+import PropTypes from 'prop-types';
 
 import { updateBoard } from '../../actions/boardsActions';
 
@@ -10,9 +10,9 @@ class EditBoardForm extends Component {
     document.getElementById(this.props.boardId).focus();
   }
   onSubmit = values => {
-    const { updateBoard, boardId, onEdit, authToken } = this.props;
+    const { updateBoard, boardId, teamId, onEdit, authToken } = this.props;
     if (values.title === '') throw new SubmissionError({ title: 'Can not be blank' });
-    updateBoard(values, boardId, authToken);
+    updateBoard(values, boardId, teamId, authToken);
     onEdit();
   };
   renderInputField = field => {
@@ -40,6 +40,18 @@ class EditBoardForm extends Component {
     );
   }
 }
+
+EditBoardForm.propTypes = {
+  boardPage: PropTypes.bool,
+  boardId: PropTypes.string,
+  teamId: PropTypes.string,
+  authToken: PropTypes.string,
+  style: PropTypes.object,
+  inputStyle: PropTypes.object,
+  updateBoard: PropTypes.func,
+  onEdit: PropTypes.func,
+  handleSubmit: PropTypes.func
+};
 
 const mapStateToProps = ({ auth }) => {
   return { authToken: auth.authToken };

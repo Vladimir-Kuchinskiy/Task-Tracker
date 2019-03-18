@@ -30,9 +30,10 @@ export const createBoard = (params, authToken, teamId) => async dispatch => {
   }
 };
 
-export const updateBoard = (params, id, authToken) => async dispatch => {
+export const updateBoard = (params, id, teamId, authToken) => async dispatch => {
   todoApi.setJwt(authToken);
-  await todoApi.put(`/boards/${id}`, params);
+  const path = teamId ? `/teams/${teamId}/boards/${id}` : `/boards/${id}`;
+  await todoApi.put(path, params);
   dispatch({ type: types.UPDATE_BOARD, payload: { id, params } });
 };
 

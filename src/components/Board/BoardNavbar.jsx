@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import EditBoardForm from '../Boards/EditBoardForm';
 import DeleteBoard from '../../containers/Board/DeleteBoard';
 
-const BoardNavbar = ({ editClicked, onEdit, board, ...rest }) => {
+const BoardNavbar = ({ editClicked, onEdit, board, match, history }) => {
   const boardTitle = document.getElementById('board-title');
   const titleWidth = boardTitle && boardTitle.offsetWidth;
 
@@ -14,6 +16,7 @@ const BoardNavbar = ({ editClicked, onEdit, board, ...rest }) => {
           form={`EditBoardForm-${board.id}`}
           initialValues={{ title: board.title }}
           onEdit={onEdit}
+          teamId={match.params.teamId}
           boardPage
           inputStyle={{ fontSize: '24px', padding: '0 0 0 4px', width: `${titleWidth}px` }}
         />
@@ -22,9 +25,17 @@ const BoardNavbar = ({ editClicked, onEdit, board, ...rest }) => {
           {board.title}
         </h4>
       )}
-      <DeleteBoard params={rest.match.params} history={rest.history} />
+      <DeleteBoard params={match.params} history={history} />
     </nav>
   );
+};
+
+BoardNavbar.propTypes = {
+  editClicked: PropTypes.bool,
+  board: PropTypes.object,
+  match: PropTypes.object,
+  history: PropTypes.object,
+  onEdit: PropTypes.func
 };
 
 export default BoardNavbar;
