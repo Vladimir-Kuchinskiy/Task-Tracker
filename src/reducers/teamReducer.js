@@ -1,3 +1,4 @@
+import omit from 'lodash/omit';
 import { types } from '../constants';
 import { searchUsers } from '../services/searches';
 
@@ -33,6 +34,13 @@ export default (state = initialState, action) => {
     case types.GET_TEAM_SUCCESS:
       return { ...state, ...action.payload, loading: false };
     case types.CREATE_BOARD_FOR_TEAM:
+      return {
+        ...state,
+        boards: { ...state.boards, [action.payload.id]: action.payload }
+      };
+    case types.DELETE_BOARD:
+      return { ...state, boards: omit(state.boards, action.payload) };
+    case types.CREATE_TEAM_SUCCESS:
       return {
         ...state,
         boards: { ...state.boards, [action.payload.id]: action.payload }

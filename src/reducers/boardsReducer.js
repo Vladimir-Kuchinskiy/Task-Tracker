@@ -1,3 +1,4 @@
+import omit from 'lodash/omit';
 import { types } from '../constants';
 const initialState = { boards: {}, loading: false };
 
@@ -18,6 +19,8 @@ export default (state = initialState, action) => {
         ...state,
         boards: { ...state.boards, [id]: { ...state.boards[id], ...params } }
       };
+    case types.DELETE_BOARD:
+      return { ...state, boards: omit(state.boards, action.payload) };
     case types.AUTH_SIGN_OUT:
       return initialState;
     default:

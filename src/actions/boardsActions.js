@@ -1,6 +1,7 @@
 import { types } from '../constants';
 import { todoApi } from '../apis';
 import { mapBoards, mapBoard } from '../services/mappers';
+import { toast } from 'react-toastify';
 
 const getBoardsStart = () => {
   return { type: types.GET_BOARDS_START };
@@ -32,5 +33,19 @@ export const createBoard = (params, authToken, teamId) => async dispatch => {
 export const updateBoard = (params, id, authToken) => async dispatch => {
   todoApi.setJwt(authToken);
   await todoApi.put(`/boards/${id}`, params);
-  dispatch({ type: types.UPDATE_BOARD, payload: { params, id } });
+  dispatch({ type: types.UPDATE_BOARD, payload: { id, params } });
+};
+
+export const deleteBoard = (id, teamId, authToken) => dispatch => {
+  todoApi.setJwt(authToken);
+  const path = teamId ? `/teams/${teamId}/boards/${id}` : `/boards/${id}`;
+  todoApi
+    .delete(path)
+    .then(() => {
+      toast.success('Board has been successfully deleted!');
+      dispatch({ type: types.DELETE_BOARD, payload: id });
+    })
+    .catch(({ response: { data } }) => {
+      toast.error(data.message);
+    });
 };

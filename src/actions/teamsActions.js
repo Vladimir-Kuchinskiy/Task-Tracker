@@ -2,10 +2,19 @@ import { types } from '../constants';
 import { todoApi } from '../apis';
 import { mapTeams, mapTeam } from '../services/mappers';
 
+const getTeamsStart = () => {
+  return { type: types.GET_TEAMS_START };
+};
+
+const getTeamsSuccess = response => {
+  return { type: types.GET_TEAMS_SUCCESS, payload: mapTeams(response.data) };
+};
+
 export const getTeams = authToken => async dispatch => {
+  dispatch(getTeamsStart());
   todoApi.setJwt(authToken);
   const response = await todoApi.get('/teams');
-  dispatch({ type: types.GET_TEAMS, payload: mapTeams(response.data) });
+  dispatch(getTeamsSuccess(response));
 };
 
 export const createTeam = (params, authToken) => async dispatch => {

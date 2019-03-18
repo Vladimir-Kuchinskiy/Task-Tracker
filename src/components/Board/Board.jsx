@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Lists from '../../containers/Board/Lists';
+import BoardNavbar from '../Board/BoardNavbar';
 import Spinner from '../common/Spinner';
 import './Board.css';
 
 class Board extends Component {
+  state = { editClicked: false };
+
   componentDidMount() {
     const { authToken, match, getBoard } = this.props;
     getBoard(match.params.id, match.params.teamId, authToken);
@@ -20,13 +23,17 @@ class Board extends Component {
     type === 'list' ? moveList(args, authToken) : moveCard(args, authToken);
   };
 
+  toggleEdit = () => {
+    this.setState({ editClicked: !this.state.editClicked });
+  };
+
   render() {
-    const { loading, board } = this.props;
+    const { loading, ...rest } = this.props;
     const content = loading ? (
       <Spinner />
     ) : (
       <React.Fragment>
-        <nav className="navbar board">{board.title}</nav>
+        <BoardNavbar editClicked={this.state.editClicked} onEdit={this.toggleEdit} {...rest} />
         <div className="content board">
           <DragDropContext onDragEnd={this.handleDragEnd}>
             <Lists id="all-lists" type="list" direction="horizontal" />

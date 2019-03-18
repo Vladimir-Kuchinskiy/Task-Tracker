@@ -17,8 +17,8 @@ class Teams extends Component {
   };
 
   renderTeamsList = () => {
-    const { teams } = this.props;
-    if (teams.length === 0) return <Spinner style={{ position: 'relative' }} />;
+    const { teams, loading } = this.props;
+    if (loading) return <Spinner style={{ position: 'relative' }} />;
     return teams.map(({ id, name }) => (
       <React.Fragment key={id}>
         <li className="nav-item">

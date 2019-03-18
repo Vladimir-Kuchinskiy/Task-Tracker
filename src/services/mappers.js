@@ -1,19 +1,21 @@
 import mapKeys from 'lodash/mapKeys';
 
 export const mapBoardContent = ({ data: { id, attributes }, included }) => {
-  const { title, listIds } = attributes;
+  const { title, isCreator, listIds } = attributes;
   return {
     board: { id, title },
     lists: mapLists(id, included),
     cards: mapCards(included),
+    isCreator,
     listIds
   };
 };
 
 export const mapTeamContent = ({ data: { id, attributes }, included }) => {
-  const { name, userEmails } = attributes;
+  const { name, userEmails, isCreator } = attributes;
   return {
     team: { id, name },
+    isCreator,
     userEmails: mapUserEmails(userEmails),
     members: mapMembers(included),
     boards: mapBoardsForTeam(included)

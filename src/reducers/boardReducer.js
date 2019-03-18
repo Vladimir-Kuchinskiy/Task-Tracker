@@ -3,7 +3,14 @@ import pickBy from 'lodash/pickBy';
 import { types } from '../constants';
 import { moveList, moveCardInList, moveCardBetweenLists } from '../services/movesService';
 
-const initialState = { board: {}, lists: {}, cards: {}, listIds: [], loading: false };
+const initialState = {
+  board: {},
+  lists: {},
+  cards: {},
+  listIds: [],
+  loading: false,
+  isCreator: false
+};
 
 export default (state = initialState, action) => {
   let { lists, listIds, cards } = state;
@@ -12,6 +19,10 @@ export default (state = initialState, action) => {
       return { ...state, loading: true };
     case types.GET_BOARD_SUCCESS:
       return { ...state, ...action.payload, loading: false };
+    case types.UPDATE_BOARD:
+      return action.payload.id === state.board.id
+        ? { ...state, board: { id: action.payload.id, ...action.payload.params } }
+        : state;
     case types.CREATE_LIST:
       const newList = action.payload;
       lists = { ...lists, [newList.id]: newList };

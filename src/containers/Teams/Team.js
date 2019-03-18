@@ -8,7 +8,8 @@ const mapStateToProps = ({ team, auth }) => {
     boards: Object.values(team.boards),
     authToken: auth.authToken,
     loading: team.loading,
-    membersCount: Object.values(team.members).length
+    membersCount: Object.values(team.members).length,
+    isCreator: team.isCreator
   };
 };
 

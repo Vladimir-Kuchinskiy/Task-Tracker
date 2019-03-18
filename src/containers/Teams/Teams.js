@@ -5,6 +5,7 @@ import Teams from '../../components/Teams/Teams';
 const mapStateToProps = ({ auth, teams }) => {
   return {
     teams: Object.values(teams.teams),
+    loading: teams.loading,
     authToken: auth.authToken
   };
 };

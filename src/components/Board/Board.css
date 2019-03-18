@@ -1,5 +1,11 @@
-.navbar.board {
-  font-size: 1.3rem;
+.board-title {
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.board-title:hover {
+  color: #000;
+  background-color: #dbdcdd;
 }
 .content::-webkit-scrollbar {
   height: 1.5rem;

@@ -20,14 +20,21 @@ class Team extends Component {
   }
 
   renderRouting = () => {
-    const { team, boards } = this.props;
+    const { team, boards, isCreator } = this.props;
     return (
       <Switch>
         <Route path="/dashboard/teams/:id/members" exact component={Members} />
         <Route
           path="/dashboard/teams/:id/boards"
           exact
-          render={() => <BoardsDisplayer title={team.name} boards={boards} teamId={team.id} />}
+          render={() => (
+            <BoardsDisplayer
+              title={team.name}
+              boards={boards}
+              teamId={team.id}
+              isCreator={isCreator}
+            />
+          )}
         />
         <Redirect from="/dashboard/teams/:id" exact to="/dashboard/teams/:id/boards" />
         <Redirect to="/not-found" />

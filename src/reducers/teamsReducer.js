@@ -1,10 +1,14 @@
 import { types } from '../constants';
-const initialState = { teams: {} };
+const initialState = { teams: {}, loading: false };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_TEAMS:
-      return { ...state, teams: action.payload };
+    case types.GET_TEAMS_START:
+      return { ...state, loading: true };
+
+    case types.GET_TEAMS_SUCCESS:
+      return { ...state, teams: action.payload, loading: false };
+
     case types.CREATE_TEAM:
       return {
         ...state,

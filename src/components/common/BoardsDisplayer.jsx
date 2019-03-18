@@ -10,7 +10,7 @@ const BoardsDisplayer = ({ title, boards, ...rest }) => {
         {boards.map(board => {
           return <BoardItem board={board} key={board.id} {...rest} />;
         })}
-        <AddBoard {...rest} />
+        {rest.isCreator && <AddBoard {...rest} />}
       </div>
     </React.Fragment>
   );

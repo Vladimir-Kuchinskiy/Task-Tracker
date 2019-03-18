@@ -16,17 +16,25 @@ class EditBoardForm extends Component {
     onEdit();
   };
   renderInputField = field => {
-    const { boardId } = this.props;
-    return <input type="text" id={boardId} className="form-control" {...field.input} />;
+    const { boardId, inputStyle, boardPage } = this.props;
+    const inputLettersCount = field.input.value.replace(/\s/g, '').length * 16;
+    const width = boardPage ? `${inputLettersCount}px` : null;
+    return (
+      <input
+        style={{ ...inputStyle, width }}
+        type="text"
+        id={boardId}
+        className="form-control mb-2"
+        {...field.input}
+      />
+    );
   };
   render() {
-    const { handleSubmit, onEdit } = this.props;
+    const { handleSubmit, onEdit, style } = this.props;
     return (
       <div>
-        <form onSubmit={handleSubmit(this.onSubmit)}>
-          <div className="form-group">
-            <Field name="title" component={this.renderInputField} onBlur={onEdit} />
-          </div>
+        <form onSubmit={handleSubmit(this.onSubmit)} style={style}>
+          <Field name="title" component={this.renderInputField} onBlur={onEdit} />
         </form>
       </div>
     );

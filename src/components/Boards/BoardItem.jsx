@@ -13,13 +13,6 @@ class BoardItem extends Component {
     this.setState({ editClicked: !this.state.editClicked });
   };
 
-  handleClick = e => {
-    if (this.state.editClicked) {
-      e.preventDefault();
-      return;
-    }
-  };
-
   renderEditBoard = () => {
     const { id, title } = this.props.board;
     return (

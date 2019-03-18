@@ -17,7 +17,7 @@ class Boards extends Component {
       <div className="boards">
         <div className="row">
           <div className="col-9">
-            <BoardsDisplayer title="Your boards" boards={boards} />
+            <BoardsDisplayer title="Your boards" boards={boards} isCreator={true} />
           </div>
         </div>
       </div>
