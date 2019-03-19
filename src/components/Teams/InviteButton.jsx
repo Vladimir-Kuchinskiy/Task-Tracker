@@ -45,12 +45,12 @@ class InviteButton extends Component {
 }
 
 InviteButton.propTypes = {
-  teamId: PropTypes.string,
-  authToken: PropTypes.string,
-  member: PropTypes.object,
-  mouseOver: PropTypes.bool,
-  setMouseOver: PropTypes.func,
-  sendInvite: PropTypes.func
+  teamId: PropTypes.string.isRequired,
+  authToken: PropTypes.string.isRequired,
+  member: PropTypes.object.isRequired,
+  mouseOver: PropTypes.bool.isRequired,
+  setMouseOver: PropTypes.func.isRequired,
+  sendInvite: PropTypes.func.isRequired
 };
 
 export default InviteButton;

@@ -30,7 +30,7 @@ const Routes = ({ isSignedIn }) => {
 };
 
 Routes.propTypes = {
-  isSignedIn: PropTypes.bool
+  isSignedIn: PropTypes.bool.isRequired
 };
 
 export default Routes;

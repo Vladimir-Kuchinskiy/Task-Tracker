@@ -45,12 +45,12 @@ class EditCardForm extends Component {
 }
 
 EditCardForm.propTypes = {
-  listId: PropTypes.string,
-  cardId: PropTypes.string,
-  authToken: PropTypes.string,
-  updateCard: PropTypes.func,
-  handleSubmit: PropTypes.func,
-  onEdit: PropTypes.func
+  listId: PropTypes.string.isRequired,
+  cardId: PropTypes.string.isRequired,
+  authToken: PropTypes.string.isRequired,
+  updateCard: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ auth }) => {

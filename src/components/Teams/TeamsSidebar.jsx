@@ -35,7 +35,7 @@ const TeamsSidebar = ({ teamId, membersCount }) => {
 
 TeamsSidebar.propTypes = {
   teamId: PropTypes.string,
-  membersCount: PropTypes.number
+  membersCount: PropTypes.number.isRequired
 };
 
 export default TeamsSidebar;

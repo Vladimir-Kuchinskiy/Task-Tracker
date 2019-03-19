@@ -38,7 +38,7 @@ const NavBar = ({ isSignedIn, userEmail }) => {
 };
 
 NavBar.propTypes = {
-  isSignedIn: PropTypes.bool,
+  isSignedIn: PropTypes.bool.isRequired,
   userEmail: PropTypes.string
 };
 

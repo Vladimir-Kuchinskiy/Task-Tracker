@@ -56,8 +56,8 @@ class Teams extends Component {
 }
 
 Teams.propTypes = {
-  loading: PropTypes.bool,
-  teams: PropTypes.array
+  loading: PropTypes.bool.isRequired,
+  teams: PropTypes.array.isRequired
 };
 
 export default Teams;

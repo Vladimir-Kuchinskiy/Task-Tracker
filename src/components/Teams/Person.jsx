@@ -53,7 +53,7 @@ class Person extends Component {
 
 Person.propTypes = {
   invitable: PropTypes.bool,
-  member: PropTypes.object
+  member: PropTypes.object.isRequired
 };
 
 export default Person;

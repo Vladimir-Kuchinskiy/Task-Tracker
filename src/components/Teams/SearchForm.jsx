@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SeaarchForm = ({ onChange }) => {
+const SearchForm = ({ onChange }) => {
   return (
     <div className="row">
       <div className="col-4">
@@ -13,8 +13,8 @@ const SeaarchForm = ({ onChange }) => {
   );
 };
 
-SeaarchForm.propTypes = {
-  onChange: PropTypes.func
+SearchForm.propTypes = {
+  onChange: PropTypes.func.isRequired
 };
 
-export default SeaarchForm;
+export default SearchForm;

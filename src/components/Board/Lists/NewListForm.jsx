@@ -36,11 +36,11 @@ class NewListForm extends Component {
 }
 
 NewListForm.propTypes = {
-  board: PropTypes.object,
-  authToken: PropTypes.string,
-  createList: PropTypes.func,
-  onClose: PropTypes.func,
-  handleSubmit: PropTypes.func
+  board: PropTypes.object.isRequired,
+  authToken: PropTypes.string.isRequired,
+  createList: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ board: { board }, auth }) => {

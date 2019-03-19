@@ -29,8 +29,8 @@ const AddMember = ({ findedUserEmails, searchUsers }) => {
 };
 
 AddMember.propTypes = {
-  findedUserEmails: PropTypes.array,
-  searchUsers: PropTypes.func
+  findedUserEmails: PropTypes.array.isRequired,
+  searchUsers: PropTypes.func.isRequired
 };
 
 export default AddMember;

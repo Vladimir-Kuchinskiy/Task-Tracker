@@ -65,11 +65,11 @@ class ListHeader extends Component {
 }
 
 ListHeader.propTypes = {
-  title: PropTypes.string,
-  listId: PropTypes.string,
-  authToken: PropTypes.string,
-  dragHandleProps: PropTypes.object,
-  deleteList: PropTypes.func
+  title: PropTypes.string.isRequired,
+  listId: PropTypes.string.isRequired,
+  authToken: PropTypes.string.isRequired,
+  dragHandleProps: PropTypes.object.isRequired,
+  deleteList: PropTypes.func.isRequired
 };
 
 export default ListHeader;

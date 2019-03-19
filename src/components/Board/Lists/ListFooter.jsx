@@ -31,7 +31,7 @@ class ListFooter extends Component {
 }
 
 ListFooter.propTypes = {
-  listId: PropTypes.string
+  listId: PropTypes.string.isRequired
 };
 
 export default ListFooter;

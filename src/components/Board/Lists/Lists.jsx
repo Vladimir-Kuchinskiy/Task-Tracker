@@ -62,8 +62,8 @@ class Lists extends Component {
 }
 
 Lists.propTypes = {
-  provided: PropTypes.object,
-  lists: PropTypes.array
+  provided: PropTypes.object.isRequired,
+  lists: PropTypes.array.isRequired
 };
 
 export default withDroppable(Lists);

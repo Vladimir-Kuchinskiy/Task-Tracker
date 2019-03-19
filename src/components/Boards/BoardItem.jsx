@@ -46,7 +46,7 @@ class BoardItem extends Component {
 }
 
 BoardItem.propTypes = {
-  board: PropTypes.object,
+  board: PropTypes.object.isRequired,
   teamId: PropTypes.string
 };
 

@@ -70,9 +70,9 @@ class AuthForm extends Component {
 
 AuthForm.propTypes = {
   errors: PropTypes.object,
-  auth: PropTypes.func,
-  isSignUp: PropTypes.bool,
-  handleSubmit: PropTypes.func
+  auth: PropTypes.func.isRequired,
+  isSignUp: PropTypes.bool.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ auth }) => {

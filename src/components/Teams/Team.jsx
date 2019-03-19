@@ -59,14 +59,13 @@ class Team extends Component {
 }
 
 Team.propTypes = {
-  loading: PropTypes.bool,
-  isCreator: PropTypes.bool,
-  membersCount: PropTypes.number,
-  authToken: PropTypes.string,
-  team: PropTypes.object,
-  match: PropTypes.object,
-  boards: PropTypes.array,
-  getTeam: PropTypes.func
+  loading: PropTypes.bool.isRequired,
+  membersCount: PropTypes.number.isRequired,
+  authToken: PropTypes.string.isRequired,
+  team: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  boards: PropTypes.array.isRequired,
+  getTeam: PropTypes.func.isRequired
 };
 
 export default Team;

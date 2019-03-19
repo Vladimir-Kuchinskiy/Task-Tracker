@@ -37,11 +37,11 @@ class EditListForm extends Component {
 }
 
 EditListForm.propTypes = {
-  listId: PropTypes.string,
-  authToken: PropTypes.string,
-  handleSubmit: PropTypes.func,
-  onEdit: PropTypes.func,
-  updateList: PropTypes.func
+  listId: PropTypes.string.isRequired,
+  authToken: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  updateList: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ auth }) => {

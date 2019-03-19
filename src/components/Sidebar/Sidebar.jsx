@@ -59,9 +59,9 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
-  authToken: PropTypes.string,
-  userEmail: PropTypes.string,
-  getTeams: PropTypes.func
+  authToken: PropTypes.string.isRequired,
+  userEmail: PropTypes.string.isRequired,
+  getTeams: PropTypes.func.isRequired
 };
 
 export default Sidebar;

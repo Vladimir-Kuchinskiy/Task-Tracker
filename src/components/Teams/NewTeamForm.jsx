@@ -39,10 +39,10 @@ class NewTeamForm extends Component {
 }
 
 NewTeamForm.propTypes = {
-  authToken: PropTypes.string,
-  createTeam: PropTypes.func,
-  onClose: PropTypes.func,
-  handleSubmit: PropTypes.func
+  authToken: PropTypes.string.isRequired,
+  createTeam: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ auth }) => {

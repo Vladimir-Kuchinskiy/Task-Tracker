@@ -42,9 +42,9 @@ class Invites extends Component {
 }
 
 Invites.propTypes = {
-  invites: PropTypes.array,
-  getInvites: PropTypes.func,
-  authToken: PropTypes.string
+  invites: PropTypes.array.isRequired,
+  getInvites: PropTypes.func.isRequired,
+  authToken: PropTypes.string.isRequired
 };
 
 export default Invites;

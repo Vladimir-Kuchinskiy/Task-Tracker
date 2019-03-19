@@ -76,9 +76,13 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  card: PropTypes.object,
-  provided: PropTypes.object,
-  snapshot: PropTypes.object
+  card: PropTypes.object.isRequired,
+  provided: PropTypes.object.isRequired,
+  snapshot: PropTypes.object.isRequired
+};
+
+CardContainer.propTypes = {
+  isDragging: PropTypes.bool.isRequired
 };
 
 export default withDraggable(Card);

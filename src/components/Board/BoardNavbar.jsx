@@ -31,11 +31,11 @@ const BoardNavbar = ({ editClicked, onEdit, board, match, history }) => {
 };
 
 BoardNavbar.propTypes = {
-  editClicked: PropTypes.bool,
-  board: PropTypes.object,
-  match: PropTypes.object,
-  history: PropTypes.object,
-  onEdit: PropTypes.func
+  editClicked: PropTypes.bool.isRequired,
+  board: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  onEdit: PropTypes.func.isRequired
 };
 
 export default BoardNavbar;

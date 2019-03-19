@@ -17,9 +17,9 @@ const List = ({ list: { id, title }, cards, provided }) => {
 };
 
 List.propTypes = {
-  list: PropTypes.object,
-  provided: PropTypes.object,
-  cards: PropTypes.array
+  list: PropTypes.object.isRequired,
+  provided: PropTypes.object.isRequired,
+  cards: PropTypes.array.isRequired
 };
 
 export default withDraggable(List);

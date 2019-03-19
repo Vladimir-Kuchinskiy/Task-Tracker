@@ -28,10 +28,10 @@ class Boards extends Component {
 }
 
 Boards.propTypes = {
-  authToken: PropTypes.string,
-  loading: PropTypes.bool,
-  boards: PropTypes.array,
-  getBoards: PropTypes.func
+  authToken: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  boards: PropTypes.array.isRequired,
+  getBoards: PropTypes.func.isRequired
 };
 
 export default Boards;

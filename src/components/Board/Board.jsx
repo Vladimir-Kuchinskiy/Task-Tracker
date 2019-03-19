@@ -48,12 +48,12 @@ class Board extends Component {
 }
 
 Board.propTypes = {
-  loading: PropTypes.bool,
-  authToken: PropTypes.string,
-  match: PropTypes.object,
-  getBoard: PropTypes.func,
-  moveList: PropTypes.func,
-  moveCard: PropTypes.func
+  loading: PropTypes.bool.isRequired,
+  authToken: PropTypes.string.isRequired,
+  match: PropTypes.object.isRequired,
+  getBoard: PropTypes.func.isRequired,
+  moveList: PropTypes.func.isRequired,
+  moveCard: PropTypes.func.isRequired
 };
 
 export default Board;

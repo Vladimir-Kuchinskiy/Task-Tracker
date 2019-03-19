@@ -52,9 +52,9 @@ class CardModal extends Component {
 }
 
 CardModal.propTypes = {
-  card: PropTypes.object,
-  showModal: PropTypes.bool,
-  toggleModal: PropTypes.func
+  card: PropTypes.object.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  toggleModal: PropTypes.func.isRequired
 };
 
 export default CardModal;

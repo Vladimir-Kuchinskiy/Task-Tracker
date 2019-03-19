@@ -20,7 +20,7 @@ const BoardsDisplayer = ({ title, boards, ...rest }) => {
 
 BoardsDisplayer.propTypes = {
   title: PropTypes.string,
-  boards: PropTypes.array
+  boards: PropTypes.array.isRequired
 };
 
 export default BoardsDisplayer;

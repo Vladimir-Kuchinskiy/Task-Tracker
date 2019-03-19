@@ -55,9 +55,9 @@ class Invite extends Component {
 }
 
 Invite.propTypes = {
-  authToken: PropTypes.string,
-  invite: PropTypes.object,
-  sendInviteResponse: PropTypes.func
+  authToken: PropTypes.string.isRequired,
+  invite: PropTypes.object.isRequired,
+  sendInviteResponse: PropTypes.func.isRequired
 };
 
 export default Invite;

@@ -27,14 +27,14 @@ const ListBody = ({ cards, id, provided, snapshot }) => {
 };
 
 ListBody.propTypes = {
-  cards: PropTypes.array,
-  id: PropTypes.string,
-  provided: PropTypes.object,
-  snapshot: PropTypes.object
+  cards: PropTypes.array.isRequired,
+  id: PropTypes.string.isRequired,
+  provided: PropTypes.object.isRequired,
+  snapshot: PropTypes.object.isRequired
 };
 
 CardsList.propTypes = {
-  isDraggingOver: PropTypes.bool
+  isDraggingOver: PropTypes.bool.isRequired
 };
 
 export default withDroppable(ListBody);

@@ -45,11 +45,11 @@ class NewCardForm extends Component {
 }
 
 NewCardForm.propTypes = {
-  listId: PropTypes.string,
-  authToken: PropTypes.string,
-  createCard: PropTypes.func,
-  handleSubmit: PropTypes.func,
-  onClose: PropTypes.func
+  listId: PropTypes.string.isRequired,
+  authToken: PropTypes.string.isRequired,
+  createCard: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ auth }) => {

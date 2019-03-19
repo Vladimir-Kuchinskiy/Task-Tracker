@@ -37,7 +37,7 @@ const NotFound = ({ history }) => {
 };
 
 NotFound.propTypes = {
-  history: PropTypes.object
+  history: PropTypes.object.isRequired
 };
 
 export default NotFound;

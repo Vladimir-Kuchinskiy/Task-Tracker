@@ -37,11 +37,11 @@ class DeleteBoard extends Component {
 }
 
 DeleteBoard.propTypes = {
-  isCreator: PropTypes.bool,
-  params: PropTypes.object,
-  authToken: PropTypes.string,
-  deleteBoard: PropTypes.func,
-  history: PropTypes.object
+  isCreator: PropTypes.bool.isRequired,
+  params: PropTypes.object.isRequired,
+  authToken: PropTypes.string.isRequired,
+  deleteBoard: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default DeleteBoard;

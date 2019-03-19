@@ -43,14 +43,14 @@ class EditBoardForm extends Component {
 
 EditBoardForm.propTypes = {
   boardPage: PropTypes.bool,
-  boardId: PropTypes.string,
+  boardId: PropTypes.string.isRequired,
   teamId: PropTypes.string,
-  authToken: PropTypes.string,
+  authToken: PropTypes.string.isRequired,
   style: PropTypes.object,
   inputStyle: PropTypes.object,
-  updateBoard: PropTypes.func,
-  onEdit: PropTypes.func,
-  handleSubmit: PropTypes.func
+  updateBoard: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ auth }) => {

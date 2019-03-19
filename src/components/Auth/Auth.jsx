@@ -54,9 +54,8 @@ class Auth extends Component {
 }
 
 Auth.propTypes = {
-  isSignedIn: PropTypes.bool,
-  lastLocation: PropTypes.object,
-  handleSubmit: PropTypes.func
+  isSignedIn: PropTypes.bool.isRequired,
+  lastLocation: PropTypes.object
 };
 
 export default withLastLocation(Auth);

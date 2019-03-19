@@ -42,11 +42,11 @@ class NewBoardForm extends Component {
 }
 
 NewBoardForm.propTypes = {
-  authToken: PropTypes.string,
+  authToken: PropTypes.string.isRequired,
   teamId: PropTypes.string,
-  onClose: PropTypes.func,
-  handleSubmit: PropTypes.func,
-  createBoard: PropTypes.func
+  onClose: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  createBoard: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ auth }) => {

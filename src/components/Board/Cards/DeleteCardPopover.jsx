@@ -22,11 +22,11 @@ const DeleteCardPopover = ({ card, authToken, deleteCard, isOpen, toggle }) => {
 };
 
 DeleteCardPopover.propTypes = {
-  authToken: PropTypes.string,
-  card: PropTypes.object,
-  isOpen: PropTypes.bool,
-  toggle: PropTypes.func,
-  deleteCard: PropTypes.func
+  authToken: PropTypes.string.isRequired,
+  card: PropTypes.object.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired
 };
 
 export default DeleteCardPopover;

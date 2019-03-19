@@ -22,7 +22,7 @@ const Members = ({ members }) => {
 };
 
 Members.propTypes = {
-  members: PropTypes.array
+  members: PropTypes.array.isRequired
 };
 
 export default Members;
