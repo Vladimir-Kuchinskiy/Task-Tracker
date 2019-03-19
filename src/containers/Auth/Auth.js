@@ -1,8 +1,13 @@
 import { connect } from 'react-redux';
+
+import { signOut } from '../../actions/authActions';
 import { Auth } from '../../components/Auth';
 
 const mapStateToProps = ({ auth }) => {
-  return { loading: auth.loading, isSignedIn: auth.authToken !== null };
+  return { isSignedIn: auth.authToken !== null };
 };
 
-export default connect(mapStateToProps)(Auth);
+export default connect(
+  mapStateToProps,
+  { signOut }
+)(Auth);

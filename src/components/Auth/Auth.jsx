@@ -3,15 +3,17 @@ import { Redirect } from 'react-router-dom';
 import { withLastLocation } from 'react-router-last-location';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
+
 import AuthForm from './AuthForm';
 
 class Auth extends Component {
   state = { isSignUp: false };
 
   componentDidMount() {
-    if (localStorage.getItem('message')) {
-      toast.info(localStorage.getItem('message'));
-      localStorage.removeItem('message');
+    if (localStorage.getItem('expiredMessage')) {
+      this.props.signOut();
+      toast.info(localStorage.getItem('expiredMessage'));
+      return localStorage.removeItem('expiredMessage');
     }
     if (this.props.isSignedIn) toast.success('You are already signed in!');
   }

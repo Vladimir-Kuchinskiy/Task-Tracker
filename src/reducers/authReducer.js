@@ -1,20 +1,16 @@
 import { types } from '../constants';
-const initialState = { authToken: localStorage.getItem('authToken'), errors: null, loading: false };
+const initialState = { authToken: null, errors: null };
 
 const authStart = state => {
-  return { ...state, errors: null, loading: true };
+  return { ...state, errors: null };
 };
 
 const authSuccess = (state, auth_token) => {
-  return { ...state, authToken: auth_token, errors: null, loading: false };
+  return { ...state, authToken: auth_token, errors: null };
 };
 
 const authFail = (state, errors) => {
-  return { ...state, errors: errors, loading: false };
-};
-
-const authLogout = state => {
-  return { ...state, authToken: null };
+  return { ...state, errors: errors };
 };
 
 export default (state = initialState, action) => {
@@ -26,7 +22,7 @@ export default (state = initialState, action) => {
     case types.AUTH_FAIL:
       return authFail(state, action.payload);
     case types.AUTH_SIGN_OUT:
-      return authLogout(state);
+      return initialState;
     default:
       return state;
   }

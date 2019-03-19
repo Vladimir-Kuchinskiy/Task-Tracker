@@ -17,7 +17,6 @@ export const auth = (params, isSignUp) => dispatch => {
 };
 
 export const signOut = () => {
-  localStorage.removeItem('authToken');
   return { type: types.AUTH_SIGN_OUT };
 };
 
@@ -26,7 +25,6 @@ export const authStart = () => {
 };
 
 export const authSuccess = ({ auth_token }) => {
-  localStorage.setItem('authToken', auth_token);
   toast.success('You are signed in successfully');
   return { type: types.AUTH_SUCCESS, payload: auth_token };
 };

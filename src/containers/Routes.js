@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import Routes from '../components/Routes';
 
 const mapStateToProps = ({ auth }) => {
