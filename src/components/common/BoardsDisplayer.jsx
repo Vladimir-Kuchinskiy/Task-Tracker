@@ -8,7 +8,7 @@ const BoardsDisplayer = ({ title, boards, ...rest }) => {
   return (
     <React.Fragment>
       <h2 className="row">{title}</h2>
-      <div className="row boards-row">
+      <div className="row">
         {boards.map(board => {
           return <BoardItem board={board} key={board.id} {...rest} />;
         })}

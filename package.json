@@ -21,11 +21,13 @@
     "react-scripts": "^2.1.4",
     "react-test-renderer": "^16.8.3",
     "react-toastify": "^4.4.3",
+    "react-user-avatar": "^1.10.0",
     "reactstrap": "^6.5.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-form": "^8.1.0",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.0.3",
     "sweetalert2": "^8.3.0"

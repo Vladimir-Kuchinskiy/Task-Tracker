@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Spinner from '../common/Spinner';
 import BoardsDisplayer from '../common/BoardsDisplayer';
-import TeamsSidebar from './TeamsSidebar';
+import SecondarySidebar from '../common/SecondarySidebar';
 import Members from '../../containers/Teams/Members';
 
 class Team extends Component {
@@ -43,15 +43,30 @@ class Team extends Component {
     );
   };
 
+  getLinks = () => {
+    const { team, membersCount } = this.props;
+    return [
+      <NavLink className="nav-link" to={`/dashboard/teams/${team.id}/boards`}>
+        Boards
+      </NavLink>,
+      <NavLink className="nav-link" to={`/dashboard/teams/${team.id}/members`}>
+        Members
+        <span className="badge badge-pill badge-secondary pull-right" style={{ fontSize: '1em' }}>
+          {membersCount}
+        </span>
+      </NavLink>
+    ];
+  };
+
   render() {
-    const { loading, team, membersCount } = this.props;
+    const { loading } = this.props;
     return loading ? (
       <Spinner style={{ marginLeft: '36%' }} />
     ) : (
-      <div className="row boards">
+      <div className="row">
         <div className="col-9">{this.renderRouting()}</div>
         <div className="col-3">
-          <TeamsSidebar teamId={team.id} membersCount={membersCount} />
+          <SecondarySidebar links={this.getLinks()} />
         </div>
       </div>
     );

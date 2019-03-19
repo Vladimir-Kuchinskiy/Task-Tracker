@@ -8,7 +8,7 @@ import Button from '../common/Button';
 
 class NewTeamForm extends Component {
   componentDidMount() {
-    document.getElementById('team-new').focus();
+    this.newTeamField.focus();
   }
 
   onSubmit = values => {
@@ -18,9 +18,16 @@ class NewTeamForm extends Component {
     onClose();
   };
 
-  renderInputField(field) {
-    return <input type="text" className="form-control" id="team-new" {...field.input} />;
-  }
+  renderInputField = field => {
+    return (
+      <input
+        type="text"
+        className="form-control"
+        ref={input => (this.newTeamField = input)}
+        {...field.input}
+      />
+    );
+  };
 
   render() {
     const { onClose, handleSubmit } = this.props;

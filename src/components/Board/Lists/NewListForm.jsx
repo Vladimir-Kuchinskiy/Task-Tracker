@@ -8,7 +8,7 @@ import Button from '../../common/Button';
 
 class NewListForm extends Component {
   componentDidMount() {
-    document.getElementById('list-new').focus();
+    this.newListField.focus();
   }
   onSubmit = values => {
     const { createList, onClose, board, authToken } = this.props;
@@ -16,9 +16,16 @@ class NewListForm extends Component {
     createList(values, board.id, authToken);
     onClose();
   };
-  renderInputField(field) {
-    return <input type="text" className="form-control" id="list-new" {...field.input} />;
-  }
+  renderInputField = field => {
+    return (
+      <input
+        type="text"
+        ref={input => (this.newListField = input)}
+        className="form-control"
+        {...field.input}
+      />
+    );
+  };
   render() {
     const { onClose, handleSubmit } = this.props;
     return (

@@ -7,7 +7,7 @@ import { updateBoard } from '../../actions/boardsActions';
 
 class EditBoardForm extends Component {
   componentDidMount() {
-    document.getElementById(this.props.boardId).focus();
+    this.editBoardField.focus();
   }
   onSubmit = values => {
     const { updateBoard, boardId, teamId, onEdit, authToken } = this.props;
@@ -16,14 +16,14 @@ class EditBoardForm extends Component {
     onEdit();
   };
   renderInputField = field => {
-    const { boardId, inputStyle, boardPage } = this.props;
-    const inputLettersCount = field.input.value.replace(/\s/g, '').length * 16;
+    const { inputStyle, boardPage } = this.props;
+    const inputLettersCount = field.input.value.replace(/\s/g, '').length * 16 + 4;
     const width = boardPage ? `${inputLettersCount}px` : null;
     return (
       <input
         style={{ ...inputStyle, width }}
         type="text"
-        id={boardId}
+        ref={input => (this.editBoardField = input)}
         className="form-control mb-2"
         {...field.input}
       />

@@ -13,7 +13,7 @@ class Invites extends Component {
   renderInvites = () => {
     const { invites } = this.props;
     return (
-      <div className="row boards" style={{ marginRight: '20%' }}>
+      <div className="row" style={{ marginRight: '20%' }}>
         {invites.length > 0 ? (
           <React.Fragment>
             <h2>

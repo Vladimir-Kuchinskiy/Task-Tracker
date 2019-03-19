@@ -7,8 +7,7 @@ import { updateCard } from '../../../actions/boardActions';
 
 class EditCardForm extends Component {
   componentDidMount() {
-    const { cardId, listId } = this.props;
-    document.getElementById(`card-${cardId}-${listId}`).focus();
+    this.editCardField.focus();
   }
 
   onSubmit = values => {
@@ -19,11 +18,10 @@ class EditCardForm extends Component {
   };
 
   renderInputField = field => {
-    const { cardId, listId } = this.props;
     return (
       <input
         type="text"
-        id={`card-${cardId}-${listId}`}
+        ref={input => (this.editCardField = input)}
         className="form-control"
         {...field.input}
       />
@@ -45,7 +43,6 @@ class EditCardForm extends Component {
 }
 
 EditCardForm.propTypes = {
-  listId: PropTypes.string.isRequired,
   cardId: PropTypes.string.isRequired,
   authToken: PropTypes.string.isRequired,
   updateCard: PropTypes.func.isRequired,
@@ -58,8 +55,8 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default reduxForm(
-  (_state, { cardId, listId }) => ({
-    form: `EditCardForm-${cardId}-${listId}`
+  (_state, { cardId }) => ({
+    form: `EditCardForm-${cardId}`
   }),
   { updateCard }
 )(

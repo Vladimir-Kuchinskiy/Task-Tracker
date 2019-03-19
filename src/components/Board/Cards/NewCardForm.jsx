@@ -8,7 +8,7 @@ import Button from '../../common/Button';
 
 class NewCardForm extends Component {
   componentDidMount() {
-    document.getElementById('new-card-' + this.props.listId).focus();
+    this.newCardField.focus();
   }
   onSubmit = values => {
     const { listId, authToken, createCard, onClose } = this.props;
@@ -21,7 +21,7 @@ class NewCardForm extends Component {
       <input
         type="text"
         className="form-control"
-        id={'new-card-' + this.props.listId}
+        ref={input => (this.newCardField = input)}
         {...field.input}
       />
     );

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import BoardsDisplayer from '../common/BoardsDisplayer';
 import Spinner from '../common/Spinner';
-import './styles/Boards.css';
 
 class Boards extends Component {
   componentDidMount() {
@@ -16,11 +15,9 @@ class Boards extends Component {
     return loading ? (
       <Spinner style={{ marginLeft: '36%' }} />
     ) : (
-      <div className="boards">
-        <div className="row">
-          <div className="col-9">
-            <BoardsDisplayer title="Your boards" boards={boards} isCreator={true} />
-          </div>
+      <div className="row">
+        <div className="col-9">
+          <BoardsDisplayer title="Your boards" boards={boards} isCreator={true} />
         </div>
       </div>
     );

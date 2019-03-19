@@ -5,11 +5,11 @@ import EditBoardForm from '../Boards/EditBoardForm';
 import DeleteBoard from '../../containers/Board/DeleteBoard';
 
 const BoardNavbar = ({ editClicked, onEdit, board, match, history }) => {
-  const boardTitle = document.getElementById('board-title');
+  let boardTitle = null;
   const titleWidth = boardTitle && boardTitle.offsetWidth;
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" style={{ padding: '0 10px' }}>
       {editClicked ? (
         <EditBoardForm
           boardId={board.id}
@@ -21,7 +21,7 @@ const BoardNavbar = ({ editClicked, onEdit, board, match, history }) => {
           inputStyle={{ fontSize: '24px', padding: '0 0 0 4px', width: `${titleWidth}px` }}
         />
       ) : (
-        <h4 className="board-title" id="board-title" onClick={onEdit}>
+        <h4 className="board-title" ref={input => (boardTitle = input)} onClick={onEdit}>
           {board.title}
         </h4>
       )}

@@ -7,7 +7,7 @@ import { updateList } from '../../../actions/boardActions';
 
 class EditListForm extends Component {
   componentDidMount() {
-    document.getElementById(this.props.listId).focus();
+    this.editListField.focus();
   }
 
   onSubmit = values => {
@@ -18,8 +18,14 @@ class EditListForm extends Component {
   };
 
   renderInputField = field => {
-    const { listId } = this.props;
-    return <input type="text" id={listId} className="form-control" {...field.input} />;
+    return (
+      <input
+        type="text"
+        ref={input => (this.editListField = input)}
+        className="form-control"
+        {...field.input}
+      />
+    );
   };
 
   render() {
@@ -49,8 +55,8 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default reduxForm(
-  (_state, props) => ({
-    form: `EditListForm-${props.listId}`
+  (_state, { listId }) => ({
+    form: `EditListForm-${listId}`
   }),
   { updateList }
 )(

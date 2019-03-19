@@ -55,7 +55,6 @@ class Card extends Component {
         <EditCardForm
           form={`EditCardForm-${id}-${listId}`}
           cardId={id}
-          listId={listId}
           initialValues={{ content }}
           onEdit={this.toggleEditCard}
         />

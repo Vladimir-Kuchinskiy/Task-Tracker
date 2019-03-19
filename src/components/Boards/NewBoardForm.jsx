@@ -9,7 +9,7 @@ import Button from '../common/Button';
 
 class NewBoardForm extends Component {
   componentDidMount() {
-    document.getElementById('board-new').focus();
+    this.newBoardField.focus();
   }
 
   onSubmit = values => {
@@ -19,9 +19,16 @@ class NewBoardForm extends Component {
     onClose();
   };
 
-  renderInputField(field) {
-    return <input type="text" className="form-control" id="board-new" {...field.input} />;
-  }
+  renderInputField = field => {
+    return (
+      <input
+        type="text"
+        className="form-control"
+        ref={input => (this.newBoardField = input)}
+        {...field.input}
+      />
+    );
+  };
 
   render() {
     const { onClose, handleSubmit } = this.props;

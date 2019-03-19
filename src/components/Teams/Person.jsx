@@ -17,6 +17,21 @@ class Person extends Component {
     this.setState({ mouseOver: false });
   };
 
+  renderInviteButton = () => {
+    const { invitable, member } = this.props;
+    return invitable ? (
+      <InviteButton
+        member={member}
+        setMouseOver={() => this.setState({ mouseOver: false })}
+        mouseOver={this.state.mouseOver}
+      />
+    ) : (
+      <h4 className="mt-3">
+        <span className="badge badge-info">{member.roles.includes('creator') && 'Admin'}</span>
+      </h4>
+    );
+  };
+
   render() {
     const { member, invitable } = this.props;
     const header = invitable ? (
@@ -31,19 +46,7 @@ class Person extends Component {
           <div className="media">
             <img src={avatar} alt="" />
             <div className="media-body member-body">{header}</div>
-            {invitable ? (
-              <InviteButton
-                member={member}
-                setMouseOver={() => this.setState({ mouseOver: false })}
-                mouseOver={this.state.mouseOver}
-              />
-            ) : (
-              <h4 className="mt-3">
-                <span className="badge badge-info">
-                  {member.roles.includes('creator') && 'Admin'}
-                </span>
-              </h4>
-            )}
+            {this.renderInviteButton()}
           </div>
         </td>
       </tr>
