@@ -7,8 +7,7 @@ describe('auth reducer', () => {
   beforeEach(() => {
     initialState = {
       authToken: localStorage.getItem('authToken'),
-      errors: null,
-      loading: false
+      errors: null
     };
   });
 
@@ -18,8 +17,7 @@ describe('auth reducer', () => {
 
   it('should store loading true when AUTH_START', () => {
     expect(reducer(initialState, { type: types.AUTH_START })).toEqual({
-      ...initialState,
-      loading: true
+      ...initialState
     });
   });
 
@@ -40,9 +38,6 @@ describe('auth reducer', () => {
   });
 
   it('should store authToken as null when AUTH_SIGN_OUT', () => {
-    expect(reducer(initialState, { type: types.AUTH_SIGN_OUT })).toEqual({
-      ...initialState,
-      authToken: null
-    });
+    expect(reducer(initialState, { type: types.AUTH_SIGN_OUT })).toEqual(initialState);
   });
 });

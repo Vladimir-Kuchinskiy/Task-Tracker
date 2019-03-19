@@ -15,40 +15,44 @@ describe('<AddBoard />', () => {
     wrapper = shallow(<AddBoard />);
   });
 
-  describe('when state.showNew is true', () => {
+  describe('when state.showNewBoardForm is true', () => {
     beforeEach(() => {
-      wrapper.setState({ showNew: true });
+      wrapper.setState({ showNewBoardForm: true });
     });
 
     it('should render 1 NewBoardForm', () => {
       expect(wrapper.find(NewBoardForm)).toHaveLength(1);
-      expect(wrapper.contains(<NewBoardForm onClose={wrapper.instance().toggleShowNew} />)).toBe(
-        true
-      );
+      expect(
+        wrapper.contains(<NewBoardForm onClose={wrapper.instance().toggleShowNewBoardForm} />)
+      ).toBe(true);
     });
 
     it('does not render AddBoardButton', () => {
       expect(
-        wrapper.contains(<AddBoardButton toggleShowNew={wrapper.instance().toggleShowNew} />)
+        wrapper.contains(
+          <AddBoardButton toggleShowNew={wrapper.instance().toggleShowNewBoardForm} />
+        )
       ).toBeFalsy();
     });
   });
 
-  describe('when state.showNew in false', () => {
+  describe('when state.showNewBoardForm in false', () => {
     beforeEach(() => {
-      wrapper.setState({ showNew: false });
+      wrapper.setState({ showNewBoardForm: false });
     });
 
     it('should render 1 AddBoardButton', () => {
       expect(wrapper.find(AddBoardButton)).toHaveLength(1);
       expect(
-        wrapper.contains(<AddBoardButton toggleShowNew={wrapper.instance().toggleShowNew} />)
+        wrapper.contains(
+          <AddBoardButton toggleShowNew={wrapper.instance().toggleShowNewBoardForm} />
+        )
       ).toBe(true);
     });
 
     it('does not render NewBoardForm', () => {
       expect(
-        wrapper.contains(<NewBoardForm onClose={wrapper.instance().toggleShowNew} />)
+        wrapper.contains(<NewBoardForm onClose={wrapper.instance().toggleShowNewBoardForm} />)
       ).toBeFalsy();
     });
   });

@@ -17,7 +17,7 @@ const AddBoardButton = ({ toggleShowNew }) => {
 };
 
 AddBoardButton.propTypes = {
-  toggleShowNew: PropTypes.func.isRequired
+  toggleShowNew: PropTypes.func
 };
 
 export default AddBoardButton;
