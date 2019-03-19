@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { getBoard, moveList, moveCard } from '../../actions/boardActions';
 import Board from '../../components/Board/Board';
 

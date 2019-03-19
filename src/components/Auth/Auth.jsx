@@ -5,17 +5,19 @@ import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 
 import AuthForm from './AuthForm';
+import { messages } from '../../constants';
 
 class Auth extends Component {
   state = { isSignUp: false };
 
   componentDidMount() {
+    const { isSignedIn, signOut } = this.props;
     if (localStorage.getItem('expiredMessage')) {
-      this.props.signOut();
+      signOut();
       toast.info(localStorage.getItem('expiredMessage'));
       return localStorage.removeItem('expiredMessage');
     }
-    if (this.props.isSignedIn) toast.success('You are already signed in!');
+    if (isSignedIn) toast.success(messages.alreadySignedIn);
   }
 
   toggleSignUp = () => {

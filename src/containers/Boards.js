@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import Boards from '../components/Boards/Boards';
+
 import { getBoards } from '../actions/boardsActions';
+import Boards from '../components/Boards/Boards';
 
 const mapStateToProps = ({ boards, auth }) => {
   return {

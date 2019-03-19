@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { searchUsers } from '../../actions/teamActions';
 import AddMember from '../../components/Teams/AddMember';
 

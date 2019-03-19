@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { sendInvite } from '../../actions/teamActions';
 import InviteButton from '../../components/Teams/InviteButton';
 

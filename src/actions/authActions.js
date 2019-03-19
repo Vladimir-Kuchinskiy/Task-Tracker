@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { types } from '../constants';
+import { types, messages } from '../constants';
 import { todoApi } from '../apis';
 
 export const auth = (params, isSignUp) => dispatch => {
@@ -25,7 +25,7 @@ export const authStart = () => {
 };
 
 export const authSuccess = ({ auth_token }) => {
-  toast.success('You are signed in successfully');
+  toast.success(messages.signedInSuccessfully);
   return { type: types.AUTH_SUCCESS, payload: auth_token };
 };
 

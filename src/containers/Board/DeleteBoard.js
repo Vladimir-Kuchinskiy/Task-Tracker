@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { deleteBoard } from '../../actions/boardsActions';
 import DeleteBoard from '../../components/Board/DeleteBoard';
 

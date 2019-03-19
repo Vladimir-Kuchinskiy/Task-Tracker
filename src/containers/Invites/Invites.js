@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import Invites from '../../components/Invites/Invites';
+
 import { getInvites } from '../../actions/invitesActions';
+import Invites from '../../components/Invites/Invites';
 
 const mapStateToProps = ({ invites, auth }) => {
   return {

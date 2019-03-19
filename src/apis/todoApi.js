@@ -7,9 +7,7 @@ axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axios.interceptors.response.use(null, error => {
   const { response } = error;
-  const isExpectedError =
-    response && response.status >= 400 && response.status < 500 && response.status !== 401;
-  if (isExpectedError) {
+  if (response && response.status >= 400 && response.status < 500 && response.status !== 401) {
     const { message } = response.data;
     if (message && message.includes('expired')) {
       storage.setItem('expiredMessage', messages.expiredSession);

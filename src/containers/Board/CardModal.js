@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import CardModal from '../../components/Board/Cards/CardModal';
 
 const mapStateToProps = ({ board }, { cardId }) => {

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import DeleteCardPopover from '../../components/Board/Cards/DeleteCardPopover';
 import { deleteCard } from '../../actions/boardActions';
 

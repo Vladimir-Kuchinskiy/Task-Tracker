@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import Lists from '../../components/Board/Lists/Lists';
 
 const mapStateToProps = ({ board }) => {

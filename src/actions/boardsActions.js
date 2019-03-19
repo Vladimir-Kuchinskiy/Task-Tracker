@@ -1,6 +1,7 @@
 import { types } from '../constants';
 import { todoApi } from '../apis';
 import { mapBoards, mapBoard } from '../services/mappers';
+import { messages } from '../constants';
 import { toast } from 'react-toastify';
 
 const getBoardsStart = () => {
@@ -43,7 +44,7 @@ export const deleteBoard = (id, teamId, authToken) => dispatch => {
   todoApi
     .delete(path)
     .then(() => {
-      toast.success('Board has been successfully deleted!');
+      toast.success(messages.boardDeleted);
       dispatch({ type: types.DELETE_BOARD, payload: id });
     })
     .catch(({ response: { data } }) => {

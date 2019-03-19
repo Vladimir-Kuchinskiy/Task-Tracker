@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import jwt_decode from 'jwt-decode';
+
 import { getTeams } from '../actions/teamsActions';
 import Sidebar from '../components/Sidebar';
 
