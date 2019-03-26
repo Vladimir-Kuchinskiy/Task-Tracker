@@ -43,6 +43,10 @@ export const mapInvite = ({ data: { id }, included }) => {
   return { inviteId: id, team };
 };
 
+export const mapProfile = ({ data: { id, attributes } }) => {
+  return { id, ...attributes };
+};
+
 export const mapBoards = ({ data }) => {
   const boards = data.map(o => ({ id: o.id, title: o.attributes.title }));
   return mapKeys(boards, 'id');

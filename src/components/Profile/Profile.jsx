@@ -20,7 +20,7 @@ class Profile extends Component {
   getLinks = () => {
     return [
       <NavLink className="nav-link" to="/dashboard/profile/info">
-        Porfile info
+        Profile info
       </NavLink>,
       <NavLink className="nav-link" to="/dashboard/profile/membership">
         Membership
