@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 import PropTypes from 'prop-types';
-import UserAvatar from 'react-user-avatar';
+import { toast } from 'react-toastify';
 
 import Button from '../common/Button';
 import { updateProfile } from '../../actions/profileActions';
@@ -16,7 +16,22 @@ class EditProfileForm extends Component {
     onEdit();
   };
 
-  adaptFileEventToValue = delegate => e => delegate(e.target.files[0]);
+  adaptFileEventToValue = delegate => e => {
+    if (this.verifyFile(e.target.files)) {
+      return delegate(e.target.files[0]);
+    } else {
+      e.target.value = '';
+      return toast.error('This file is not allowed. Only images are allowed.');
+    }
+  };
+
+  verifyFile = files => {
+    if (files && files.length > 0) {
+      const acceptedFileTypes = ['image/x-png', 'image/png', 'image/jpeg', 'image/gif'];
+      return acceptedFileTypes.includes(files[0].type) ? true : false;
+    }
+    return true;
+  };
 
   renderFileInput = ({
     input: { value: omitValue, onChange, onBlur, ...inputProps },
@@ -60,24 +75,17 @@ class EditProfileForm extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit)}>
-          <div className="row align-items-center">
-            <div className="col-3">
-              <UserAvatar
-                size="80"
-                name="Vladimir Kuchinskiy"
-                colors={['#ccc', '#fafafa', '#ccaabb']}
-                src={avatar}
-              />
-            </div>
-            <div className="col-9">
-              <Field
-                className="pull-right"
-                name="avatar"
-                component={this.renderFileInput}
-                type="file"
-                style={{ width: '80%' }}
-              />
-            </div>
+          <div className="d-flex justify-content-center">
+            <img src={avatar} alt="Profile Avatar" />
+          </div>
+          <div className="d-flex mt-3 justify-content-center">
+            <Field
+              className="pull-right"
+              name="avatar"
+              component={this.renderFileInput}
+              type="file"
+              style={{ width: '80%' }}
+            />
           </div>
           <hr />
           <div className="form-group">

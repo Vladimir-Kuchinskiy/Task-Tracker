@@ -10,8 +10,21 @@ const history = createBrowserHistory();
 // TODO: Refactor to reactstrap
 class NavBar extends Component {
   componentDidMount() {
-    const { authToken, getProfile } = this.props;
-    if (!history.location.pathname.includes('profile')) getProfile(authToken);
+    const { authToken, getProfile, isSignedIn } = this.props;
+    if (isSignedIn && !history.location.pathname.includes('profile')) {
+      getProfile(authToken);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { authToken, getProfile, isSignedIn } = this.props;
+    if (
+      isSignedIn &&
+      !history.location.pathname.includes('profile') &&
+      authToken !== prevProps.authToken
+    ) {
+      getProfile(authToken);
+    }
   }
 
   render() {
