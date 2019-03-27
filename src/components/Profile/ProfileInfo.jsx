@@ -15,7 +15,7 @@ class ProfileInfo extends Component {
   }
 
   renderProfileInfo = () => {
-    const { firstName, lastName, gender, avatarUrl } = this.props.profile;
+    const { firstName, lastName, gender, avatarUrl, email } = this.props.profile;
     return (
       <div className="profile-info">
         <div className="row justify-content-center">
@@ -30,7 +30,7 @@ class ProfileInfo extends Component {
         </div>
         <hr className="mt-4" />
         <p>
-          Email: <span className="pull-right">{this.props.userEmail}</span>
+          Email: <span className="pull-right">{email}</span>
         </p>
         <hr />
         <p>
@@ -89,8 +89,8 @@ class ProfileInfo extends Component {
 
 ProfileInfo.propTypes = {
   authToken: PropTypes.string.isRequired,
-  userEmail: PropTypes.string.isRequired,
-  getProfile: PropTypes.func.isRequired
+  getProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 export default ProfileInfo;

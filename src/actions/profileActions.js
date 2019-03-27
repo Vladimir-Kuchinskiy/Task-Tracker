@@ -1,4 +1,6 @@
-import { types } from '../constants';
+import { toast } from 'react-toastify';
+
+import { types, messages } from '../constants';
 import { todoApi } from '../apis';
 import { mapProfile } from '../services/mappers';
 
@@ -29,6 +31,7 @@ export const updateProfile = (params, authToken) => async dispatch => {
       'Content-Type': 'multipart/form-data'
     }
   });
+  toast.success(messages.profileUpdated);
   dispatch({
     type: types.UPDATE_PROFILE,
     payload: mapProfile(response.data)

@@ -1,7 +1,7 @@
 import { types } from '../constants';
 
 const initialState = {
-  profile: { avatarUrl: '' },
+  profile: { avatarUrl: '', email: '' },
   loading: false
 };
 

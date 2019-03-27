@@ -1,13 +1,17 @@
 import { connect } from 'react-redux';
-import jwt_decode from 'jwt-decode';
 
+import { getProfile } from '../actions/profileActions';
 import NavBar from '../components/NavBar';
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth, profile: { profile } }) => {
   return {
     isSignedIn: auth.authToken !== null,
-    userEmail: auth.authToken && jwt_decode(auth.authToken).email
+    email: profile.email,
+    authToken: auth.authToken
   };
 };
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(
+  mapStateToProps,
+  { getProfile }
+)(NavBar);

@@ -5,3 +5,6 @@ export const alreadySignedIn = 'You are already signed in!';
 
 // Board
 export const boardDeleted = 'Board has been successfully deleted!';
+
+// Profile
+export const profileUpdated = 'Your profile has been successfully updated!';

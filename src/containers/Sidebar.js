@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
-import jwt_decode from 'jwt-decode';
 
 import { getTeams } from '../actions/teamsActions';
 import Sidebar from '../components/Sidebar';
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth, profile: { profile } }) => {
+  const finalAvatarUrl =
+    profile.avatarUrl === '' ? require(`../images/avatar-placeholder.png`) : profile.avatarUrl;
   return {
-    userEmail: auth.authToken && jwt_decode(auth.authToken).email,
+    avatarUrl: finalAvatarUrl,
     authToken: auth.authToken
   };
 };

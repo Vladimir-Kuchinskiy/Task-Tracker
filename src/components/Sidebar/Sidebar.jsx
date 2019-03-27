@@ -13,7 +13,6 @@ class Sidebar extends Component {
   }
 
   render() {
-    const avatar = require(`../../images/avatar-placeholder.png`);
     return (
       <div id="sidebar-main" className="sidebar sidebar-default sidebar-separate sidebar-fixed">
         <div className="sidebar-content">
@@ -26,7 +25,7 @@ class Sidebar extends Component {
                       size="48"
                       name="Vladimir Kuchinskiy"
                       colors={['#ccc', '#fafafa', '#ccaabb']}
-                      src={avatar}
+                      src={this.props.avatarUrl}
                     />
                   </div>
                   <h6 className="col-7 mr-2 mt-3">User profile</h6>
@@ -73,7 +72,6 @@ class Sidebar extends Component {
 
 Sidebar.propTypes = {
   authToken: PropTypes.string.isRequired,
-  userEmail: PropTypes.string.isRequired,
   getTeams: PropTypes.func.isRequired
 };
 
