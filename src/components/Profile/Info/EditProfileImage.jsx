@@ -3,7 +3,8 @@ import ReactCrop from 'react-image-crop';
 
 import 'react-image-crop/dist/ReactCrop.css';
 import './EditProfileImage.css';
-import { getCroppedImg } from '../../services/imageCropper';
+import { getCroppedImg } from '../../../services/imageCropper';
+import { PropTypes } from 'prop-types';
 
 class EditProfileImage extends Component {
   componentDidUpdate({ avatar: { image, crop } }) {
@@ -47,5 +48,12 @@ class EditProfileImage extends Component {
     );
   }
 }
+
+EditProfileImage.propTypes = {
+  avatar: PropTypes.object.isRequired,
+  changeImage: PropTypes.func.isRequired,
+  changeCropAndPixelCrop: PropTypes.func.isRequired,
+  isFromServer: PropTypes.bool.isRequired
+};
 
 export default EditProfileImage;

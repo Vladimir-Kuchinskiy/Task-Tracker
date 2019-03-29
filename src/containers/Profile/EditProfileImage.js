@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { changeCropAndPixelCrop, changeImage, changeImageFile } from '../../actions/profileActions';
 
-import EditProfileImage from '../../components/Profile/EditProfileImage';
+import EditProfileImage from '../../components/Profile/Info/EditProfileImage';
 
 const mapStateToProps = ({ profile: { avatar } }) => {
   const isFromServer = avatar.url.includes('http');

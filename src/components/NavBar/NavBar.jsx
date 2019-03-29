@@ -1,28 +1,21 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { createBrowserHistory } from 'history';
 
 import { Session } from '../Auth';
-
-const history = createBrowserHistory();
 
 // TODO: Refactor to reactstrap
 class NavBar extends Component {
   componentDidMount() {
-    const { authToken, getProfile, isSignedIn } = this.props;
-    if (isSignedIn && !history.location.pathname.includes('profile')) {
+    const { authToken, getProfile, isNotProfilePath } = this.props;
+    if (isNotProfilePath) {
       getProfile(authToken);
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { authToken, getProfile, isSignedIn } = this.props;
-    if (
-      isSignedIn &&
-      !history.location.pathname.includes('profile') &&
-      authToken !== prevProps.authToken
-    ) {
+    const { authToken, getProfile, isNotProfilePath } = this.props;
+    if (isNotProfilePath && authToken !== prevProps.authToken) {
       getProfile(authToken);
     }
   }

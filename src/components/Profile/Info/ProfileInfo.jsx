@@ -5,7 +5,7 @@ import UserAvatar from 'react-user-avatar';
 import './ProfileInfo.css';
 import ProfileInfoList from './ProfileInfoList';
 import EditProfileForm from './EditProfileForm';
-import Button from '../common/Button';
+import Button from '../../common/Button';
 
 class ProfileInfo extends Component {
   state = { editClicked: false };

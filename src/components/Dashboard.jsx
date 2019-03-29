@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Profile from './Profile/Profile';
+import Profile from './Profile/Info/Profile';
 import Sidebar from '../containers/Sidebar';
 import Boards from '../containers/Boards';
 import Team from '../containers/Teams/Team';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { capitalizeString } from '../../services/viewHelpers';
+import { capitalizeString } from '../../../services/viewHelpers';
 
 const ProfileInfoList = ({ profile }) => {
   return Object.keys(profile).map(key => {

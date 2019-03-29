@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, NavLink } from 'react-router-dom';
 
-import ProfileInfo from '../../containers/Profile/ProfileInfo';
-import Membership from './Membership';
-import SecondarySidebar from '../common/SecondarySidebar';
+import ProfileInfo from '../../../containers/Profile/ProfileInfo';
+import Membership from '../Membership';
+import SecondarySidebar from '../../common/SecondarySidebar';
 
 class Profile extends Component {
   renderRouting = () => {

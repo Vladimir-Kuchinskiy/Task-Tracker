@@ -4,9 +4,9 @@ import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
-import Button from '../common/Button';
-import EditProfileImage from '../../containers/Profile/EditProfileImage';
-import { updateProfile, changeAvatar } from '../../actions/profileActions';
+import Button from '../../common/Button';
+import EditProfileImage from '../../../containers/Profile/EditProfileImage';
+import { updateProfile, changeAvatar } from '../../../actions/profileActions';
 
 class EditProfileForm extends Component {
   onSubmit = values => {
