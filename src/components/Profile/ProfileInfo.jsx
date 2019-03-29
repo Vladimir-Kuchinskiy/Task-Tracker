@@ -16,17 +16,13 @@ class ProfileInfo extends Component {
   }
 
   renderEditProfileForm = () => {
-    const { firstName, lastName, gender, avatarUrl } = this.props.profile;
+    const { firstName, lastName, gender, avatar } = this.props.profile;
+    let initialValues = {};
+    if (firstName) initialValues = { first_name: firstName };
+    if (lastName) initialValues = { ...initialValues, last_name: lastName };
+    if (gender) initialValues = { ...initialValues, gender };
     return (
-      <EditProfileForm
-        onEdit={this.toggleEdit}
-        avatar={avatarUrl}
-        initialValues={{
-          first_name: firstName,
-          last_name: lastName,
-          gender: gender
-        }}
-      />
+      <EditProfileForm onEdit={this.toggleEdit} avatar={avatar} initialValues={initialValues} />
     );
   };
 
@@ -65,7 +61,7 @@ class ProfileInfo extends Component {
     return (
       <React.Fragment>
         <h2 className="row">Profile info</h2>
-        <div className="row justify-content-center mt-3">
+        <div className="row justify-content-center mt-3 mb-4">
           <div className="col-5">
             {this.state.editClicked ? this.renderEditProfileForm() : this.renderProfileInfo()}
           </div>

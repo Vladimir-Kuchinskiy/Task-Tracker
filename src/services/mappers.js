@@ -44,7 +44,13 @@ export const mapInvite = ({ data: { id }, included }) => {
 };
 
 export const mapProfile = ({ data: { id, attributes } }) => {
-  return { id, ...attributes };
+  const isDefaultAvatar = attributes.avatarUrl === '';
+  const avatar = {
+    url: isDefaultAvatar ? require(`../images/avatar-placeholder.png`) : attributes.avatarUrl,
+    isDefaultAvatar
+  };
+  const finalAttributes = { ...attributes, avatar };
+  return { ...finalAttributes };
 };
 
 export const mapBoards = ({ data }) => {

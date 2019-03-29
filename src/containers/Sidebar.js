@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import { getTeams } from '../actions/teamsActions';
 import Sidebar from '../components/Sidebar';
 
-const mapStateToProps = ({ auth, profile: { profile } }) => {
-  const finalAvatarUrl =
-    profile.avatarUrl === '' ? require(`../images/avatar-placeholder.png`) : profile.avatarUrl;
+const mapStateToProps = ({ auth, profile: { avatar } }) => {
   return {
-    avatarUrl: finalAvatarUrl,
+    avatarUrl: avatar.url,
     authToken: auth.authToken
   };
 };

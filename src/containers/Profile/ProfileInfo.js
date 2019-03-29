@@ -4,17 +4,10 @@ import { getProfile } from '../../actions/profileActions';
 
 import ProfileInfo from '../../components/Profile/ProfileInfo';
 
-const mapStateToProps = ({ auth, profile: { profile } }) => {
-  const { firstName, lastName, gender, avatarUrl, email } = profile;
-  const finalAvatarUrl =
-    avatarUrl === '' ? require(`../../images/avatar-placeholder.png`) : avatarUrl;
-
+const mapStateToProps = ({ auth, profile: { info, avatar } }) => {
   const resultProfile = {
-    email,
-    firstName: firstName === 'null' ? '' : firstName,
-    lastName: lastName === 'null' ? '' : lastName,
-    gender: gender === 'null' ? '' : gender,
-    avatarUrl: finalAvatarUrl
+    ...info.attributes,
+    avatarUrl: avatar.url
   };
 
   return {

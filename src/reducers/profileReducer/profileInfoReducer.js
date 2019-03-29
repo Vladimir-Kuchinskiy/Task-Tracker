@@ -1,18 +1,15 @@
-import { types } from '../constants';
+import { types } from '../../constants';
 
-const initialState = {
-  profile: { avatarUrl: '', email: '' },
-  loading: false
-};
+const initialState = { loading: false, attributes: { email: '' } };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.GET_PROFILE_START:
       return { ...state, loading: true };
     case types.GET_PROFILE_SUCCESS:
-      return { ...state, profile: action.payload, loading: false };
     case types.UPDATE_PROFILE:
-      return { ...state, profile: { ...state.profile, ...action.payload } };
+      let { avatar, ...profileInfo } = action.payload;
+      return { ...state, attributes: profileInfo, loading: false };
     case types.AUTH_SIGN_OUT:
       return initialState;
     default:

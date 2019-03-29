@@ -22,9 +22,7 @@ export const getProfile = authToken => async dispatch => {
 export const updateProfile = (params, authToken) => async dispatch => {
   const formData = new FormData();
   if (params.avatar) formData.append('avatar', params.avatar);
-  formData.append('first_name', params.first_name);
-  formData.append('last_name', params.last_name);
-  formData.append('gender', params.gender);
+  Object.keys(params).map(key => formData.append(key, params[key]));
   todoApi.setJwt(authToken);
   const response = await todoApi.put('/profile', formData, {
     headers: {
@@ -36,4 +34,20 @@ export const updateProfile = (params, authToken) => async dispatch => {
     type: types.UPDATE_PROFILE,
     payload: mapProfile(response.data)
   });
+};
+
+export const changeAvatar = avatar => {
+  return { type: types.CHANGE_AVATAR, payload: { avatar } };
+};
+
+export const changeImageFile = imageFile => {
+  return { type: types.CHANGE_IMAGE_FILE, payload: imageFile };
+};
+
+export const changeCropAndPixelCrop = (crop, pixelCrop) => {
+  return { type: types.CHANGE_CROP_AND_PIXEL_CROP, payload: { crop, pixelCrop } };
+};
+
+export const changeImage = image => {
+  return { type: types.CHANGE_IMAGE, payload: image };
 };

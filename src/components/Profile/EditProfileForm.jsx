@@ -1,27 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
 import Button from '../common/Button';
-import { updateProfile } from '../../actions/profileActions';
+import EditProfileImage from '../../containers/Profile/EditProfileImage';
+import { updateProfile, changeAvatar } from '../../actions/profileActions';
 
 class EditProfileForm extends Component {
   onSubmit = values => {
-    const { onEdit, updateProfile, authToken } = this.props;
-    if (values.firstName === '' || values.lastName === '')
-      throw new SubmissionError({ title: 'Can not be blank' });
-    updateProfile(values, authToken);
+    const { onEdit, updateProfile, authToken, imageFile } = this.props;
+    const finalValues = imageFile ? { ...values, avatar: imageFile } : values;
+    updateProfile(finalValues, authToken);
     onEdit();
   };
 
-  adaptFileEventToValue = delegate => e => {
-    if (this.verifyFile(e.target.files)) {
-      return delegate(e.target.files[0]);
+  onChangeForFile = delegate => ({ target }) => {
+    if (this.verifyFile(target.files)) {
+      const currentFile = target.files[0];
+      const reader = new FileReader();
+      reader.addEventListener(
+        'load',
+        () => {
+          const avatar = { url: reader.result, isDefaultAvatar: false };
+          this.props.changeAvatar(avatar);
+        },
+        false
+      );
+      if (currentFile) reader.readAsDataURL(currentFile);
+      delegate(currentFile);
     } else {
-      e.target.value = '';
-      return toast.error('This file is not allowed. Only images are allowed.');
+      target.value = '';
+      toast.error('This file is not allowed. Only images are allowed.');
     }
   };
 
@@ -40,8 +51,8 @@ class EditProfileForm extends Component {
   }) => {
     return (
       <input
-        onChange={this.adaptFileEventToValue(onChange)}
-        onBlur={this.adaptFileEventToValue(onBlur)}
+        onChange={this.onChangeForFile(onChange)}
+        onBlur={this.onChangeForFile(onBlur)}
         type="file"
         {...props.input}
         {...props}
@@ -63,6 +74,7 @@ class EditProfileForm extends Component {
       <div className="form-group">
         <label>{field.label}</label>
         <select className="form-control" {...field.input}>
+          <option />
           <option>Male</option>
           <option>Fimale</option>
         </select>
@@ -71,13 +83,11 @@ class EditProfileForm extends Component {
   };
 
   render() {
-    const { handleSubmit, onEdit, avatar } = this.props;
+    const { handleSubmit, onEdit } = this.props;
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit)}>
-          <div className="d-flex justify-content-center">
-            <img src={avatar} alt="Profile Avatar" />
-          </div>
+          <EditProfileImage />
           <div className="d-flex mt-3 justify-content-center">
             <Field
               className="pull-right"
@@ -116,13 +126,13 @@ EditProfileForm.propTypes = {
   updateProfile: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({ auth }) => {
-  return { authToken: auth.authToken };
+const mapStateToProps = ({ auth, profile: { avatar } }) => {
+  return { authToken: auth.authToken, imageFile: avatar.imageFile };
 };
 
 export default reduxForm({ form: 'EditProfileForm' }, { updateProfile })(
   connect(
     mapStateToProps,
-    { updateProfile }
+    { updateProfile, changeAvatar }
   )(EditProfileForm)
 );
