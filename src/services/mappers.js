@@ -49,8 +49,12 @@ export const mapProfile = ({ data: { id, attributes } }) => {
     url: isDefaultAvatar ? require(`../images/avatar-placeholder.png`) : attributes.avatarUrl,
     isDefaultAvatar
   };
-  const finalAttributes = { ...attributes, avatar };
+  const finalAttributes = { id, ...attributes, avatar };
   return { ...finalAttributes };
+};
+
+export const mapSubscription = ({ data }) => {
+  return data ? { ...data.attributes } : null;
 };
 
 export const mapBoards = ({ data }) => {

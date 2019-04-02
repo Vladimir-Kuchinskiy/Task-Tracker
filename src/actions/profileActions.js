@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 
 import { types, messages } from '../constants';
 import { todoApi } from '../apis';
-import { mapProfile } from '../services/mappers';
+import { mapProfile, mapSubscription } from '../services/mappers';
 
 const getProfileStart = () => {
   return { type: types.GET_PROFILE_START };
@@ -50,4 +50,37 @@ export const changeCropAndPixelCrop = (crop, pixelCrop) => {
 
 export const changeImage = image => {
   return { type: types.CHANGE_IMAGE, payload: image };
+};
+
+const getSubscriptionStart = () => {
+  return { type: types.GET_SUBSCRIPTION_START };
+};
+
+const getSubscriptionSuccess = response => {
+  return { type: types.GET_SUBSCRIPTION_SUCCESS, payload: mapSubscription(response.data) };
+};
+
+export const getSubscription = authToken => async dispatch => {
+  dispatch(getSubscriptionStart());
+  todoApi.setJwt(authToken);
+  const response = await todoApi.get(`/subscriptions`);
+  dispatch(getSubscriptionSuccess(response));
+};
+
+export const getClientToken = authToken => async dispatch => {
+  todoApi.setJwt(authToken);
+  const response = await todoApi.get('/subscriptions/new');
+  dispatch({ type: types.GET_CLIENT_TOKEN, payload: response.data.client_token });
+};
+
+export const setInstance = instance => {
+  return { type: types.SET_INSTANCE, payload: instance };
+};
+
+export const buyMembership = (instance, authToken) => async dispatch => {
+  const { nonce } = await instance.requestPaymentMethod();
+  const params = { nonce };
+  todoApi.setJwt(authToken);
+  const response = await todoApi.post(`/subscriptions`, params);
+  dispatch(getSubscriptionSuccess(response));
 };
