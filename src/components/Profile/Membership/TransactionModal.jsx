@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import MembershipBraintreeDropin from '../../../containers/Profile/MembershipBraintreeDropin';
@@ -12,6 +13,11 @@ const TransactionModal = ({ showModal, toggleModal }) => {
       </ModalBody>
     </Modal>
   );
+};
+
+TransactionModal.propTypes = {
+  showModal: PropTypes.bool.isRequired,
+  toggleModal: PropTypes.func.isRequired
 };
 
 export default TransactionModal;

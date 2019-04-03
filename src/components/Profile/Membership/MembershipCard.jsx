@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Card, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 import Spinner from '../../common/Spinner';
@@ -33,6 +34,16 @@ const MembershipCard = ({ isMember, imageUrl, toggleModal, title, subtitle, body
       </Card>
     </div>
   );
+};
+
+MembershipCard.propTypes = {
+  isMember: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  toggleModal: PropTypes.func.isRequired
 };
 
 export default MembershipCard;

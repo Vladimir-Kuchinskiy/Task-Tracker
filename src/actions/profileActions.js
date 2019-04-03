@@ -60,6 +60,10 @@ const getSubscriptionSuccess = response => {
   return { type: types.GET_SUBSCRIPTION_SUCCESS, payload: mapSubscription(response.data) };
 };
 
+const buyMembershipStart = () => {
+  return { type: types.BUY_MEMBERSHIP_START };
+};
+
 export const getSubscription = authToken => async dispatch => {
   dispatch(getSubscriptionStart());
   todoApi.setJwt(authToken);
@@ -78,9 +82,14 @@ export const setInstance = instance => {
 };
 
 export const buyMembership = (instance, authToken) => async dispatch => {
+  dispatch(buyMembershipStart());
   const { nonce } = await instance.requestPaymentMethod();
   const params = { nonce };
   todoApi.setJwt(authToken);
   const response = await todoApi.post(`/subscriptions`, params);
   dispatch(getSubscriptionSuccess(response));
+};
+
+export const buyMembershipLoadingFinish = () => {
+  return { type: types.BUY_MEMBERSHIP_LOADING_FINISH };
 };
