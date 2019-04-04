@@ -3,7 +3,7 @@ import { Switch, Route, Redirect, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Spinner from '../common/Spinner';
-import BoardsDisplayer from '../common/BoardsDisplayer';
+import BoardsDisplayer from '../../containers/BoardsDisplayer';
 import SecondarySidebar from '../common/SecondarySidebar';
 import Members from '../../containers/Teams/Members';
 

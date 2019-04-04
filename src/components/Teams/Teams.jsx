@@ -35,13 +35,19 @@ class Teams extends Component {
 
   renderAddTeamButton = () => {
     return (
-      <li className="nav-item">
-        {this.state.addTeamClicked ? (
-          <NewTeamForm onClose={this.toggleClick} />
-        ) : (
-          <Button classes="btn add-team d-flex" onClick={this.toggleClick} title="Add a team..." />
-        )}
-      </li>
+      this.props.isMember && (
+        <li className="nav-item">
+          {this.state.addTeamClicked ? (
+            <NewTeamForm onClose={this.toggleClick} />
+          ) : (
+            <Button
+              classes="btn add-team d-flex"
+              onClick={this.toggleClick}
+              title="Add a team..."
+            />
+          )}
+        </li>
+      )
     );
   };
 

@@ -14,11 +14,14 @@ p {
 
 .ui {
   height: 100vh;
-  display: grid;
-  grid-template-rows: 60px 0 50px 1fr;
   background-color: #ffffff;
   overflow-x: auto;
   color: rgb(66, 63, 63);
+}
+
+.content-container {
+  margin-top: 8px;
+  height: 87%;
 }
 
 .title {

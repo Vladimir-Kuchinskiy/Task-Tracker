@@ -6,6 +6,7 @@ import './ProfileInfo.css';
 import ProfileInfoList from './ProfileInfoList';
 import EditProfileForm from './EditProfileForm';
 import Button from '../../common/Button';
+import Spinner from '../../common/Spinner';
 
 class ProfileInfo extends Component {
   state = { editClicked: false };
@@ -30,25 +31,31 @@ class ProfileInfo extends Component {
     const { avatarUrl, ...profile } = this.props.profile;
     return (
       <div className="profile-info">
-        <div className="row justify-content-center">
-          <div className="col-3">
-            <UserAvatar
-              size="80"
-              name="Vladimir Kuchinskiy"
-              colors={['#ccc', '#fafafa', '#ccaabb']}
-              src={avatarUrl}
-            />
-          </div>
-        </div>
-        <hr className="mt-4" />
-        <ProfileInfoList profile={profile} />
-        <div className="row justify-content-center">
-          <Button
-            title="Edit profile"
-            classes="btn btn-outline-primary"
-            onClick={this.toggleEdit}
-          />
-        </div>
+        {this.props.loading ? (
+          <Spinner style={{ marginLeft: '36%' }} />
+        ) : (
+          <React.Fragment>
+            <div className="row justify-content-center">
+              <div className="col-3">
+                <UserAvatar
+                  size="80"
+                  name="Vladimir Kuchinskiy"
+                  colors={['#ccc', '#fafafa', '#ccaabb']}
+                  src={avatarUrl}
+                />
+              </div>
+            </div>
+            <hr className="mt-4" />
+            <ProfileInfoList profile={profile} />
+            <div className="row justify-content-center">
+              <Button
+                title="Edit profile"
+                classes="btn btn-outline-primary"
+                onClick={this.toggleEdit}
+              />
+            </div>
+          </React.Fragment>
+        )}
       </div>
     );
   };
@@ -72,6 +79,7 @@ class ProfileInfo extends Component {
 }
 
 ProfileInfo.propTypes = {
+  loading: PropTypes.bool.isRequired,
   authToken: PropTypes.string.isRequired,
   getProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired

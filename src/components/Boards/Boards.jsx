@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import BoardsDisplayer from '../common/BoardsDisplayer';
+import BoardsDisplayer from '../../containers/BoardsDisplayer';
 import Spinner from '../common/Spinner';
 
 class Boards extends Component {

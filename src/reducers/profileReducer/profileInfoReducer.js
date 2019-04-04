@@ -8,10 +8,8 @@ export default (state = initialState, action) => {
       return { ...state, loading: true };
     case types.GET_PROFILE_SUCCESS:
     case types.UPDATE_PROFILE:
-      let { id, avatar, ...profileInfo } = action.payload;
+      let { id, avatar, isMember, boardsLimit, ...profileInfo } = action.payload;
       return { ...state, id, attributes: profileInfo, loading: false };
-    case types.GET_SUBSCRIPTION_SUCCESS:
-      return { ...state, attributes: { ...state.attributes, isMember: true } };
     case types.AUTH_SIGN_OUT:
       return initialState;
     default:

@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import BoardItem from '../Boards/BoardItem';
 import AddBoard from '../Boards/AddBoard';
 
-const BoardsDisplayer = ({ title, boards, ...rest }) => {
+const BoardsDisplayer = ({ title, boards, isCreator, isMember, boardsLimit, ...rest }) => {
+  const canAddBoard = isMember || boards.length < boardsLimit;
   return (
     <React.Fragment>
       <h2 className="row">{title}</h2>
@@ -12,7 +13,7 @@ const BoardsDisplayer = ({ title, boards, ...rest }) => {
         {boards.map(board => {
           return <BoardItem board={board} key={board.id} {...rest} />;
         })}
-        {rest.isCreator && <AddBoard {...rest} />}
+        {canAddBoard && isCreator && <AddBoard {...rest} />}
       </div>
     </React.Fragment>
   );

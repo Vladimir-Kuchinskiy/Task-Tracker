@@ -4,10 +4,9 @@ import { membershipCardContent } from '../../services/viewHelpers';
 import MembershipCard from '../../components/Profile/Membership/MembershipCard';
 
 const mapStateToProps = ({ profile: { membership } }) => {
-  const isMember = !!membership.subscription;
   return {
-    isMember: isMember,
-    ...membershipCardContent(isMember, membership.subscription),
+    isMember: membership.isMember,
+    ...membershipCardContent(membership.isMember, membership.subscription),
     loading: membership.loading
   };
 };

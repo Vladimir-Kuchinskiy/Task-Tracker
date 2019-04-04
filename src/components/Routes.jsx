@@ -26,7 +26,7 @@ const Routes = ({ isSignedIn }) => {
       <Redirect to="/auth" />
     </Switch>
   );
-  return <div className="mt-2">{routes}</div>;
+  return <div className="content-container">{routes}</div>;
 };
 
 Routes.propTypes = {

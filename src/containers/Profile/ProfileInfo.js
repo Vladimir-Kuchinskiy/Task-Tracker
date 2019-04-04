@@ -12,7 +12,8 @@ const mapStateToProps = ({ auth, profile: { info, avatar } }) => {
 
   return {
     authToken: auth.authToken,
-    profile: resultProfile
+    profile: resultProfile,
+    loading: info.loading
   };
 };
 
