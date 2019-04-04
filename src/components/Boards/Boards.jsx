@@ -6,8 +6,8 @@ import Spinner from '../common/Spinner';
 
 class Boards extends Component {
   componentDidMount() {
-    const { authToken, getBoards } = this.props;
-    getBoards(authToken);
+    const { authToken, getBoards, isBoardDeleting } = this.props;
+    if (!isBoardDeleting) getBoards(authToken);
   }
 
   render() {

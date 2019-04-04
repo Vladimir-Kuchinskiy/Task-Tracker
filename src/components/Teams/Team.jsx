@@ -9,8 +9,8 @@ import Members from '../../containers/Teams/Members';
 
 class Team extends Component {
   componentDidMount() {
-    const { authToken, match, getTeam } = this.props;
-    getTeam(match.params.id, authToken);
+    const { authToken, match, getTeam, isBoardDeleting } = this.props;
+    if (!isBoardDeleting) getTeam(match.params.id, authToken);
   }
 
   componentDidUpdate({ match: { params } }) {

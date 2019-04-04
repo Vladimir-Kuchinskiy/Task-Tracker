@@ -7,7 +7,8 @@ const mapStateToProps = ({ boards, auth }) => {
   return {
     boards: Object.values(boards.boards),
     authToken: auth.authToken,
-    loading: boards.loading
+    loading: boards.loading,
+    isBoardDeleting: boards.isBoardDeleting
   };
 };
 

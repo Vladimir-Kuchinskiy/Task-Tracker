@@ -38,7 +38,7 @@ export default (state = initialState, action) => {
         ...state,
         boards: { ...state.boards, [action.payload.id]: action.payload }
       };
-    case types.DELETE_BOARD:
+    case types.DELETE_BOARD_SUCCESS:
       return { ...state, boards: omit(state.boards, action.payload) };
     case types.CREATE_TEAM_SUCCESS:
       return {

@@ -16,7 +16,7 @@ class DeleteBoard extends Component {
     }).then(result => {
       if (result.value) {
         const { id, teamId } = params;
-        deleteBoard(id, teamId, authToken);
+        deleteBoard(id, teamId, authToken, history);
         const redirectPath = '/dashboard' + (teamId ? `/teams/${teamId}/boards` : '/boards');
         return history.push(redirectPath);
       }

@@ -12,6 +12,14 @@ const getBoardsSuccess = response => {
   return { type: types.GET_BOARDS_SUCCESS, payload: mapBoards(response.data) };
 };
 
+const deleteBoardStart = () => {
+  return { type: types.DELETE_BOARD_START };
+};
+
+const deleteBoardSuccess = id => {
+  return { type: types.DELETE_BOARD_SUCCESS, payload: id };
+};
+
 export const getBoards = authToken => async dispatch => {
   dispatch(getBoardsStart());
   todoApi.setJwt(authToken);
@@ -38,14 +46,17 @@ export const updateBoard = (params, id, teamId, authToken) => async dispatch => 
   dispatch({ type: types.UPDATE_BOARD, payload: { id, params } });
 };
 
-export const deleteBoard = (id, teamId, authToken) => dispatch => {
+export const deleteBoard = (id, teamId, authToken, history) => dispatch => {
+  dispatch(deleteBoardStart());
+  const redirectPath = '/dashboard' + (teamId ? `/teams/${teamId}/boards` : '/boards');
   todoApi.setJwt(authToken);
   const path = teamId ? `/teams/${teamId}/boards/${id}` : `/boards/${id}`;
   todoApi
     .delete(path)
     .then(() => {
+      dispatch(deleteBoardSuccess(id));
       toast.success(messages.boardDeleted);
-      dispatch({ type: types.DELETE_BOARD, payload: id });
+      history.push(redirectPath);
     })
     .catch(({ response: { data } }) => {
       toast.error(data.message);

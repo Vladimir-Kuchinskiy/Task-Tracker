@@ -1,6 +1,6 @@
 import omit from 'lodash/omit';
 import { types } from '../constants';
-const initialState = { boards: {}, loading: false };
+const initialState = { boards: {}, loading: false, isBoardDeleting: false };
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -19,8 +19,10 @@ export default (state = initialState, action) => {
         ...state,
         boards: { ...state.boards, [id]: { ...state.boards[id], ...params } }
       };
-    case types.DELETE_BOARD:
-      return { ...state, boards: omit(state.boards, action.payload) };
+    case types.DELETE_BOARD_START:
+      return { ...state, isBoardDeleting: true };
+    case types.DELETE_BOARD_SUCCESS:
+      return { ...state, boards: omit(state.boards, action.payload), isBoardDeleting: false };
     case types.AUTH_SIGN_OUT:
       return initialState;
     default:
