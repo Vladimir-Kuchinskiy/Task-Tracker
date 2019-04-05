@@ -52,17 +52,22 @@ class Teams extends Component {
   };
 
   render() {
+    const { isAnyTeams, isMember } = this.props;
     return (
-      <ul id="sidebar-editable-nav" className="nav flex-column">
-        {this.renderTeamsList()}
-        {this.renderAddTeamButton()}
-      </ul>
+      (isAnyTeams || isMember) && (
+        <ul id="sidebar-editable-nav" className="nav flex-column">
+          {this.renderTeamsList()}
+          {this.renderAddTeamButton()}
+        </ul>
+      )
     );
   }
 }
 
 Teams.propTypes = {
   loading: PropTypes.bool.isRequired,
+  isMember: PropTypes.bool.isRequired,
+  isAnyTeams: PropTypes.bool.isRequired,
   teams: PropTypes.array.isRequired
 };
 

@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { getTeams } from '../actions/teamsActions';
 import Sidebar from '../components/Sidebar';
 
-const mapStateToProps = ({ auth, profile: { avatar } }) => {
+const mapStateToProps = ({ auth, profile: { info } }) => {
   return {
-    avatarUrl: avatar.url,
+    avatarUrl: info.avatarUrl,
     authToken: auth.authToken
   };
 };

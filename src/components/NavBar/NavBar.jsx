@@ -8,14 +8,14 @@ import { Session } from '../Auth';
 class NavBar extends Component {
   componentDidMount() {
     const { authToken, getProfile, isNotProfilePath } = this.props;
-    if (isNotProfilePath) {
+    if (isNotProfilePath && authToken) {
       getProfile(authToken);
     }
   }
 
   componentDidUpdate(prevProps) {
     const { authToken, getProfile, isNotProfilePath } = this.props;
-    if (isNotProfilePath && authToken !== prevProps.authToken) {
+    if (isNotProfilePath && authToken && authToken !== prevProps.authToken) {
       getProfile(authToken);
     }
   }

@@ -4,6 +4,8 @@ import { types, messages } from '../constants';
 import { todoApi } from '../apis';
 import { mapProfile, mapSubscription } from '../services/mappers';
 
+// ProfileInfo
+
 const getProfileStart = () => {
   return { type: types.GET_PROFILE_START };
 };
@@ -36,6 +38,8 @@ export const updateProfile = (params, authToken) => async dispatch => {
   });
 };
 
+// Avatar
+
 export const changeAvatar = avatar => {
   return { type: types.CHANGE_AVATAR, payload: { avatar } };
 };
@@ -51,6 +55,8 @@ export const changeCropAndPixelCrop = (crop, pixelCrop) => {
 export const changeImage = image => {
   return { type: types.CHANGE_IMAGE, payload: image };
 };
+
+// Membership
 
 const getSubscriptionStart = () => {
   return { type: types.GET_SUBSCRIPTION_START };
