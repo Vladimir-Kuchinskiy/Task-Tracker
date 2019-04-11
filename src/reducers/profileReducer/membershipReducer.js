@@ -4,10 +4,11 @@ const initialState = {
   clientToken: null,
   instance: null,
   loading: false,
-  subscription: {},
+  subscription: null,
   loadingModal: false,
   isMember: false,
-  boardsLimit: null
+  boardsLimit: null,
+  loadingCancel: false
 };
 
 export default (state = initialState, action) => {
@@ -30,6 +31,10 @@ export default (state = initialState, action) => {
       return { ...state, loadingModal: true };
     case types.BUY_MEMBERSHIP_LOADING_FINISH:
       return { ...state, loadingModal: false };
+    case types.CANCEL_SUBSCRIPTION_START:
+      return { ...state, loadingCancel: true };
+    case types.CANCEL_SUBSCRIPTION_SUCCESS:
+      return { ...state, loadingCancel: false, subscription: action.payload };
     case types.GET_PROFILE_SUCCESS:
     case types.UPDATE_PROFILE:
       return {

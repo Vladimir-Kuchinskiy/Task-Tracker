@@ -8,3 +8,5 @@ export const boardDeleted = 'Board has been successfully deleted!';
 
 // Profile
 export const profileUpdated = 'Your profile has been successfully updated!';
+export const subscriptionWasBought = 'Subscription has been bought successfully!';
+export const subscriptionWasCanceled = 'Subscription has been canceled successfully!';

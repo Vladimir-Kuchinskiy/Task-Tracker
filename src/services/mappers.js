@@ -54,7 +54,7 @@ export const mapProfile = ({ data: { id, attributes } }) => {
 };
 
 export const mapSubscription = ({ data }) => {
-  return data ? { ...data.attributes } : null;
+  return data ? { id: data.id, ...data.attributes } : null;
 };
 
 export const mapBoards = ({ data }) => {

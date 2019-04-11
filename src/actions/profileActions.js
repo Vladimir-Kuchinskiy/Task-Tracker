@@ -66,10 +66,6 @@ const getSubscriptionSuccess = response => {
   return { type: types.GET_SUBSCRIPTION_SUCCESS, payload: mapSubscription(response.data) };
 };
 
-const buyMembershipStart = () => {
-  return { type: types.BUY_MEMBERSHIP_START };
-};
-
 export const getSubscription = authToken => async dispatch => {
   dispatch(getSubscriptionStart());
   todoApi.setJwt(authToken);
@@ -87,15 +83,36 @@ export const setInstance = instance => {
   return { type: types.SET_INSTANCE, payload: instance };
 };
 
+const buyMembershipStart = () => {
+  return { type: types.BUY_MEMBERSHIP_START };
+};
+
 export const buyMembership = (instance, authToken) => async dispatch => {
   dispatch(buyMembershipStart());
   const { nonce } = await instance.requestPaymentMethod();
   const params = { nonce };
   todoApi.setJwt(authToken);
-  const response = await todoApi.post(`/subscriptions`, params);
+  const response = await todoApi.post('/subscriptions', params);
+  toast.success(messages.subscriptionWasBought);
   dispatch(getSubscriptionSuccess(response));
 };
 
 export const buyMembershipLoadingFinish = () => {
   return { type: types.BUY_MEMBERSHIP_LOADING_FINISH };
+};
+
+const cancelSubcriptionStart = () => {
+  return { type: types.CANCEL_SUBSCRIPTION_START };
+};
+
+const cancelSubcriptionSuccess = response => {
+  return { type: types.CANCEL_SUBSCRIPTION_SUCCESS, payload: mapSubscription(response.data) };
+};
+
+export const cancelSubscription = (id, authToken) => async dispatch => {
+  dispatch(cancelSubcriptionStart());
+  todoApi.setJwt(authToken);
+  const response = await todoApi.put(`/subscriptions/${id}`);
+  toast.success(messages.subscriptionWasCanceled);
+  dispatch(cancelSubcriptionSuccess(response));
 };

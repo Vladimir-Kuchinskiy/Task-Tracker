@@ -9,9 +9,7 @@ export const membershipCardContent = (isMember, subscription) => {
   const title = isMember
     ? 'Congratulations! You are a task tracker member'
     : 'Task Tracker membership';
-  const subtitle = isMember
-    ? `Your subscription expires at: ${subscription.expiresAt}`
-    : 'Price: 5$ per month';
+  const subtitle = isMember ? `Your subscription is activated` : 'Price: 5$ per month';
   const body = isMember
     ? 'Now you can create your own teams and also the limit connected with the creation of only 5 boards was also removed from you.'
     : 'Become our member and you will be able to create your own teams, create team boards and create your personal boards without any limits.';
