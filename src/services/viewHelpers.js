@@ -2,7 +2,7 @@ export const capitalizeString = string => {
   return (string.charAt(0).toUpperCase() + string.slice(1)).match(/[A-Z][a-z]+|[0-9]+/g).join(' ');
 };
 
-export const membershipCardContent = (isMember, subscription) => {
+export const membershipCardContent = isMember => {
   const imageUrl = isMember
     ? require('../images/task-tracker.png')
     : require('../images/download.png');
@@ -14,4 +14,8 @@ export const membershipCardContent = (isMember, subscription) => {
     ? 'Now you can create your own teams and also the limit connected with the creation of only 5 boards was also removed from you.'
     : 'Become our member and you will be able to create your own teams, create team boards and create your personal boards without any limits.';
   return { imageUrl, title, subtitle, body };
+};
+
+export const elementHeight = element => {
+  return element && element.offsetHeight + 30;
 };

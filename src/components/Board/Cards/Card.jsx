@@ -49,11 +49,11 @@ class Card extends Component {
   };
 
   renderEditCardForm = () => {
-    const { id, content, listId } = this.props.card;
+    const { id, content } = this.props.card;
     return (
       <li className="edit-card">
         <EditCardForm
-          form={`EditCardForm-${id}-${listId}`}
+          form={`EditCardForm-${id}`}
           cardId={id}
           initialValues={{ content }}
           onEdit={this.toggleEditCard}

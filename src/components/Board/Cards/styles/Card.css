@@ -17,3 +17,15 @@
   border-radius: 3px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
+p.description {
+  color: black;
+}
+.card-description {
+  padding: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.card-description:hover {
+  color: #000;
+  background-color: #ececec;
+}

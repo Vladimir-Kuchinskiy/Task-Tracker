@@ -3,6 +3,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import DeleteCardPopover from '../../../containers/Board/DeleteCardPopover';
+import CardContent from './CardContent';
 import Button from '../../common/Button';
 
 class CardModal extends Component {
@@ -10,6 +11,10 @@ class CardModal extends Component {
 
   togglePopover = () => {
     this.setState({ showPopover: !this.state.showPopover });
+  };
+
+  toggleEdit = () => {
+    this.setState({});
   };
 
   renderPopover = () => {
@@ -24,16 +29,21 @@ class CardModal extends Component {
 
   renderModalBody = () => {
     return (
-      <div>
-        <h4>Description</h4>
-        <p>{this.props.card.description}</p>
+      <React.Fragment>
+        <div className="row">
+          <div className="col-9">
+            <h5 className="d-inline">Description</h5>
+            <CardContent card={this.props.card} />
+          </div>
+          <div className="col-3">Sidebar</div>
+        </div>
         <Button
           classes="btn btn-danger pull-right"
           title="Delete"
           id="Popover1"
           onClick={this.togglePopover}
         />
-      </div>
+      </React.Fragment>
     );
   };
 

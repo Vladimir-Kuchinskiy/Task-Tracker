@@ -20,6 +20,7 @@ class EditListForm extends Component {
   renderInputField = field => {
     return (
       <input
+        style={{ padding: '4px 2px 4px 3px' }}
         type="text"
         ref={input => (this.editListField = input)}
         className="form-control"
