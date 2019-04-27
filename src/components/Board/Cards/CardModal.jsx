@@ -3,8 +3,10 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import DeleteCardPopover from '../../../containers/Board/DeleteCardPopover';
-import CardContent from './CardContent';
+import CardDescription from './CardDescription';
+import CardAssignments from './CardAssignments';
 import Button from '../../common/Button';
+import CardModalSidebar from './CardModalSidebar';
 
 class CardModal extends Component {
   state = { showPopover: false };
@@ -17,25 +19,17 @@ class CardModal extends Component {
     this.setState({});
   };
 
-  renderPopover = () => {
-    return (
-      <DeleteCardPopover
-        card={this.props.card}
-        isOpen={this.state.showPopover}
-        toggle={this.togglePopover}
-      />
-    );
-  };
-
   renderModalBody = () => {
     return (
       <React.Fragment>
         <div className="row">
           <div className="col-9">
-            <h5 className="d-inline">Description</h5>
-            <CardContent card={this.props.card} />
+            <CardAssignments assignedUsers={this.props.assignedUsers} />
+            <CardDescription card={this.props.card} />
           </div>
-          <div className="col-3">Sidebar</div>
+          <div className="col-3">
+            <CardModalSidebar card={this.props.card} />
+          </div>
         </div>
         <Button
           classes="btn btn-danger pull-right"
@@ -54,7 +48,11 @@ class CardModal extends Component {
         <ModalHeader toggle={toggleModal}>{card.content}</ModalHeader>
         <ModalBody>
           {this.renderModalBody()}
-          {this.renderPopover()}
+          <DeleteCardPopover
+            card={this.props.card}
+            isOpen={this.state.showPopover}
+            toggle={this.togglePopover}
+          />
         </ModalBody>
       </Modal>
     );

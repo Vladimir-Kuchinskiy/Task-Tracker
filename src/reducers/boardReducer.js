@@ -88,6 +88,33 @@ export default (state = initialState, action) => {
       return start.id === finish.id
         ? moveCardInList(state, start, action.payload)
         : moveCardBetweenLists(state, start, finish, action.payload);
+    case types.CREATE_ASSIGNMENT:
+      let newCardWithAssignments = {
+        ...cards[action.payload.cardId],
+        assignments: {
+          ...cards[action.payload.cardId].assignments,
+          [action.payload.id]: action.payload
+        }
+      };
+      return {
+        ...state,
+        cards: {
+          ...cards,
+          [newCardWithAssignments.id]: newCardWithAssignments
+        }
+      };
+    case types.DELETE_ASSIGNMENT:
+      let newCardWithDeletedAssignment = {
+        ...cards[action.payload.cardId],
+        assignments: omit(cards[action.payload.cardId].assignments, action.payload.userCardId)
+      };
+      return {
+        ...state,
+        cards: {
+          ...cards,
+          [newCardWithDeletedAssignment.id]: newCardWithDeletedAssignment
+        }
+      };
     case types.AUTH_SIGN_OUT:
       return initialState;
     default:

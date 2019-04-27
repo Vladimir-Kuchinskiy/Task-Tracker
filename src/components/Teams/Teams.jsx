@@ -19,7 +19,7 @@ class Teams extends Component {
   };
 
   renderTeamsList = () => {
-    const { teams, loading } = this.props;
+    const { teams, loading, isMember } = this.props;
     if (loading) return <Spinner style={{ position: 'relative' }} />;
     return teams.map(({ id, name }) => (
       <React.Fragment key={id}>
@@ -27,7 +27,7 @@ class Teams extends Component {
           <NavLink className="nav-link" to={`/dashboard/teams/${id}`}>
             {name}
           </NavLink>
-          {this.renderHorizontalLine(id)}
+          {isMember && this.renderHorizontalLine(id)}
         </li>
       </React.Fragment>
     ));

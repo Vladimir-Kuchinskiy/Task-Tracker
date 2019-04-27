@@ -1,8 +1,9 @@
-import { mapBoardContent, mapList, mapCard } from '../services/mappers';
+import { mapBoardContent, mapList, mapCard, mapAssignment } from '../services/mappers';
 import { parseNumber } from '../services/movesService';
 import { types } from '../constants';
 import { todoApi } from '../apis';
 
+// Board
 const getBoardStart = () => {
   return { type: types.GET_BOARD_START };
 };
@@ -77,4 +78,20 @@ export const moveCard = (args, authToken) => async dispatch => {
     destination_list_id: destination.droppableId
   });
   dispatch({ type: types.MOVE_CARD, payload: args });
+};
+
+// Assiging
+export const createAssignment = (authToken, boardId, assignment) => async dispatch => {
+  todoApi.setJwt(authToken);
+  const response = await todoApi.post(`/boards/${boardId}/assignments`, {
+    card_id: assignment.cardId,
+    user_email: assignment.email
+  });
+  dispatch({ type: types.CREATE_ASSIGNMENT, payload: mapAssignment(response.data) });
+};
+
+export const deleteAssignment = (authToken, assignment) => async dispatch => {
+  todoApi.setJwt(authToken);
+  await todoApi.delete(`/assignments/${assignment.userCardId}`);
+  dispatch({ type: types.DELETE_ASSIGNMENT, payload: assignment });
 };

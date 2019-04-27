@@ -6,6 +6,7 @@ import withDraggable from '../../hoc/withDraggable';
 
 import './styles/Card.css';
 import EditCardForm from './EditCardForm';
+import AssignedUsers from './AssignedUsers';
 import CardModal from '../../../containers/Board/CardModal';
 
 const CardContainer = styled.li`
@@ -33,6 +34,7 @@ class Card extends Component {
   };
 
   renderCardContent = (provided, snapshot) => {
+    const { card, assignedUsers } = this.props;
     return (
       <CardContainer
         className="draggable"
@@ -43,7 +45,8 @@ class Card extends Component {
         onContextMenu={this.toggleEditCard}
         onClick={this.toggleModal}
       >
-        {this.props.card.content}
+        <div style={{ display: 'block' }}>{card.content}</div>
+        <AssignedUsers assignedUsers={assignedUsers} />
       </CardContainer>
     );
   };
@@ -64,11 +67,16 @@ class Card extends Component {
 
   render() {
     const { editCardClicked, showModal } = this.state;
-    const { card, provided, snapshot } = this.props;
+    const { card, provided, snapshot, assignedUsers } = this.props;
     return (
       <React.Fragment>
         {editCardClicked ? this.renderEditCardForm() : this.renderCardContent(provided, snapshot)}
-        <CardModal showModal={showModal} toggleModal={this.toggleModal} cardId={card.id} />
+        <CardModal
+          assignedUsers={assignedUsers}
+          showModal={showModal}
+          toggleModal={this.toggleModal}
+          cardId={card.id}
+        />
       </React.Fragment>
     );
   }
@@ -77,7 +85,8 @@ class Card extends Component {
 Card.propTypes = {
   card: PropTypes.object.isRequired,
   provided: PropTypes.object.isRequired,
-  snapshot: PropTypes.object.isRequired
+  snapshot: PropTypes.object.isRequired,
+  assignedUsers: PropTypes.array.isRequired
 };
 
 CardContainer.propTypes = {

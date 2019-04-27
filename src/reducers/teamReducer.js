@@ -40,6 +40,12 @@ export default (state = initialState, action) => {
       };
     case types.DELETE_BOARD_SUCCESS:
       return { ...state, boards: omit(state.boards, action.payload) };
+    case types.UPDATE_BOARD:
+      const { id, params } = action.payload;
+      return {
+        ...state,
+        boards: { ...state.boards, [id]: { ...state.boards[id], ...params } }
+      };
     case types.CREATE_TEAM_SUCCESS:
       return {
         ...state,

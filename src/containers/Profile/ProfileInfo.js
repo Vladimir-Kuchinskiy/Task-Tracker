@@ -4,10 +4,10 @@ import { getProfile } from '../../actions/profileActions';
 
 import ProfileInfo from '../../components/Profile/Info/ProfileInfo';
 
-const mapStateToProps = ({ auth, profile: { info } }) => {
+const mapStateToProps = ({ auth, profile: { info, avatar } }) => {
   const resultProfile = {
     ...info.attributes,
-    avatarUrl: info.avatarUrl
+    avatarUrl: info.avatarUrl || avatar.url
   };
 
   return {

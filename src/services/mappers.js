@@ -1,11 +1,15 @@
 import mapKeys from 'lodash/mapKeys';
 
 export const mapBoardContent = ({ data: { id, attributes }, included }) => {
-  const { title, isCreator, listIds } = attributes;
+  const { title, isCreator, members, listIds } = attributes;
   return {
     board: { id, title },
     lists: mapLists(id, included),
     cards: mapCards(included),
+    members: members.map(member => {
+      member.avatarUrl = member.avatarUrl || require('../images/avatar-placeholder.png');
+      return member;
+    }),
     isCreator,
     listIds
   };
@@ -35,7 +39,7 @@ export const mapList = ({ data: { id, attributes, relationships } }) => {
 };
 
 export const mapCard = ({ data: { id, attributes, relationships } }) => {
-  return { id, ...attributes, listId: relationships.list.data.id };
+  return { id, ...attributes, listId: relationships.list.data.id, assignments: {} };
 };
 
 export const mapInvite = ({ data: { id }, included }) => {
@@ -46,7 +50,7 @@ export const mapInvite = ({ data: { id }, included }) => {
 export const mapProfile = ({ data: { id, attributes } }) => {
   const isDefaultAvatar = attributes.avatarUrl === '';
   const avatar = {
-    url: isDefaultAvatar ? require(`../images/avatar-placeholder.png`) : attributes.avatarUrl,
+    url: isDefaultAvatar ? require('../images/avatar-placeholder.png') : attributes.avatarUrl,
     isDefaultAvatar
   };
   const finalAttributes = { id, ...attributes, avatar };
@@ -55,6 +59,10 @@ export const mapProfile = ({ data: { id, attributes } }) => {
 
 export const mapSubscription = ({ data }) => {
   return data ? { id: data.id, ...data.attributes } : null;
+};
+
+export const mapAssignment = ({ data: { id, attributes, relationships } }) => {
+  return { id, cardId: relationships.card.data.id, ...attributes };
 };
 
 export const mapBoards = ({ data }) => {
@@ -68,7 +76,7 @@ export const mapTeams = ({ data }) => {
 };
 
 const mapLists = (boardId, included) => {
-  let lists = included
+  const lists = included
     .map(({ id, type, attributes }) => {
       if (type === 'list') {
         return { id, boardId, ...attributes };
@@ -80,15 +88,36 @@ const mapLists = (boardId, included) => {
 };
 
 const mapCards = included => {
-  let cards = included
+  const cards = included
     .map(({ id, type, relationships: { list }, attributes }) => {
       if (type === 'card') {
-        return { id, listId: list.data.id, ...attributes };
+        return {
+          id,
+          listId: list.data.id,
+          assignments: mapAssignments(id, included),
+          ...attributes
+        };
       }
       return undefined;
     })
     .filter(Boolean);
   return mapKeys(cards, 'id');
+};
+
+const mapAssignments = (cardId, included) => {
+  const assignments = included
+    .map(({ id, type, relationships: { card }, attributes }) => {
+      if (type === 'userCard' && card.data.id === cardId) {
+        return {
+          id,
+          cardId: card.data.id,
+          ...attributes
+        };
+      }
+      return undefined;
+    })
+    .filter(Boolean);
+  return mapKeys(assignments, 'id');
 };
 
 const mapMembers = included => {

@@ -4,7 +4,7 @@ import EditCardDescriptionForm from './EditCardDescriptionForm';
 import Button from '../../common/Button';
 import { elementHeight } from '../../../services/viewHelpers';
 
-const CardContent = ({ card: { id, description } }) => {
+const CardDescription = ({ card: { id, description } }) => {
   const [editClicked, setEditClicked] = useState(false);
 
   const toggleEdit = () => {
@@ -37,10 +37,11 @@ const CardContent = ({ card: { id, description } }) => {
 
   return (
     <React.Fragment>
+      <h5 className="d-inline">Description</h5>
       {editButton}
       <div className="mt-4">{cardContent}</div>
     </React.Fragment>
   );
 };
 
-export default CardContent;
+export default CardDescription;

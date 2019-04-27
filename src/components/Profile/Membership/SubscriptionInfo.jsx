@@ -12,7 +12,7 @@ const SubscriptionInfo = props => {
       text: 'Are you shure you want to cancel your subscription ?',
       type: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Shure',
+      confirmButtonText: 'Sure',
       cancelButtonText: 'Cancel'
     }).then(result => {
       if (result.value) cancelSubscription(subscription.id, authToken);

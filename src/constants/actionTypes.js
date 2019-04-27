@@ -22,6 +22,8 @@ export const CREATE_CARD = 'CREATE_CARD';
 export const UPDATE_CARD = 'UPDATE_CARD';
 export const DELETE_CARD = 'DELETE_CARD';
 export const MOVE_CARD = 'MOVE_CARD';
+export const CREATE_ASSIGNMENT = 'CREATE_ASSIGNMENT';
+export const DELETE_ASSIGNMENT = 'DELETE_ASSIGNMENT';
 
 // Auth
 export const AUTH_START = 'AUTH_START';

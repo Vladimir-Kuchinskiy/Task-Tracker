@@ -23,6 +23,7 @@
     "react-scripts": "^2.1.4",
     "react-test-renderer": "^16.8.3",
     "react-toastify": "^4.4.3",
+    "react-tooltip": "^3.10.0",
     "react-user-avatar": "^1.10.0",
     "reactstrap": "^6.5.0",
     "redux": "^4.0.1",
