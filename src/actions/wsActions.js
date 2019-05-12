@@ -72,12 +72,10 @@ export const setMovedCard = response => {
 };
 
 export const setCreatedAssignment = response => {
-  debugger;
   return { type: types.CREATE_ASSIGNMENT, payload: mapAssignment(response.data) };
 };
 
 export const deleteAssignmentSuccess = response => {
-  debugger;
   const {
     id: userCardId,
     relationships: {
