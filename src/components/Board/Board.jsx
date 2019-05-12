@@ -33,7 +33,7 @@ class Board extends Component {
   render() {
     const { loading, ...rest } = this.props;
     const content = loading ? (
-      <Spinner />
+      <Spinner style={{ marginLeft: '50%' }} />
     ) : (
       <ActionCableProvider url={process.env.REACT_APP_API_WS_URL}>
         <ActionCableConsumer
