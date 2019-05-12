@@ -32,10 +32,10 @@ export const createBoard = (params, authToken, teamId) => async dispatch => {
   let response = null;
   if (teamId) {
     response = await todoApi.post(`/teams/${teamId}/boards`, params);
-    dispatch({ type: types.CREATE_BOARD_FOR_TEAM, payload: mapBoard(response.data) });
+    dispatch({ type: types.CREATE_BOARD_FOR_TEAM, payload: mapBoard(response) });
   } else {
     response = await todoApi.post('/boards', params);
-    dispatch({ type: types.CREATE_BOARD, payload: mapBoard(response.data) });
+    dispatch({ type: types.CREATE_BOARD, payload: mapBoard(response) });
   }
 };
 

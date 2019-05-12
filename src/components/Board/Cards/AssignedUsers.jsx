@@ -11,7 +11,7 @@ const AssignedUsers = ({ assignedUsers, isModal }) => {
       <div style={{ display: 'block' }}>
         {assignedUsers.map((user, index) => {
           const isNeedToRender = index > 2 && !isModal;
-          return isNeedToRender ? null : <CardMember key={user.email} user={user} index={index} />;
+          return isNeedToRender ? null : <CardMember key={user.email} user={user} />;
         })}
         {renderDots && (
           <UserAvatar

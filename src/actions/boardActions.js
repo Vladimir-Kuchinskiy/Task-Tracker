@@ -61,9 +61,10 @@ export const deleteCard = (id, listId, authToken) => async dispatch => {
 // Moving
 export const moveList = (args, authToken) => async dispatch => {
   todoApi.setJwt(authToken);
-  const { draggableId, destination } = args;
+  const { draggableId, destination, source } = args;
   const listId = parseNumber(draggableId);
   todoApi.post(`/lists/${listId}/move`, {
+    source_position: source.index,
     destination_position: destination.index
   });
   dispatch({ type: types.MOVE_LIST, payload: args });
@@ -71,10 +72,12 @@ export const moveList = (args, authToken) => async dispatch => {
 
 export const moveCard = (args, authToken) => async dispatch => {
   todoApi.setJwt(authToken);
-  const { draggableId, destination } = args;
+  const { draggableId, destination, source } = args;
   const cardId = parseNumber(draggableId);
   todoApi.post(`/cards/${cardId}/move`, {
+    source_position: source.index,
     destination_position: destination.index,
+    source_list_id: source.droppableId,
     destination_list_id: destination.droppableId
   });
   dispatch({ type: types.MOVE_CARD, payload: args });

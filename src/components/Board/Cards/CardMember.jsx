@@ -2,14 +2,14 @@ import React from 'react';
 import UserAvatar from 'react-user-avatar';
 import ReactTooltip from 'react-tooltip';
 
-const CardMember = ({ user, index }) => {
+const CardMember = ({ user }) => {
   return (
     <React.Fragment key={user.email}>
       <div
         className="mt-3 ml-2"
         style={{ width: '35px', display: 'inline-block' }}
         data-tip
-        data-for={`tooltip${index}`}
+        data-for={`tooltip${user.email}`}
       >
         <UserAvatar
           className="mamber-avatar"
@@ -20,7 +20,7 @@ const CardMember = ({ user, index }) => {
           src={user.avatarUrl}
         />
       </div>
-      <ReactTooltip id={`tooltip${index}`} type="dark">
+      <ReactTooltip id={`tooltip${user.email}`} type="dark">
         <span>{user.email}</span>
       </ReactTooltip>
     </React.Fragment>

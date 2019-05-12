@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types';
+import { ActionCableProvider, ActionCableConsumer } from 'react-actioncable-provider';
 
 import Lists from '../../containers/Board/Lists';
 import BoardNavbar from '../Board/BoardNavbar';
@@ -34,14 +35,18 @@ class Board extends Component {
     const content = loading ? (
       <Spinner />
     ) : (
-      <React.Fragment>
+      <ActionCableProvider url={process.env.REACT_APP_API_WS_URL}>
+        <ActionCableConsumer
+          channel={{ channel: 'BoardsChannel', board_id: rest.board.id }}
+          onReceived={this.props.handleReceived}
+        />
         <BoardNavbar editClicked={this.state.editClicked} onEdit={this.toggleEdit} {...rest} />
         <div className="content board">
           <DragDropContext onDragEnd={this.handleDragEnd}>
             <Lists id="all-lists" type="list" direction="horizontal" />
           </DragDropContext>
         </div>
-      </React.Fragment>
+      </ActionCableProvider>
     );
     return content;
   }

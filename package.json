@@ -13,6 +13,7 @@
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
     "react": "next",
+    "react-actioncable-provider": "^2.0.0",
     "react-beautiful-dnd": "^7.1.3",
     "react-dom": "next",
     "react-image-crop": "^6.0.18",

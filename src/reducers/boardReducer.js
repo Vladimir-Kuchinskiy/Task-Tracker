@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
     case types.CREATE_LIST:
       const newList = action.payload;
       lists = { ...lists, [newList.id]: newList };
-      listIds = [...listIds, newList.id];
+      if (!listIds.includes(newList.id)) listIds = [...listIds, newList.id];
       return {
         ...state,
         lists,
@@ -56,7 +56,8 @@ export default (state = initialState, action) => {
     case types.CREATE_CARD:
       const newCard = action.payload;
       let list = lists[newCard.listId];
-      list = { ...list, cardIds: [...list.cardIds, newCard.id] };
+      if (!list.cardIds.includes(newCard.id))
+        list = { ...list, cardIds: [...list.cardIds, newCard.id] };
       return {
         ...state,
         lists: { ...lists, [list.id]: list },
